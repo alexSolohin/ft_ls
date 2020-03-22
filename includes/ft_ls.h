@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/03/22 11:26:06 by alex             ###   ########.fr       */
+/*   Updated: 2020/03/22 17:54:23 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_LS_H
 
 #include "libft.h"
+
+
 
 typedef struct      s_ls
 {
@@ -23,5 +25,15 @@ typedef struct      s_ls
     char            *name;
     struct s_ls     *next;
 }                   t_ls;
+
+typedef struct		s_dir
+{
+	int				flag;
+	t_ls			*ls;
+	struct s_dir	*next;
+}					t_dir;
+
+void	print(t_ls *ls);
+t_ls	*sort_list(t_ls *ls);
 
 #endif

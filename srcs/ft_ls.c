@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/03/22 12:31:48 by alex             ###   ########.fr       */
+/*   Updated: 2020/03/22 16:56:11 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ t_ls	*sort_list(t_ls *ls)
 		{
 			tmp = malloc(sizeof(char) * 255);
 			tmp = ls->name;
-			type = ls->type;
+			type = ls->flag;
 			ls->name = ls->next->name;
 			ls->next->name = tmp;
-			ls->type = ls->next->type;
-			ls->next->type = type;
+			ls->flag = ls->next->flag;
+			ls->next->flag = type;
 			ls = ptr;
 		}
 		else
@@ -67,34 +67,21 @@ t_ls	*sort_list(t_ls *ls)
 	return (ls);
 }
 
-void	ft_ls_zero(t_ls *ls, char *av)
+void	ft_ls_a(t_ls *ls)
 {
-	DIR				*dir;
-	struct dirent	*entry;
-	t_ls			*ptr;
-
-	dir = opendir((ls->flag == 0) ? av : ".");
-	if (!dir)
-		print_error(av);
-	while ((entry = readdir(dir)) != NULL)
-	{
-		ptr = malloc(sizeof(t_ls));
-		ptr->name = entry->d_name;
-		ptr->type = entry->d_type;
-		ptr->next = ls;
-		ls = ptr;
-		// if (ls->flag != 0)
-		// 	get_flag(ls, av);
-	}
-	ls = sort_list(ls);
-	while (ls->next != NULL)
-	{
-		ft_putstr(ls->name);
-		if (ls->next->name != NULL)
+	if ((ls->name[0] == '.' && ls->name[1] == '\0') || (ls->name[0] == '.' && ls->name[1] == '.'))
+    {
+        ft_putstr(ls->name);
 			ft_putstr("        ");
-		ls = ls->next;
+        // ls = ls->next;
 	}
-	closedir(dir);
+}
+
+void	get_flag(t_ls *ls, char *av)
+{
+	av = 0;
+	if (ls->flag == 3)
+		ft_ls_a(ls);
 }
 
 // void	ft_ls_a(t_ls *ls, char *av)
@@ -132,24 +119,7 @@ void	ft_ls_zero(t_ls *ls, char *av)
 // 	closedir(dir);
 // }
 
-void	ft_ls_a(t_ls *ls)
-{
-	if ((ls->name[0] == '.' && ls->name[1] == '\0') || (ls->name[0] == '.' && ls->name[1] == '.'))
-    {
-        ft_putstr(ls->name);
-			ft_putstr("        ");
-        ls = ls->next;
-	}
-}
-
-void	get_flag(t_ls *ls, char *av)
-{
-	av = 0;
-	if (ls->flag == 3)
-		ft_ls_a(ls);
-}
-
-void	ft_ls_dir(t_ls *ls, char *av, int count)
+void	ft_ls_dir(t_ls *ls, char *av)
 {
 	DIR				*dir;
 	struct dirent	*entry;
@@ -162,7 +132,6 @@ void	ft_ls_dir(t_ls *ls, char *av, int count)
 	{
 		ptr = malloc(sizeof(t_ls));
 		ptr->name = entry->d_name;
-		ptr->type = entry->d_type;
 		ptr->flag = ls->flag;
 		ptr->next = ls;
 		ls = ptr;
@@ -175,20 +144,18 @@ void	ft_ls_dir(t_ls *ls, char *av, int count)
 				ls = ls->next;
 	}
 	ls = sort_list(ls);
-	if (ls->flag == 0 || count <= 2)
-	{
-		while (ls->next != NULL)
-		{
-			ft_putstr(ls->name);
-			if (ls->next->name != NULL)
-				ft_putstr("        ");
-			ls = ls->next;
-		}
-	}
+	print(ls);
+	// while (ls->next != NULL)
+	// {
+	// 	ft_putstr(ls->name);
+	// 	if (ls->next->name != NULL)
+	// 		ft_putstr("        ");
+	// 	ls = ls->next;
+	// }
 	closedir(dir);
 }
 
-void	ft_ls(t_ls *ls, char *av, int count)
+int		ft_ls(t_ls *ls, char *av)
 {
 	ls->flag = 0;
 	if (ft_strequ(av, "-l"))
@@ -201,26 +168,28 @@ void	ft_ls(t_ls *ls, char *av, int count)
 		ls->flag = 4;
 	else if (ft_strequ(av, "-t"))
 		ls->flag = 5;
-	ft_ls_dir(ls, av, count);
+	else
+		return (0);
+	return (1);
+	// ft_ls_dir(ls, dir, av);
 }
-
 //stat разобрать, там найдем нужные расширения
 int     main(int ac, char **av)
 {
 	t_ls	*ls;
 	int		i;
 
-	i = 1;
+	i = 2;
 	ls = malloc(sizeof(t_ls));
 	if (ac == 1)
-		ft_ls(ls, ".", ac);
-	else if (ac == 2)
-		ft_ls(ls, av[1], ac);
-	else if (ac >= 3)
+		ft_ls_dir(ls, ".");
+	else if (ac > 1)
 	{
+		if (ft_ls(ls, av[1]))
+			printf("%d\n", ls->flag);
 		while (av[i])
 		{
-			ft_ls(ls, av[i++], ac);
+			ft_ls(ls, av[i++]);
 		}
 	}
 
