@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/03/21 18:54:34 by alex             ###   ########.fr       */
+/*   Updated: 2020/03/22 11:26:06 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct      s_ls
 {
     int             flag;
+    int             flag_end;
     int             type;
     char            *name;
     struct s_ls     *next;
