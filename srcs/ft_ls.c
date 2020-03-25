@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/03/24 14:51:08 by user             ###   ########.fr       */
+/*   Updated: 2020/03/25 18:11:48 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
-
-void	print_error(char *av)
-{
-	ft_putstr("ls: ");
-	ft_putstr(av);
-	ft_putstr(": No such file or directory\n");
-	exit(0);
-}
 
 int		sort_alphabet(char *a, char *b)
 {
@@ -72,16 +64,9 @@ void	ft_ls_a(t_ls *ls)
 	if ((ls->name[0] == '.' && ls->name[1] == '\0') || (ls->name[0] == '.' && ls->name[1] == '.'))
     {
         ft_putstr(ls->name);
-			ft_putstr("        ");
+		ft_putstr("        ");
         // ls = ls->next;
 	}
-}
-
-void	get_flag(t_ls *ls, char *av)
-{
-	av = 0;
-	if (ls->flag == 3)
-		ft_ls_a(ls);
 }
 
 // void	ft_ls_a(t_ls *ls, char *av)
@@ -119,55 +104,76 @@ void	get_flag(t_ls *ls, char *av)
 // 	closedir(dir);
 // }
 
-void	ft_ls_dir(t_ls *ls, char *av)
+void	ft_ls_type(t_type *type, t_ls *ls)
+{
+	if (type->flag == 1)
+	{
+		if (ls->name[0] == '.')
+			ls = ls->next;
+		else
+			ft_ls_l(ls);
+	}
+	else if (type->flag == 2)
+		printf("2");
+	else if (type->flag == 3)
+		ft_ls_a(ls);
+	else if (type->flag == 4)
+		printf("4");
+	else if (type->flag == 5)
+		printf("5");
+
+
+}
+
+void	ft_ls_dir(t_type *type, char *av)
 {
 	DIR				*dir;
 	struct dirent	*entry;
 	t_ls			*ptr;
+	t_ls			*ls;
 
-	dir = opendir((ls->flag == 0) ? av : ".");
+	ls = malloc(sizeof(t_ls));
+	dir = opendir((type->flag == 0) ? av : ".");
 	if (!dir)
 		print_error(av);
 	while ((entry = readdir(dir)) != NULL)
 	{
 		ptr = malloc(sizeof(t_ls));
 		ptr->name = entry->d_name;
-		ptr->flag = ls->flag;
+		// ptr->flag = ls->flag;
 		ptr->next = ls;
 		ls = ptr;
-		if (ls->flag != 0)
-		{
-			get_flag(ls, av);
-		}
+		if (type->flag != 0)
+			ft_ls_type(type, ls);
 		else
 			if (ls->name[0] == '.')
 				ls = ls->next;
 	}
 	ls = sort_list(ls);
-	print(ls);
-	// while (ls->next != NULL)
-	// {
-	// 	ft_putstr(ls->name);
-	// 	if (ls->next->name != NULL)
-	// 		ft_putstr("        ");
-	// 	ls = ls->next;
-	// }
+	// print(ls);
+	while (ls->next != NULL)
+	{
+		ft_putstr(ls->name);
+		if (ls->next->name != NULL)
+			ft_putstr("        ");
+		ls = ls->next;
+	}
 	closedir(dir);
 }
 
-int		ft_ls(t_ls *ls, char *av)
+int		ft_ls(t_type *type, char *av)
 {
-	ls->flag = 0;
+	type->flag = 0;
 	if (ft_strequ(av, "-l"))
-		ls->flag = 1;
+		type->flag = 1;
 	else if (ft_strequ(av, "-R"))
-		ls->flag = 2;
+		type->flag = 2;
 	else if (ft_strequ(av, "-a"))
-		ls->flag = 3;
+		type->flag = 3;
 	else if (ft_strequ(av, "-r"))
-		ls->flag = 4;
+		type->flag = 4;
 	else if (ft_strequ(av, "-t"))
-		ls->flag = 5;
+		type->flag = 5;
 	else
 		return (0);
 	return (1);
@@ -177,20 +183,30 @@ int		ft_ls(t_ls *ls, char *av)
 int     main(int ac, char **av)
 {
 	t_ls	*ls;
+	t_type	*type;
 	int		i;
 
 	i = 2;
-	ls = malloc(sizeof(t_ls));
-	if (ac == 1)
-		ft_ls_dir(ls, ".");
-	else if (ac > 1)
+
+	if (!(type = malloc(sizeof(t_type))))
+		exit(0);
+	if (!(ls = malloc(sizeof(t_ls))))
+		exit(0);
+
+	ac = 0;
+
+	ft_ls(type, av[1]);
+	if (ac <= 2)
+		ft_ls_dir(type, ".");
+	else if (ac > 2)
 	{
-		if (ft_ls(ls, av[1]))
-			printf("%d\n", ls->flag);
+		i = 2;
+		if (ft_ls(type, av[1]))
+			printf("%d\n", type->flag);
 		while (av[i])
 		{
-			ft_ls(ls, av[i++]);
+			ft_ls_dir(type, av[i]);
+			i++;
 		}
 	}
-
 }

@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 16:49:34 by user              #+#    #+#             */
-/*   Updated: 2020/03/24 16:51:15 by user             ###   ########.fr       */
+/*   Updated: 2020/03/25 17:20:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 
+void	print_error(char *av)
+{
+	ft_putstr("ls: ");
+	ft_putstr(av);
+	ft_putstr(": No such file or directory\n");
+	exit(0);
+}
+
+
 void	sort_arr(char str[][1024], int size_arr, int max_len)
 {
 	int i;
 	int j;
 	int k;
+	int t;
 	char ptr[255][1024];
 
 	i = 0;
@@ -26,6 +36,7 @@ void	sort_arr(char str[][1024], int size_arr, int max_len)
 	max_len = 0;
 	while (i < size_arr / 2  + 1)
 	{
+		t = 0;
 		j = 0;
 		while (str[i][j])
 		{
@@ -36,6 +47,7 @@ void	sort_arr(char str[][1024], int size_arr, int max_len)
 			{
 				ptr[k + 1][j] = str[size_arr / 2 + 1][j];
 				//закончил здесь
+				t = 1;
 				// необходимо закинуть в массив строки 0 - size_arr / 2
 			}
 			j++;
@@ -53,7 +65,8 @@ void	sort_arr(char str[][1024], int size_arr, int max_len)
 		// 			printf("%s\n", str[size_arr / 2 + i]);
 		// }
 		i++;
-		k++;
+		if (!t)
+			k++;
 	}
 }
 
