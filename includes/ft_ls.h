@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/03/25 18:11:19 by user             ###   ########.fr       */
+/*   Updated: 2020/03/26 17:23:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ typedef struct      s_ls
     int             flag;
     int             flag_end;
     int             type;
-	char			chmod[12];
+	char			chmod[10];
+	char			time[17];
+	char			*user_name;
+	char			*group_name;
+	int				byte_size;
+	int				links;
     char            *name;
     struct s_ls     *next;
 }                   t_ls;
