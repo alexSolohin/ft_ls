@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/03/25 18:11:48 by user             ###   ########.fr       */
+/*   Updated: 2020/04/06 15:26:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
+
+
 
 int		sort_alphabet(char *a, char *b)
 {
@@ -69,41 +71,6 @@ void	ft_ls_a(t_ls *ls)
 	}
 }
 
-// void	ft_ls_a(t_ls *ls, char *av)
-// {
-// 	DIR				*dir;
-// 	struct dirent	*entry;
-// 	t_ls			*ptr;
-
-// 	av = 0;
-// 	dir = opendir(".");
-// 	if (!dir)
-// 		print_error(".");
-// 	while ((entry = readdir(dir)) != NULL)
-// 	{
-// 		ptr = malloc(sizeof(t_ls));
-// 		ptr->name = entry->d_name;
-// 		ptr->type = entry->d_type;
-// 		ptr->next = ls;
-// 		ls = ptr;
-// 		if ((ls->name[0] == '.' && ls->name[1] == '\0') || (ls->name[0] == '.' && ls->name[1] == '.'))
-//         {
-//             ft_putstr(ls->name);
-// 			ft_putstr("        ");
-//             ls = ls->next;
-//         }
-// 	}
-// 	ls = sort_list(ls);
-// 	while (ls->next != NULL)
-// 	{
-// 		ft_putstr(ls->name);
-// 		if (ls->next->name != NULL)
-// 			ft_putstr("        ");
-// 		ls = ls->next;
-// 	}
-// 	closedir(dir);
-// }
-
 void	ft_ls_type(t_type *type, t_ls *ls)
 {
 	if (type->flag == 1)
@@ -125,7 +92,7 @@ void	ft_ls_type(t_type *type, t_ls *ls)
 
 }
 
-void	ft_ls_dir(t_type *type, char *av)
+t_ls	*ft_ls_dir(t_type *type, char *av)
 {
 	DIR				*dir;
 	struct dirent	*entry;
@@ -140,7 +107,6 @@ void	ft_ls_dir(t_type *type, char *av)
 	{
 		ptr = malloc(sizeof(t_ls));
 		ptr->name = entry->d_name;
-		// ptr->flag = ls->flag;
 		ptr->next = ls;
 		ls = ptr;
 		if (type->flag != 0)
@@ -151,14 +117,15 @@ void	ft_ls_dir(t_type *type, char *av)
 	}
 	ls = sort_list(ls);
 	// print(ls);
-	while (ls->next != NULL)
-	{
-		ft_putstr(ls->name);
-		if (ls->next->name != NULL)
-			ft_putstr("        ");
-		ls = ls->next;
-	}
+	// while (ls->next != NULL)
+	// {
+	// 	ft_putstr(ls->name);
+	// 	if (ls->next->name != NULL)
+	// 		ft_putstr("        ");
+	// 	ls = ls->next;
+	// }
 	closedir(dir);
+	return (ls);
 }
 
 int		ft_ls(t_type *type, char *av)
@@ -177,36 +144,44 @@ int		ft_ls(t_type *type, char *av)
 	else
 		return (0);
 	return (1);
-	// ft_ls_dir(ls, dir, av);
 }
+
 //stat разобрать, там найдем нужные расширения
 int     main(int ac, char **av)
 {
 	t_ls	*ls;
 	t_type	*type;
+	t_dir	*dir;
 	int		i;
 
 	i = 2;
 
+	if (!(dir = malloc(sizeof(t_dir))))
+		exit (0);
 	if (!(type = malloc(sizeof(t_type))))
 		exit(0);
 	if (!(ls = malloc(sizeof(t_ls))))
 		exit(0);
-
-	ac = 0;
-
-	ft_ls(type, av[1]);
+	ft_ls(type, av[1]);  // здесь будет функция для определения флагов
 	if (ac <= 2)
-		ft_ls_dir(type, ".");
+		dir->ls = ft_ls_dir(type, ".");
 	else if (ac > 2)
 	{
-		i = 2;
+		i = 1;
 		if (ft_ls(type, av[1]))
 			printf("%d\n", type->flag);
 		while (av[i])
 		{
-			ft_ls_dir(type, av[i]);
+			// ft_ls_test(dir, av[i]);
+			dir->ls = ft_ls_dir(type, av[i]);
 			i++;
+			while (dir->ls->next != NULL)
+			{
+				ft_putstr(dir->ls->name);
+				if (dir->ls->next->name != NULL)
+				ft_putstr("        ");
+				dir->ls = dir->ls->next;
+			}
 		}
 	}
 }

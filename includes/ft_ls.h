@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/03/26 17:23:29 by user             ###   ########.fr       */
+/*   Updated: 2020/04/06 15:08:32 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@
 
 typedef struct      s_ls
 {
-    int             flag;
-    int             flag_end;
-    int             type;
-	char			chmod[10];
-	char			time[17];
-	char			*user_name;
-	char			*group_name;
-	int				byte_size;
-	int				links;
-    char            *name;
+    int             flag;			//флаг
+	char			chmod[10];		//права доступа
+	char			time[17];		//время DD MM
+	char			*user_name;		//имя пользовтеля
+	char			*group_name;	//имя групы
+	int				byte_size;		//размер в байтах
+	int				links;			//количество файлов внутри
+    char            *name;			// имя файла или директории
     struct s_ls     *next;
 }                   t_ls;
 
@@ -39,6 +37,7 @@ typedef struct		s_type
 
 typedef struct		s_dir
 {
+	char			*name;
 	int				flag;
 	t_ls			*ls;
 	struct s_dir	*next;
