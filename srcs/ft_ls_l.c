@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:03:27 by user              #+#    #+#             */
-/*   Updated: 2020/03/26 17:43:56 by user             ###   ########.fr       */
+/*   Updated: 2020/04/06 15:12:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ void	ft_ls_l(t_ls *ls)
 	ls->links = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
 
-	int i = 0;
-	while (i < 10)
-	{
-		printf("%c", ls->chmod[i]);
-		i++;
-	}
-	printf("\t%d", ls->links);
-	printf("\t%s\t%s\t%d", ls->user_name, ls->group_name, ls->byte_size);
-	printf("\t%.16s %s\n", s, ls->name);
+	// int i = 0;
+	// while (i < 10)
+	// {
+	// 	printf("%c", ls->chmod[i]);
+	// 	i++;
+	// }
+	// printf("\t%d", ls->links);
+	// printf("\t%s\t%s\t%d", ls->user_name, ls->group_name, ls->byte_size);
+	// printf("\t%.16s %s\n", s, ls->name);
 
 	// printf("Time	%.16s\n", s);
 	// printf("Information for %s\n", ls->name);
