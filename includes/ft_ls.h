@@ -15,7 +15,16 @@
 
 #include "libft.h"
 
+# define FLAGS "adflRru"
+# define L_OPT {"all","", ""};
 
+typedef struct	s_opt
+{
+	char		*optarg;
+	int 		optind;
+	int			optchar;
+	char 		*optdecl;
+}				t_opt;
 
 typedef struct      s_ls
 {
