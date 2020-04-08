@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/04/06 15:26:14 by user             ###   ########.fr       */
+/*   Updated: 2020/04/08 13:14:08 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
+#include <time.h>
+#include <pwd.h>
+#include <grp.h>
 
 
 
@@ -92,40 +95,35 @@ void	ft_ls_type(t_type *type, t_ls *ls)
 
 }
 
-t_ls	*ft_ls_dir(t_type *type, char *av)
+
+
+void	ft_ls_dir(char *av)
 {
 	DIR				*dir;
 	struct dirent	*entry;
-	t_ls			*ptr;
 	t_ls			*ls;
 
-	ls = malloc(sizeof(t_ls));
-	dir = opendir((type->flag == 0) ? av : ".");
+	dir = opendir(".");
+
+	if (!(ls = malloc(sizeof(t_ls))))
+		exit(0);
 	if (!dir)
 		print_error(av);
 	while ((entry = readdir(dir)) != NULL)
 	{
-		ptr = malloc(sizeof(t_ls));
-		ptr->name = entry->d_name;
-		ptr->next = ls;
-		ls = ptr;
-		if (type->flag != 0)
-			ft_ls_type(type, ls);
-		else
-			if (ls->name[0] == '.')
-				ls = ls->next;
+		ls->name = entry->d_name;
+		init_struct(ls);
+		int i = 0;
+		while (i < 10)
+		{
+			printf("%c", ls->chmod[i]);
+			i++;
+		}
+		printf("\t%d", ls->links);
+		printf("\t%s\t%s\t%d", ls->user_name, ls->group_name, ls->byte_size);
+		printf("\t%.16s %s\n", ls->time, ls->name);
 	}
-	ls = sort_list(ls);
-	// print(ls);
-	// while (ls->next != NULL)
-	// {
-	// 	ft_putstr(ls->name);
-	// 	if (ls->next->name != NULL)
-	// 		ft_putstr("        ");
-	// 	ls = ls->next;
-	// }
 	closedir(dir);
-	return (ls);
 }
 
 int		ft_ls(t_type *type, char *av)
@@ -146,42 +144,17 @@ int		ft_ls(t_type *type, char *av)
 	return (1);
 }
 
+
 //stat разобрать, там найдем нужные расширения
 int     main(int ac, char **av)
 {
 	t_ls	*ls;
-	t_type	*type;
-	t_dir	*dir;
-	int		i;
 
-	i = 2;
-
-	if (!(dir = malloc(sizeof(t_dir))))
-		exit (0);
-	if (!(type = malloc(sizeof(t_type))))
-		exit(0);
+	av = 0;
 	if (!(ls = malloc(sizeof(t_ls))))
 		exit(0);
-	ft_ls(type, av[1]);  // здесь будет функция для определения флагов
-	if (ac <= 2)
-		dir->ls = ft_ls_dir(type, ".");
-	else if (ac > 2)
-	{
-		i = 1;
-		if (ft_ls(type, av[1]))
-			printf("%d\n", type->flag);
-		while (av[i])
-		{
-			// ft_ls_test(dir, av[i]);
-			dir->ls = ft_ls_dir(type, av[i]);
-			i++;
-			while (dir->ls->next != NULL)
-			{
-				ft_putstr(dir->ls->name);
-				if (dir->ls->next->name != NULL)
-				ft_putstr("        ");
-				dir->ls = dir->ls->next;
-			}
-		}
-	}
+	if (ac == 1)
+		ft_ls_dir(".");
+
+
 }
