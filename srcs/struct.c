@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 12:54:07 by user              #+#    #+#             */
-/*   Updated: 2020/05/03 13:26:14 by alex             ###   ########.fr       */
+/*   Updated: 2020/04/08 13:13:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,20 @@ void	ft_chmod(struct stat file_stat, t_ls *ls)
 	ls->chmod[9] = (file_stat.st_mode & S_IXOTH) ? 'x' : '-';
 }
 
-t_ls    *init_struct(t_ls *ls, char *path, char *buff)
+void	init_struct(t_ls *ls)
 {
 	struct passwd 	*pws;
 	struct stat 	file_stat;
 	struct group	*group;
-	t_ls			*ptr;
 
-	if (!(ptr = malloc(sizeof(t_ls))))
-	    exit(0);
-	ptr->name = ft_strdup(buff);
 	if ((group = getgrgid(getgid())) != NULL)
-		ptr->group_name = group->gr_name;
+		ls->group_name = group->gr_name;
 	if ((pws = getpwuid(geteuid())) != NULL)
-		ptr->user_name = pws->pw_name;
-	if (ft_strequ(buff, ".") || ft_strequ(buff, ".."))
-	{
-		if (stat(buff, &file_stat) < 0)
-			exit(0);
-	}
-	else
-	{
-		if (stat(path, &file_stat) < 0)
-			exit(0);
-	}
-	ptr->time = ft_strdup(ctime(&file_stat.st_mtime));
-	ptr->links = file_stat.st_nlink;
-	ptr->byte_size = file_stat.st_size;
-	ptr->st_block = file_stat.st_blocks;
-	ptr->time_nsec = file_stat.st_mtime;
-	ft_chmod(file_stat, ptr);
-	ptr->next = ls;
-    ls = ptr;
-    return (ptr);
+		ls->user_name = pws->pw_name;
+	if (stat(ls->name, &file_stat) < 0)
+		exit(0);
+	ls->time = ctime(&file_stat.st_atimespec.tv_sec);
+	ls->links = file_stat.st_nlink;
+	ls->byte_size = file_stat.st_size;
+	ft_chmod(file_stat, ls);
 }
