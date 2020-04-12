@@ -35,7 +35,7 @@ void	ft_ls_l(t_ls *ls)
 
 	if (stat(ls->name, &file_stat) < 0)
 		exit(0);
-	s = ctime(&file_stat.st_atimespec.tv_sec);
+	s = ctime(&file_stat.st_atim.tv_sec);
 	ls->chmod[0] = (S_ISDIR(file_stat.st_mode)) ? 'd' : '-';
     ls->chmod[1] = (file_stat.st_mode & S_IRUSR) ? 'r' : '-';
     ls->chmod[2] = (file_stat.st_mode & S_IWUSR) ? 'w' : '-';

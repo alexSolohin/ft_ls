@@ -19,23 +19,7 @@ int				no_more_options(char **optcursor)
 	return (-1);
 }
 
-t_opt 			*set_start_opt_val(void)
-{
-	t_opt		*opt;
-
-	if(!(opt = (t_opt *)malloc(sizeof(t_opt))))
-	{
-		return (NULL);
-		exit(-1);
-	}
-	opt->optind = 1;
-	opt->optarg = NULL;
-	opt->optchar = -1;
-	opt->optdecl = NULL;
-	return (opt);
-}
-
-void 			opt_has_arg(int ac, char **av, t_opt **opt, char **optcursor)
+void 			opt_has_arg(t_input *input, t_opt **opt, char **optcursor)
 {
 	if ((*opt)->optdecl)
 	{
@@ -46,8 +30,8 @@ void 			opt_has_arg(int ac, char **av, t_opt **opt, char **optcursor)
 			{
 				if ((*opt)->optdecl[2] != ':')
 				{
-					if (++((*opt)->optind) < ac)
-						(*opt)->optarg = av[(*opt)->optind];
+					if (++((*opt)->optind) < input->ac)
+						(*opt)->optarg = input->av[(*opt)->optind];
 					else
 					{
 						(*opt)->optarg = NULL;
@@ -64,28 +48,54 @@ void 			opt_has_arg(int ac, char **av, t_opt **opt, char **optcursor)
 		(*opt)->optchar = '?';
 }
 
-int 			ft_getopt(int ac, char **av, t_opt *opt)
+int 			ft_get_opt(t_input *input, t_opt *opt)
 {
 	static char	*optcursor = NULL;
 
-	if (opt->optind >= ac || av[opt->optind] == NULL ||
-		*av[opt->optind] != '-' || ft_strcmp(av[opt->optind], "-") == 0)
+	if (opt->optind >= input->ac|| input->av[opt->optind] == NULL ||
+		*(input->av)[opt->optind] != '-'
+		|| strcmp(input->av[opt->optind], "-") == 0)
 		return (no_more_options(&optcursor));
-	if (ft_strcmp(av[opt->optind], "--") == 0)
+	if (strcmp(input->av[opt->optind], "--") == 0)
 	{
 		(opt->optind)++;
 		return (no_more_options(&optcursor));
 	}
 	if (optcursor == NULL || *optcursor == '\0')
-		optcursor = av[opt->optind] + 1;
+		optcursor = input->av[opt->optind] + 1;
 	opt->optchar = *optcursor;
-	opt->optdecl = ft_strchr(FLAGS, opt->optchar);
-	opt_has_arg(ac, av, &opt, &optcursor);
+	opt->optdecl = strchr(FLAGS, opt->optchar);
+	opt_has_arg(input, &opt, &optcursor);
 	if (optcursor == NULL || *(++optcursor) == '\0')
 		(opt->optind)++;
 	return (opt->optchar);
 }
 
+t_opt 			*set_start_opt_val(t_opt *opt)
+{
+	if (!opt)
+	{
+		if(!(opt = (t_opt *)malloc(sizeof(t_opt))))
+			exit(-1);
+		opt->optarg = NULL;
+		opt->optdecl = NULL;
+		opt->optchar = -1;
+		opt->optind = 1;
+		return (opt);
+	}
+	else
+		return (opt);
+}
+
+int				ft_getopt(t_input input, t_opt *opt, char *optstr)
+{
+	int ret;
+
+	opt = set_start_opt_val(opt);
+	return (ret = ft_get_opt(&input, opt));
+}
+
+/*
 void 			collect_opt(int ac, char **av)
 {
 //	int 		*opt_collector;
@@ -107,4 +117,4 @@ void 			collect_opt(int ac, char **av)
 int main(int ac, char **av)
 {
 	collect_opt(ac, av);
-}
+}*/
