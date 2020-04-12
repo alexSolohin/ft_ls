@@ -16,7 +16,10 @@
 #include "libft.h"
 
 # define FLAGS "adflRru"
-# define L_OPT {"all","", ""};
+
+# define NO_ARG		0
+# define REQ_ARG	1
+# define OPT_ARG	2
 
 typedef struct	s_opt
 {
@@ -26,20 +29,34 @@ typedef struct	s_opt
 	char 		*optdecl;
 }				t_opt;
 
-typedef struct      s_ls
+typedef struct	s_lopt
 {
-    int             flag;
-    int             flag_end;
-    int             type;
-	char			chmod[10];
-	char			time[17];
-	char			*user_name;
-	char			*group_name;
-	int				byte_size;
-	int				links;
-    char            *name;
-    struct s_ls     *next;
-}                   t_ls;
+	const char *name;
+	int 		hasarg;
+	int			*flag;
+	int 		val;
+}				t_lopt;
+
+typedef struct s_input
+{
+	int			ac;
+	char		**av;
+}				t_input;
+
+typedef struct	s_ls
+{
+    int			flag;
+    int			flag_end;
+    int			type;
+	char		chmod[10];
+	char		time[17];
+	char		*user_name;
+	char		*group_name;
+	int			byte_size;
+	int			links;
+    char		*name;
+    struct s_ls	*next;
+}				t_ls;
 
 typedef struct		s_type
 {
@@ -53,9 +70,12 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
-void	print(t_ls *ls);
-void	ft_ls_l(t_ls *ls);
-void	print_error(char *av);
-t_ls	*sort_list(t_ls *ls);
+void		print(t_ls *ls);
+void		ft_ls_l(t_ls *ls);
+void		print_error(char *av);
+t_ls		*sort_list(t_ls *ls);
+t_opt 		*set_start_opt_val(t_opt *opt);
+int			ft_getopt(t_input inpt, t_opt *opt, char *optstr);
+int 		ft_getopt_long(t_input data, t_opt *opt, t_lopt *lopt, int *longind);
 
 #endif
