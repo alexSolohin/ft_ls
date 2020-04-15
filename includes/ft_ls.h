@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/04/08 13:12:37 by user             ###   ########.fr       */
+/*   Updated: 2020/04/15 15:39:45 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_type
 	int				flag;
 }					t_type;
 
+
 typedef struct		s_dir
 {
 	char			*name;
@@ -100,12 +101,11 @@ static t_lopt 	g_lopt[] = {
 		{NULL,0,NULL,0}
 };
 
+
 void		print(t_ls *ls);
-void		ft_ls_dir(char *av);
 void		ft_ls_l(t_ls *ls);
 void		print_error(char *av);
-t_ls		*sort_list(t_ls *ls);
-void		init_struct(t_ls *ls);
+void		init_struct(t_ls *ls, char *str);
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
