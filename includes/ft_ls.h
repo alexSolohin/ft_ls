@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/04/15 15:39:45 by user             ###   ########.fr       */
+/*   Updated: 2020/04/18 15:39:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct      s_ls
 {
     int             flag;			//флаг
 	char			chmod[10];		//права доступа
-	char			*time;		//время DD MM
+	char			*time;			//время DD MM
 	char			*user_name;		//имя пользовтеля
 	char			*group_name;	//имя групы
 	int				byte_size;		//размер в байтах
@@ -39,6 +39,6 @@ typedef struct		s_type
 void	print(t_ls *ls);
 void	ft_ls_l(t_ls *ls);
 void	print_error(char *av);
-void	init_struct(t_ls *ls, char *str);
+void	init_struct(char *str, t_ls *ls);
 
 #endif
