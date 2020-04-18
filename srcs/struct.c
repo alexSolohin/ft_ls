@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 12:54:07 by user              #+#    #+#             */
-/*   Updated: 2020/04/15 15:40:48 by user             ###   ########.fr       */
+/*   Updated: 2020/04/18 16:08:49 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ void	ft_chmod(struct stat file_stat, t_ls *ls)
 	ls->chmod[9] = (file_stat.st_mode & S_IXOTH) ? 'x' : '-';
 }
 
-void	init_struct(t_ls *ls, char *str)
+void	init_struct(char *str, t_ls *ls)
 {
 	struct passwd 	*pws;
 	struct stat 	file_stat;
 	struct group	*group;
+	str = 0;
 
 	if ((group = getgrgid(getgid())) != NULL)
 		ls->group_name = group->gr_name;
 	if ((pws = getpwuid(geteuid())) != NULL)
 		ls->user_name = pws->pw_name;
 	if (stat(str, &file_stat) < 0) // не работает с сылками типа *
-		exit(0);
+		printf("€");
 	ls->time = ctime(&file_stat.st_atimespec.tv_sec);
 	ls->links = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
