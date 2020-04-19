@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls_l.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:03:27 by user              #+#    #+#             */
-/*   Updated: 2020/03/26 17:43:56 by user             ###   ########.fr       */
+/*   Updated: 2020/04/04 17:58:09 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <pwd.h>
 #include <grp.h>
 
-
 void	ft_ls_l(t_ls *ls)
 {
 	struct passwd 	*pws;
@@ -28,11 +27,8 @@ void	ft_ls_l(t_ls *ls)
 
 	if ((group = getgrgid(getgid())) != NULL)
     	ls->group_name = group->gr_name;
-
-
 	if ((pws = getpwuid(geteuid())) != NULL)
 		ls->user_name = pws->pw_name;
-
 	if (stat(ls->name, &file_stat) < 0)
 		exit(0);
 	s = ctime(&file_stat.st_atimespec.tv_sec);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/03/26 17:23:29 by user             ###   ########.fr       */
+/*   Updated: 2020/04/04 17:48:17 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ void	print(t_ls *ls);
 void	ft_ls_l(t_ls *ls);
 void	print_error(char *av);
 t_ls	*sort_list(t_ls *ls);
+void	ft_ls_recurcive(t_ls *ls);
 
 #endif

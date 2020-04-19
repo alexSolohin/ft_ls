@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/03/25 18:11:48 by user             ###   ########.fr       */
+/*   Updated: 2020/04/04 18:01:14 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,41 +69,6 @@ void	ft_ls_a(t_ls *ls)
 	}
 }
 
-// void	ft_ls_a(t_ls *ls, char *av)
-// {
-// 	DIR				*dir;
-// 	struct dirent	*entry;
-// 	t_ls			*ptr;
-
-// 	av = 0;
-// 	dir = opendir(".");
-// 	if (!dir)
-// 		print_error(".");
-// 	while ((entry = readdir(dir)) != NULL)
-// 	{
-// 		ptr = malloc(sizeof(t_ls));
-// 		ptr->name = entry->d_name;
-// 		ptr->type = entry->d_type;
-// 		ptr->next = ls;
-// 		ls = ptr;
-// 		if ((ls->name[0] == '.' && ls->name[1] == '\0') || (ls->name[0] == '.' && ls->name[1] == '.'))
-//         {
-//             ft_putstr(ls->name);
-// 			ft_putstr("        ");
-//             ls = ls->next;
-//         }
-// 	}
-// 	ls = sort_list(ls);
-// 	while (ls->next != NULL)
-// 	{
-// 		ft_putstr(ls->name);
-// 		if (ls->next->name != NULL)
-// 			ft_putstr("        ");
-// 		ls = ls->next;
-// 	}
-// 	closedir(dir);
-// }
-
 void	ft_ls_type(t_type *type, t_ls *ls)
 {
 	if (type->flag == 1)
@@ -114,7 +79,12 @@ void	ft_ls_type(t_type *type, t_ls *ls)
 			ft_ls_l(ls);
 	}
 	else if (type->flag == 2)
-		printf("2");
+	{
+		if (ls->name[0] == '.')
+			ls = ls->next;
+		else
+			ft_ls_recurcive(ls);
+	}
 	else if (type->flag == 3)
 		ft_ls_a(ls);
 	else if (type->flag == 4)
