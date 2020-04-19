@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/04/18 15:39:26 by user             ###   ########.fr       */
+/*   Updated: 2020/04/19 14:51:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct      s_ls
 	int				byte_size;		//размер в байтах
 	int				links;			//количество файлов внутри
     char            *name;			// имя файла или директории
+	char			*path;
 	char			*name_dir;
     struct s_ls     *next;
 }                   t_ls;
@@ -39,6 +40,6 @@ typedef struct		s_type
 void	print(t_ls *ls);
 void	ft_ls_l(t_ls *ls);
 void	print_error(char *av);
-void	init_struct(char *str, t_ls *ls);
+void	init_struct(t_ls *ls);
 
 #endif
