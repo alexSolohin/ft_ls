@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 12:54:07 by user              #+#    #+#             */
-/*   Updated: 2020/04/19 14:51:40 by user             ###   ########.fr       */
+/*   Updated: 2020/04/20 15:25:44 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_struct(t_ls *ls)
 	if ((pws = getpwuid(geteuid())) != NULL)
 		ls->user_name = pws->pw_name;
 	if (stat(ls->path, &file_stat) < 0)
-		printf("€");
+		exit(0);
 	ls->time = ctime(&file_stat.st_atimespec.tv_sec);
 	ls->links = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
