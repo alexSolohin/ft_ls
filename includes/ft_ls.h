@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:54:07 by rmaxima           #+#    #+#             */
-/*   Updated: 2020/04/23 16:22:40 by user             ###   ########.fr       */
+/*   Updated: 2020/04/19 14:51:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,17 @@ typedef struct      s_ls
 	int				byte_size;		//размер в байтах
 	int				links;			//количество файлов внутри
     char            *name;			// имя файла или директории
-	char			*path;			// полный путь до файла
+	char			*path;
+	char			*name_dir;
     struct s_ls     *next;
 }                   t_ls;
 
 typedef struct		s_type
 {
 	int				flag;
+	DIR				*dir;
+	struct dirent	*entry;
+	int				total;		//ls -l total
 }					t_type;
 
 typedef struct		s_dir
