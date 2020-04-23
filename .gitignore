@@ -1,3 +1,7 @@
 .vscode
 .vscode
 .vscode
+.dist
+cmake-build-debug
+.idea
+CMakeLists.txt
