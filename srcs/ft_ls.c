@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/04/23 17:21:42 by user             ###   ########.fr       */
+/*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
+/*   Updated: 2020/04/23 17:27:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
-#include <time.h>
-#include <pwd.h>
-#include <grp.h>
+
 
 //	parser to file
 //	opendir(../dir)
@@ -45,36 +43,6 @@ t_ls	*sort_list(t_ls *ls)
 	int		type_a;
 	t_ls	*ptr;
 	t_ls	*tmp;
-
-// struct list * sort( struct list *root )
-// {
-//     struct list *new_root = NULL;
-
-//     while ( root != NULL )
-//     {
-//         struct list *node = root;
-//         root = root->next;
-
-//         if ( new_root == NULL || node->data < new_root->data )
-//         {
-//             node->next = new_root;
-//             new_root = node;
-//         }
-//         else
-//         {
-//             struct list *current = new_root;
-//             while ( current->next != NULL && !( node->data < current->next->data ) )
-//             {
-//                   current = current->next;
-//             }
-
-//             node->next = current->next;
-//             current->next = node;
-//         }
-//     }
-
-//     return new_root;
-// }
 
 	ptr = NULL;
 	type_a = 0;
@@ -109,6 +77,7 @@ void	ft_ls_dir(char *av)
 	char			*path;
 	t_ls			*ls;
 	t_ls			*ptr;
+	int				total;
 
 	if (!(ls = malloc(sizeof(t_ls))))
 		exit(0);
@@ -119,18 +88,28 @@ void	ft_ls_dir(char *av)
 		exit(0);
 	path = ft_strcpy(path, av);
 	path[ft_strlen(av)] = '/';
+	total = 0;
 	while ((entry = readdir(dir)) != NULL)
 	{
 		ptr = malloc(sizeof(t_ls));
 		ptr->name = entry->d_name;
 		ptr->path = ft_strdup(path);
 		ptr->path = ft_strcat(ptr->path, entry->d_name);
+<<<<<<< HEAD
 		init_struct(ptr, av);
+=======
+		init_struct(ptr);
+		total += ptr->byte_size / 1000;
+>>>>>>> 33165c132b3b4217b8800bc4a62b3fa02b2e5be8
 		ptr->next = ls;
 		ls = ptr;
 		free(ptr->path);
 	}
+<<<<<<< HEAD
 	// sort_list(ls);
+=======
+	printf("total %d\n", total);
+>>>>>>> 33165c132b3b4217b8800bc4a62b3fa02b2e5be8
 	while (ls->next != NULL)
 	{
 		int i = 0;
