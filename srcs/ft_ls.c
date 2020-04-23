@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/23 17:27:18 by user             ###   ########.fr       */
+/*   Updated: 2020/04/23 17:30:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,21 +95,13 @@ void	ft_ls_dir(char *av)
 		ptr->name = entry->d_name;
 		ptr->path = ft_strdup(path);
 		ptr->path = ft_strcat(ptr->path, entry->d_name);
-<<<<<<< HEAD
 		init_struct(ptr, av);
-=======
-		init_struct(ptr);
 		total += ptr->byte_size / 1000;
->>>>>>> 33165c132b3b4217b8800bc4a62b3fa02b2e5be8
 		ptr->next = ls;
 		ls = ptr;
 		free(ptr->path);
 	}
-<<<<<<< HEAD
 	// sort_list(ls);
-=======
-	printf("total %d\n", total);
->>>>>>> 33165c132b3b4217b8800bc4a62b3fa02b2e5be8
 	while (ls->next != NULL)
 	{
 		int i = 0;
