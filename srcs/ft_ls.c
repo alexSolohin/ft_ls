@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/04/20 15:26:08 by alex             ###   ########.fr       */
+/*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
+/*   Updated: 2020/04/23 17:30:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,54 @@
 //	opendir(../dir)
 //		while (entry = readdir())
 
+int		sort_alphabet(char *a, char *b)
+{
+	int i;
+
+	i = 0;
+	while (b[i])
+	{
+		if (a[i] > b[i])
+			return (1);
+		else
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+t_ls	*sort_list(t_ls *ls)
+{
+//	char	*tmp;
+	int		type_a;
+	t_ls	*ptr;
+	t_ls	*tmp;
+
+	ptr = NULL;
+	type_a = 0;
+	while (ls != NULL)
+	{
+		// if (ls->name[0] == '.' && type_a != 1)
+		tmp = ls;
+		ls = ls->next;
+		if (ptr == NULL || sort_alphabet(tmp->name, ptr->name))
+		{
+			tmp->next = ptr;
+			ptr = tmp;
+		}
+		else
+		{
+			t_ls *current = ptr;
+			while (current->next != NULL && !sort_alphabet(tmp->name, current->next->name))
+			{
+				current = current->next;
+			}
+			tmp->next = current->next;
+			current->next = tmp;
+		}
+	}
+	return (ptr);
+}
 
 void	ft_ls_dir(char *av)
 {
@@ -38,7 +86,7 @@ void	ft_ls_dir(char *av)
 	dir = opendir(av);
 	if (!dir)
 		exit(0);
-	if (!(path = malloc(sizeof(char))))
+	if (!(path = malloc(sizeof(char) * 255)))
 		exit(0);
 	path = ft_strcpy(path, av);
 	path[ft_strlen(av)] = '/';
@@ -49,13 +97,13 @@ void	ft_ls_dir(char *av)
 		ptr->name = entry->d_name;
 		ptr->path = ft_strdup(path);
 		ptr->path = ft_strcat(ptr->path, entry->d_name);
-		init_struct(ptr);
+		init_struct(ptr, av);
 		total += ptr->byte_size / 1000;
 		ptr->next = ls;
 		ls = ptr;
 		free(ptr->path);
 	}
-	printf("total %d\n", total);
+	// sort_list(ls);
 	while (ls->next != NULL)
 	{
 		int i = 0;
