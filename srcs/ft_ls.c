@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/23 17:30:38 by user             ###   ########.fr       */
+/*   Updated: 2020/04/24 15:19:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ int		sort_alphabet(char *a, char *b)
 	int i;
 
 	i = 0;
+	if (a[i] == '.')
+		return (1);
 	while (b[i])
 	{
 		if (a[i] > b[i])
 			return (1);
-		else
-			return (0);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 t_ls	*sort_list(t_ls *ls)
@@ -103,7 +103,7 @@ void	ft_ls_dir(char *av)
 		ls = ptr;
 		free(ptr->path);
 	}
-	// sort_list(ls);
+	ls = sort_list(ls);
 	while (ls->next != NULL)
 	{
 		int i = 0;
