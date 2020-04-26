@@ -25,7 +25,7 @@ void 			opt_has_arg(t_input *input, t_opt **opt, char **optcursor)
 	{
 		if ((*opt)->optdecl[1] == ':')
 		{
-			(*opt)->optarg = (*optcursor)++;
+			(*opt)->optarg = ++(*optcursor);
 			if (*((*opt)->optarg) == '\0')
 			{
 				if ((*opt)->optdecl[2] != ':')
@@ -52,6 +52,7 @@ int 			ft_get_opt(t_input *input, t_opt *opt)
 {
 	static char	*optcursor = NULL;
 
+	opt->optarg = NULL;
 	if (opt->optind >= input->ac|| input->av[opt->optind] == NULL ||
 		*(input->av)[opt->optind] != '-'
 		|| strcmp(input->av[opt->optind], "-") == 0)
@@ -87,7 +88,7 @@ t_opt 			*set_start_opt_val(t_opt *opt)
 		return (opt);
 }
 
-int				ft_getopt(t_input input, t_opt *opt, char *optstr)
+int				ft_getopt(t_input input, t_opt *opt)
 {
 	int ret;
 
