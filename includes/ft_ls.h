@@ -14,6 +14,13 @@
 # define FT_LS_H
 
 #include "libft.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <stdio.h>
+#include <pwd.h>
+#include <sys/xattr.h>
+#include <stdlib.h>
 
 # define FLAGS "adfglRrtu"
 
@@ -99,5 +106,8 @@ t_ls		*sort_list(t_ls *ls);
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
+int 		get_num_of_array_index(t_input input);
+void 		reset_flags(t_flag *flag);
+void 		collect_flags(int *args, t_flag *flag, t_input input);
 
 #endif
