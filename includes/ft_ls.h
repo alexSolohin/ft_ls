@@ -22,7 +22,7 @@
 typedef struct      s_ls
 {
     int             flag;			//флаг
-	char			chmod[10];		//права доступа
+	char			chmod[9];		//права доступа
 	char			*time;			//время DD MM
 	char			*user_name;		//имя пользовтеля
 	char			*group_name;	//имя групы

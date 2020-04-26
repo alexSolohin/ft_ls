@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/24 15:19:27 by user             ###   ########.fr       */
+/*   Updated: 2020/04/26 16:57:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void	ft_ls_dir(char *av)
 	t_ls			*ptr;
 	int				total;
 
-	if (!(ls = malloc(sizeof(t_ls))))
-		exit(0);
+
 	dir = opendir(av);
 	if (!dir)
 		exit(0);
@@ -89,19 +88,39 @@ void	ft_ls_dir(char *av)
 	path = ft_strcpy(path, av);
 	path[ft_strlen(av)] = '/';
 	total = 0;
+	ptr = NULL;
+	ls = NULL;
 	while ((entry = readdir(dir)) != NULL)
 	{
-		ptr = malloc(sizeof(t_ls));
-		ptr->name = entry->d_name;
-		ptr->path = ft_strdup(path);
-		ptr->path = ft_strcat(ptr->path, entry->d_name);
-		init_struct(ptr, av);
-		total += ptr->byte_size / 1000;
-		ptr->next = ls;
-		ls = ptr;
-		free(ptr->path);
+		if (!ls)
+        {
+            if (!(ls = malloc(sizeof(t_ls))))
+                exit(0);
+            ls->name = entry->d_name;
+            ls->path = ft_strdup(path);
+            ls->path = ft_strcat(ls->path, entry->d_name);
+            init_struct(ls, av);
+            ls->next = NULL;
+        }
+		else {
+            ptr = ls;
+            while (ptr->next != NULL) {
+                ptr = ptr->next;
+            }
+            t_ls *new = malloc(sizeof(t_ls));
+            new->name = entry->d_name;
+            new->path = ft_strdup(path);
+            new->path = ft_strcat(new->path, entry->d_name);
+            init_struct(new, av);
+            if (ptr->next) {
+                new->next = ptr->next;
+            } else {
+                new->next = NULL;
+            }
+        ptr->next = new;
+        }
 	}
-	ls = sort_list(ls);
+	// ls = sort_list(ls);
 	while (ls->next != NULL)
 	{
 		int i = 0;
