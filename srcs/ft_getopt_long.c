@@ -9,7 +9,7 @@ int 			find_val(t_input *input, t_lopt *o, t_opt **opt)
 	retval = o->flag ? 0 : o->val;
 	if (o->hasarg != NO_ARG)
 	{
-		(*opt)->optarg = ft_strchr(input->av[(*opt)->optind], '=');
+		(*opt)->optarg = strchr(input->av[(*opt)->optind], '=');
 		if ((*opt)->optarg != NULL)
 			((*opt)->optarg)++;
 		if (o->hasarg == REQ_ARG)
@@ -20,7 +20,7 @@ int 			find_val(t_input *input, t_lopt *o, t_opt **opt)
 				retval = ':';
 		}
 	}
-	else if (ft_strchr(input->av[(*opt)->optind], '='))
+	else if (strchr(input->av[(*opt)->optind], '='))
 		retval = '?';
 	return (retval);
 }
@@ -54,9 +54,9 @@ int				get_lopt(t_input input, t_opt *opt, t_lopt *lopt, int *longind)
 	match = NULL;
 	if (opt->optind >= input.ac)
 		return (-1);
-	if (ft_strlen(input.av[opt->optind]) < 3 ||
-		ft_strncmp(input.av[opt->optind], "--", 2) != 0)
-		return (ft_getopt(input, opt, FLAGS));
+	if (strlen(input.av[opt->optind]) < 3 ||
+		strncmp(input.av[opt->optind], "--", 2) != 0)
+		return (ft_getopt(input, opt));
 	curr_arg = input.av[opt->optind] + 2;
 	arg_name_length = strcspn(curr_arg, "="); //реализовать ф-ию strcspn
 	if (find_matches(o, &match, curr_arg, arg_name_length) == 1)
@@ -71,11 +71,12 @@ int				get_lopt(t_input input, t_opt *opt, t_lopt *lopt, int *longind)
 	return (retval);
 }
 
-int 		ft_getopt_long(t_input data, t_opt *opt, t_lopt *lopt, int *longind)
+int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind)
 {
 	int ret;
 
-	return (ret = get_lopt(data, opt, lopt, longind));
+	*opt = set_start_opt_val(*opt);
+	return (ret = get_lopt(data, *opt, lopt, lind));
 }
 
 /*int			main(int ac, char **av)
