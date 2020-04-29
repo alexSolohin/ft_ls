@@ -65,6 +65,7 @@ int 			ft_get_opt(t_input *input, t_opt *opt)
 	if (optcursor == NULL || *optcursor == '\0')
 		optcursor = input->av[opt->optind] + 1;
 	opt->optchar = *optcursor;
+	opt->optopt = optcursor;
 	opt->optdecl = strchr(FLAGS, opt->optchar);
 	opt_has_arg(input, &opt, &optcursor);
 	if (optcursor == NULL || *(++optcursor) == '\0')

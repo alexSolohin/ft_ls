@@ -1,5 +1,12 @@
 #include "ft_ls.h"
 
+void		invalid_option(t_opt *opt)
+{
+	ft_printf("ft_ls: invalid option -- \'%s\'", opt->optopt);
+	free(opt);
+	exit(0);
+}
+
 void 		set_flag(int rez, t_flag *flag)
 {
 	if (rez == 'a')
@@ -22,33 +29,24 @@ void 		set_flag(int rez, t_flag *flag)
 		flag->u_flag = 1;
 }
 
-void 		collect_flags(int *args, t_flag *flag, t_input input)
+void 		collect_flags(t_flag *flag, int ac, char ***av)
 {
 	t_opt	*opt;
 	int 	rez;
 	int 	opt_index;
 	t_input	tmp;
 
-	tmp = input;
+	tmp.av = *av;
+	tmp.ac = ac;
 	opt = NULL;
-	while (tmp.ac && tmp.av)
-	{
 		while ((rez = ft_getopt_long(tmp, &opt, g_lopt, &opt_index)) != -1)
 		{
 			if (rez == '?')
-			{
-				free(opt);
-				perror("ls: invalid option -- ");
-				exit(0);
-			}
-			else
-				set_flag(rez, flag);
+				invalid_option(opt);
+			set_flag(rez, flag);
 		}
-		tmp.ac--;
-		tmp.av += opt->optind;
-		if (*(tmp.av) == NULL || *(tmp.av + 1) == NULL || opt->optchar == '?')
-			break;
-	}
+		*av += opt->optind;
+		free(opt);
 }
 
 int 		get_num_of_array_index(t_input input)
