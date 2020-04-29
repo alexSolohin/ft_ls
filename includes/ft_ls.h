@@ -47,6 +47,7 @@ typedef struct	s_opt
 	int 		optind;
 	int			optchar;
 	char 		*optdecl;
+	char 		*optopt;
 }				t_opt;
 
 typedef struct	s_lopt
@@ -65,7 +66,7 @@ typedef struct s_input
 
 typedef struct	s_ls
 {
-    int			flag;
+    t_flag		flag;
     int			flag_end;
     int			type;
 	char		chmod[10];
@@ -100,14 +101,15 @@ static t_lopt 	g_lopt[] = {
 };
 
 void		print(t_ls *ls);
+void		ft_ls_dir(char *av);
 void		ft_ls_l(t_ls *ls);
 void		print_error(char *av);
 t_ls		*sort_list(t_ls *ls);
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
-int 		get_num_of_array_index(t_input input);
+//int 		get_num_of_array_index(t_input input);
 void 		reset_flags(t_flag *flag);
-void 		collect_flags(int *args, t_flag *flag, t_input input);
+void 		collect_flags(t_flag *flag, int ac, char ***av);
 
 #endif
