@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/30 15:03:26 by user             ###   ########.fr       */
+/*   Updated: 2020/04/30 15:37:19 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print(char **buff, t_type type, char  *av)
 	t_ls *ls;
 
 	//stat
-	struct stat 	file_stat;
+	// struct stat 	file_stat;
     char			*path;
 
 	if (!(path = malloc(sizeof(char) * 255)))
@@ -47,16 +47,6 @@ void	print(char **buff, t_type type, char  *av)
 			path = ft_strcpy(path, av);
 			path[ft_strlen(av)] = '/';
 			path = ft_strcat(path, buff[i]);
-			if (ft_strequ(av, ".") || ft_strequ(av, ".."))
-			{
-			if (stat(buff[i], &file_stat) < 0)
-				exit(0);
-			}
-			else
-			{
-				if (stat(path, &file_stat) < 0)
-					exit(0);
-			}
 			ls = init_struct(path, buff[i]);
 			int j = 0;
 			while (j < 10)

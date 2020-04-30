@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:26:33 by user              #+#    #+#             */
-/*   Updated: 2020/04/30 14:48:54 by user             ###   ########.fr       */
+/*   Updated: 2020/04/30 15:32:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,19 @@ t_ls	*init_struct(char *path, char *buff)
 		ls->user_name = pws->pw_name;
 	if (ft_strequ(buff, ".") || ft_strequ(buff, ".."))
 	{
-		if (stat(buff, &file_stat) < 0)
+		if (lstat(buff, &file_stat) < 0)
 			exit(0);
 	}
 	else
 	{
-		if (stat(path, &file_stat) < 0)
+		if (lstat(path, &file_stat) < 0)
 			exit(0);
 	}
 	ls->time = ctime(&file_stat.st_atimespec.tv_sec);
 	ls->links = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
 	ft_chmod(file_stat, ls);
+	ls->next = NULL;
+	// printf("filestat - %o\n", file_stat.st_mode);
 	return (ls);
 }
