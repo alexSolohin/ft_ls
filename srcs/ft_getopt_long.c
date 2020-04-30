@@ -36,7 +36,8 @@ int				find_matches(t_lopt *o, t_lopt **match, t_input input, int arg)
 	arg_name_length = strcspn(curr_arg, "="); //реализовать ф-ию strcspn
 	while (o->name)
 	{
-		if (ft_strncmp(o->name, curr_arg, arg_name_length) == 0)
+		if (ft_strncmp(o->name, curr_arg, arg_name_length) == 0
+			&& o->name[arg_name_length] == '\0')
 		{
 			*match = o;
 			num_matches++;
