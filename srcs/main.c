@@ -12,6 +12,7 @@ int			main(int ac, char **av)
 	{
 		collect_flags(&(ls->flag), ac, &av);
 		ft_printf("%s", *av);
+		ft_ls_dir(*av);
 	}
 	else
 		//ft_ls_dir(".");

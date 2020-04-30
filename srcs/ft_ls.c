@@ -116,8 +116,8 @@ void	ft_ls_dir(char *av)
 	closedir(dir);
 }
 
-int     main(int ac, char **av)
+/*int     main(int ac, char **av)
 {
 	ac = 0;
 	ft_ls_dir(av[1]);
-}
+}*/

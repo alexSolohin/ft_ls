@@ -17,16 +17,35 @@ void 		set_flag(int rez, t_flag *flag)
 		flag->f_flag = 1;
 	else if (rez == 'g')
 		flag->g_flag = 1;
+	else if (rez == 'H')
+		flag->h_capital = 1;
 	else if (rez == 'l')
 		flag->l_flag = 1;
+	else if (rez == 'L')
+		flag->l_capital = 1;
 	else if (rez == 'R')
-		flag->rec_flag = 1;
+		flag->r_capital = 1;
 	else if (rez == 'r')
 		flag->r_flag = 1;
 	else if (rez =='t')
 		flag->t_flag = 1;
 	else
 		flag->u_flag = 1;
+}
+
+void		reset_flags(t_flag *flag)
+{
+	flag->a_flag = 0;
+	flag->d_flag = 0;
+	flag->f_flag = 0;
+	flag->g_flag = 0;
+	flag->h_capital = 0;
+	flag->l_flag = 0;
+	flag->l_capital = 0;
+	flag->r_capital = 0;
+	flag->r_flag = 0;
+	flag->t_flag = 0;
+	flag->u_flag = 0;
 }
 
 void 		collect_flags(t_flag *flag, int ac, char ***av)
@@ -39,14 +58,14 @@ void 		collect_flags(t_flag *flag, int ac, char ***av)
 	tmp.av = *av;
 	tmp.ac = ac;
 	opt = NULL;
-		while ((rez = ft_getopt_long(tmp, &opt, g_lopt, &opt_index)) != -1)
-		{
-			if (rez == '?')
-				invalid_option(opt);
-			set_flag(rez, flag);
-		}
-		*av += opt->optind;
-		free(opt);
+	while ((rez = ft_getopt_long(tmp, &opt, g_lopt, &opt_index)) != -1)
+	{
+		if (rez == '?')
+			invalid_option(opt);
+		set_flag(rez, flag);
+	}
+	*av += opt->optind;
+	free(opt);
 }
 
 int 		get_num_of_array_index(t_input input)
@@ -75,17 +94,4 @@ int 		get_num_of_array_index(t_input input)
 		}
 	}
 	return (num);
-}
-
-void		reset_flags(t_flag *flag)
-{
-	flag->a_flag = 0;
-	flag->d_flag = 0;
-	flag->f_flag = 0;
-	flag->g_flag = 0;
-	flag->l_flag = 0;
-	flag->rec_flag = 0;
-	flag->r_flag = 0;
-	flag->t_flag = 0;
-	flag->u_flag = 0;
 }

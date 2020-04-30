@@ -53,7 +53,7 @@ void	init_struct(t_ls *ls, char *av)
 		if (stat(ls->path, &file_stat) < 0)
 			printf("€");
 	}
-	ls->time = ctime(&file_stat.st_atimespec.tv_sec);
+	ls->time = ctime(&file_stat.st_atim.tv_sec);
 	ls->links = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
 	ft_chmod(file_stat, ls);
