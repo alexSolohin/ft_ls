@@ -38,7 +38,14 @@ void	init_struct(t_ls *ls, char *av)
 	struct passwd 	*pws;
 	struct stat 	file_stat;
 	struct group	*group;
+    char			*path;
 
+    if (!(path = malloc(sizeof(char) * 255)))
+        exit(0);
+    path = ft_strcpy(path, av);
+    path[ft_strlen(av)] = '/';
+    ls->path = ft_strdup(path);
+    ls->path = ft_strcat(ls->path, ls->name);
 	if ((group = getgrgid(getgid())) != NULL)
 		ls->group_name = group->gr_name;
 	if ((pws = getpwuid(geteuid())) != NULL)

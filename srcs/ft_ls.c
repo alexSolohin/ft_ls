@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/26 16:57:50 by user             ###   ########.fr       */
+/*   Updated: 2020/04/29 20:58:05 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,10 @@ t_ls	*sort_list(t_ls *ls)
 	return (ptr);
 }
 
-void	ft_ls_dir(char *av)
+void	ft_ls_dir(t_ls **ls, char *av)
 {
 	DIR				*dir;
 	struct dirent	*entry;
-	char			*path;
-	t_ls			*ls;
 	t_ls			*ptr;
 	int				total;
 
@@ -83,58 +81,37 @@ void	ft_ls_dir(char *av)
 	dir = opendir(av);
 	if (!dir)
 		exit(0);
-	if (!(path = malloc(sizeof(char) * 255)))
-		exit(0);
-	path = ft_strcpy(path, av);
-	path[ft_strlen(av)] = '/';
+
 	total = 0;
-	ptr = NULL;
-	ls = NULL;
 	while ((entry = readdir(dir)) != NULL)
 	{
-		if (!ls)
-        {
-            if (!(ls = malloc(sizeof(t_ls))))
-                exit(0);
-            ls->name = entry->d_name;
-            ls->path = ft_strdup(path);
-            ls->path = ft_strcat(ls->path, entry->d_name);
-            init_struct(ls, av);
-            ls->next = NULL;
-        }
-		else {
-            ptr = ls;
-            while (ptr->next != NULL) {
-                ptr = ptr->next;
-            }
-            t_ls *new = malloc(sizeof(t_ls));
-            new->name = entry->d_name;
-            new->path = ft_strdup(path);
-            new->path = ft_strcat(new->path, entry->d_name);
-            init_struct(new, av);
-            if (ptr->next) {
-                new->next = ptr->next;
-            } else {
-                new->next = NULL;
-            }
-        ptr->next = new;
-        }
+		ptr = malloc(sizeof(t_ls));
+		init_struct(ptr, av);
+		ptr->next = (*ls);
+		(*ls) = ptr;
 	}
 	// ls = sort_list(ls);
-	while (ls->next != NULL)
-	{
-		int i = 0;
-		while (i < 10)
-			printf("%c", ls->chmod[i++]);
-		printf(" %d %s %s", ls->links, ls->group_name, ls->user_name);
-		printf(" %d %.16s %s\n", ls->byte_size, ls->time, ls->name);
-		ls = ls->next;
-	}
+
 	closedir(dir);
 }
 
 int     main(int ac, char **av)
 {
+	t_ls **ls;
+
+	ls = malloc(sizeof(t_ls*));
 	ac = 0;
-	ft_ls_dir(av[1]);
+	ft_ls_dir(ls, av[1]);
+
+	t_ls *ptr;
+	ptr = *ls;
+	while (ptr->next)
+	{
+		int i = 0;
+		while (i < 10)
+			printf("%c", ptr->chmod[i++]);
+		printf(" %d %s %s", ptr->links, ptr->group_name, ptr->user_name);
+		printf(" %d %.16s %s\n", ptr->byte_size, ptr->time, ptr->name);
+		ptr = ptr->next;
+	}
 }
