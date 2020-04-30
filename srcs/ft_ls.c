@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/30 14:57:07 by user             ###   ########.fr       */
+/*   Updated: 2020/04/30 15:03:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 //	parser to file
 //	opendir(../dir)
 //		while (entry = readdir())
+
+void	sort_arr(char **arr, t_type *type)
+{
+	arr = NULL;
+	type = NULL;
+	//здесь будет сортировка по имени или в зависимости от ключа
+}
 
 void	print(char **buff, t_type type, char  *av)
 {
@@ -110,5 +117,6 @@ int		main(int ac, char **av)
 	ac = 0;
 	type.flag = 'l';
 	buff = ft_ls_dir(av[1]);
+	// sort_arr(buff, type);
 	print(buff, type, av[1]);
 }
