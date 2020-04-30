@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 15:04:18 by user              #+#    #+#             */
-/*   Updated: 2020/04/24 15:04:22 by user             ###   ########.fr       */
+/*   Updated: 2020/04/30 14:46:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ typedef struct		s_type
 	int				total;		//ls -l total
 }					t_type;
 
-void	print(t_ls *ls);
 void	ft_ls_l(t_ls *ls);
 void	print_error(char *av);
-void	init_struct(t_ls *ls, char *av);
+t_ls	*init_struct(char *path, char *av);
 
 #endif
