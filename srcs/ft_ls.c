@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/01 13:15:21 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/01 13:34:34 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,56 @@
 //	opendir(../dir)
 //		while (entry = readdir())
 
-void	sort_arr(char **buff, t_type type)
+int sort_al(char *a, char *b)
 {
-	type.dir = 0;
 	int i;
-	int j;
-	char *ptr;
 
 	i = 0;
-	while(i < ft_strlen(buff[i]))
+	while(a[i])
 	{
-		j = 0;
-		while()
+		if (a[i] > b[i])
 		{
-			
-			j++;
+			return (1);
 		}
 		i++;
 	}
+	return (0);
+}
+
+void	sort_arr(char **buff, t_type type)
+{
+	type.dir = 0;
+	size_t  i;
+	size_t  j;
+	size_t  n;
+	char *ptr;
+
+
+	n = 0;
+	while(buff[n])
+	{
+	    n++;
+	}
+	i = 0;
+	while (i < n)
+    {
+	    j = 0;
+	    while (j < n - i -1)
+        {
+	        if (sort_al(buff[j], buff[j + 1])) {
+                ptr = ft_strdup(buff[j]);
+                buff[j] = ft_strcpy(buff[j], buff[j + 1]);
+                buff[j + 1] = ft_strcpy(buff[j + 1], ptr);
+            }
+	        ft_bzero(ptr, 100);
+	        j++;
+        }
+	    printf("%s\n", buff[i]);
+
+	    i++;
+    }
+
+
 	//здесь будет сортировка по имени или в зависимости от ключа
 }
 
