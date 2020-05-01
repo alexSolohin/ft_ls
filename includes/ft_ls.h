@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 15:04:18 by user              #+#    #+#             */
-/*   Updated: 2020/04/30 14:46:55 by user             ###   ########.fr       */
+/*   Updated: 2020/05/01 12:57:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_type
 }					t_type;
 
 void	ft_ls_l(t_ls *ls);
+int		size_buff(char *av);
 void	print_error(char *av);
 t_ls	*init_struct(char *path, char *av);
 

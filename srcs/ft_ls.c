@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/04/30 15:37:19 by user             ###   ########.fr       */
+/*   Updated: 2020/05/01 13:15:21 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,24 @@
 //	opendir(../dir)
 //		while (entry = readdir())
 
-void	sort_arr(char **arr, t_type *type)
+void	sort_arr(char **buff, t_type type)
 {
-	arr = NULL;
-	type = NULL;
+	type.dir = 0;
+	int i;
+	int j;
+	char *ptr;
+
+	i = 0;
+	while(i < ft_strlen(buff[i]))
+	{
+		j = 0;
+		while()
+		{
+			
+			j++;
+		}
+		i++;
+	}
 	//здесь будет сортировка по имени или в зависимости от ключа
 }
 
@@ -107,6 +121,6 @@ int		main(int ac, char **av)
 	ac = 0;
 	type.flag = 'l';
 	buff = ft_ls_dir(av[1]);
-	// sort_arr(buff, type);
-	print(buff, type, av[1]);
+	sort_arr(buff, type);
+	// print(buff, type, av[1]);
 }
