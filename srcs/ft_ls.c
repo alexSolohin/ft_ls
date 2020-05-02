@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/17 11:55:26 by alex              #+#    #+#             */
-/*   Updated: 2020/05/02 13:16:56 by alex             ###   ########.fr       */
+/*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
+/*   Updated: 2020/05/02 13:31:57 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,167 +15,134 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
+#include <time.h>
+#include <pwd.h>
+#include <grp.h>
 
-int		sort_alphabet(char *a, char *b)
+//	parser to file
+//	opendir(../dir)
+//		while (entry = readdir())
+
+
+//	parser to file
+//	opendir(../dir)
+//		while (entry = readdir())
+
+void	sort_arr(char **buff, t_type type)
+{
+	type.dir = 0;
+	size_t  i;
+	size_t  j;
+	size_t  n;
+	char    *ptr;
+
+
+	n = 0;
+	while(buff[n])
+	    n++;
+	i = 0;
+	while (i < n)
+    {
+	    j = 0;
+	    while (j < n - i -1)
+        {
+	        if (ft_strcmp(buff[j], buff[j + 1]) > 0)
+	        {
+	            ptr = buff[j];
+	            buff[j] = buff[j + 1];
+	            buff[j + 1] = ptr;
+            }
+	        j++;
+        }
+	    i++;
+    }
+    i = 0;
+	while(buff[i])
+    {
+        printf("%s\n", buff[i++]);
+    }
+	//здесь будет сортировка по имени или в зависимости от ключа
+}
+
+void	print(char **buff, t_type type, char  *av)
 {
 	int i;
+	t_ls *ls;
 
+	//stat
+	// struct stat 	file_stat;
+    char			*path;
+
+	if (!(path = malloc(sizeof(char) * 255)))
+		exit(0);
 	i = 0;
-	while (b[i])
+	if (type.flag == 'l')
 	{
-		if (a[i] > b[i])
-			return (1);
-		else
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-t_ls	*sort_list(t_ls *ls)
-{
-	char	*tmp;
-	int		type;
-	t_ls	*ptr;
-
-	ptr = ls;
-	while (ls->next != NULL && ls->next->name != NULL)
-	{
-		if (sort_alphabet(ls->name, ls->next->name))
+		while (buff[i])
 		{
-			tmp = malloc(sizeof(char) * 255);
-			tmp = ls->name;
-			type = ls->flag;
-			ls->name = ls->next->name;
-			ls->next->name = tmp;
-			ls->flag = ls->next->flag;
-			ls->next->flag = type;
-			ls = ptr;
+			path = ft_strcpy(path, av);
+			path[ft_strlen(av)] = '/';
+			path = ft_strcat(path, buff[i]);
+			ls = init_struct(path, buff[i]);
+			int j = 0;
+			while (j < 10)
+			{
+				printf("%c", ls->chmod[j++]);
+			}
+			printf(" %d ", ls->links);
+			printf(" %s %s %d %s ",   ls->user_name, ls->group_name, ls->byte_size,ls->name);
+			printf("%.16s\n", ls->time);
+			ft_bzero(path, 255);
+			i++;
 		}
-		else
-			ls = ls->next;
-	}
-	ls = ptr;
-	return (ls);
-}
-
-void	ft_ls_a(t_ls *ls)
-{
-	if ((ls->name[0] == '.' && ls->name[1] == '\0') || (ls->name[0] == '.' && ls->name[1] == '.'))
-    {
-        ft_putstr(ls->name);
-		ft_putstr("        ");
-        // ls = ls->next;
 	}
 }
 
-void	ft_ls_type(t_type *type, t_ls *ls)
-{
-	if (type->flag == 1)
-	{
-		if (ls->name[0] == '.')
-			ls = ls->next;
-		else
-			ft_ls_l(ls);
-	}
-	else if (type->flag == 2)
-	{
-		if (ls->name[0] == '.')
-			ls = ls->next;
-		else
-			ft_ls_recurcive(ls);
-	}
-	else if (type->flag == 3)
-		ft_ls_a(ls);
-	else if (type->flag == 4)
-		printf("4");
-	else if (type->flag == 5)
-		printf("5");
-
-
-}
-
-void	ft_ls_dir(t_type *type, char *av)
+int		size_buff(char *av)
 {
 	DIR				*dir;
 	struct dirent	*entry;
-	t_ls			*ptr;
-	t_ls			*ls;
+	int				i;
 
-	ls = malloc(sizeof(t_ls));
-	dir = opendir((type->flag == 0) ? av : ".");
-	if (!dir)
-		print_error(av);
+	i = 0;
+	dir = opendir(av);
 	while ((entry = readdir(dir)) != NULL)
 	{
-		ptr = malloc(sizeof(t_ls));
-		ptr->name = entry->d_name;
-		// ptr->flag = ls->flag;
-		ptr->next = ls;
-		ls = ptr;
-		if (type->flag != 0)
-			ft_ls_type(type, ls);
-		else
-			if (ls->name[0] == '.')
-				ls = ls->next;
-	}
-	ls = sort_list(ls);
-	// print(ls);
-	while (ls->next != NULL)
-	{
-		ft_putstr(ls->name);
-		if (ls->next->name != NULL)
-			ft_putstr("        ");
-		ls = ls->next;
+		i++;
 	}
 	closedir(dir);
+	return(i);
 }
 
-int		ft_ls(t_type *type, char *av)
+char	**ft_ls_dir(char *av)
 {
-	type->flag = 0;
-	if (ft_strequ(av, "-l"))
-		type->flag = 1;
-	else if (ft_strequ(av, "-R"))
-		type->flag = 2;
-	else if (ft_strequ(av, "-a"))
-		type->flag = 3;
-	else if (ft_strequ(av, "-r"))
-		type->flag = 4;
-	else if (ft_strequ(av, "-t"))
-		type->flag = 5;
-	else
-		return (0);
-	return (1);
-	// ft_ls_dir(ls, dir, av);
+	DIR				*dir;
+	struct dirent 	*entry;
+	char			**buff;
+	int 			i;
+	int				j;
+
+	if (!(dir = opendir(av)))
+		exit(0);
+	i = size_buff(av);
+	buff = (char**)malloc(sizeof(char*) * i + 1);
+	j = 0;
+	while ((entry = readdir(dir)) != NULL)
+	{
+		buff[j++] = ft_strdup(entry->d_name);
+	}
+	closedir(dir);
+	return(buff);
 }
-//stat разобрать, там найдем нужные расширения
-int     main(int ac, char **av)
+
+int		main(int ac, char **av)
 {
-	t_ls	*ls;
-	t_type	*type;
-	int		i;
-
-	i = 2;
-
-	if (!(type = malloc(sizeof(t_type))))
-		exit(0);
-	if (!(ls = malloc(sizeof(t_ls))))
-		exit(0);
+	char **buff;
+	t_type	type;
 
 	ac = 0;
-
-	ft_ls(type, av[1]);
-	if (ac <= 2)
-		ft_ls_dir(type, ".");
-	else if (ac > 2)
-	{
-		i = 2;
-		if (ft_ls(type, av[1]))
-			printf("%d\n", type->flag);
-		while (av[i])
-		{
-			ft_ls_dir(type, av[i]);
-			i++;
-		}
+	type.flag = 'l';
+	buff = ft_ls_dir(av[1]);
+	sort_arr(buff, type);
+	// print(buff, type, av[1]);
 }
