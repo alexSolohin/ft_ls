@@ -43,33 +43,33 @@ void	sort_arr(char **buff, t_type type)
 	size_t  i;
 	size_t  j;
 	size_t  n;
-	char *ptr;
+	char    *ptr;
 
 
 	n = 0;
 	while(buff[n])
-	{
 	    n++;
-	}
 	i = 0;
 	while (i < n)
     {
 	    j = 0;
 	    while (j < n - i -1)
         {
-	        if (sort_al(buff[j], buff[j + 1])) {
-                ptr = ft_strdup(buff[j]);
-                buff[j] = ft_strcpy(buff[j], buff[j + 1]);
-                buff[j + 1] = ft_strcpy(buff[j + 1], ptr);
+	        if (ft_strcmp(buff[j], buff[j + 1]) > 0)
+	        {
+	            ptr = buff[j];
+	            buff[j] = buff[j + 1];
+	            buff[j + 1] = ptr;
             }
-	        ft_bzero(ptr, 100);
 	        j++;
         }
-	    printf("%s\n", buff[i]);
-
 	    i++;
     }
-
+    i = 0;
+	while(buff[i])
+    {
+        printf("%s\n", buff[i++]);
+    }
 
 	//здесь будет сортировка по имени или в зависимости от ключа
 }
