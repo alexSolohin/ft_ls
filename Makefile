@@ -8,7 +8,8 @@ I_DIR = ./includes
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 _SRCS = ft_ls.c \
-		struct.c
+		struct.c \
+		sort.c
 
 SRCS = $(addprefix $(SRCS_DIR)/. $(_SRCS))
 _OBJS = $(_SRCS:%.c=%.o)

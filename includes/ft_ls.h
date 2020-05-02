@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 15:04:18 by user              #+#    #+#             */
-/*   Updated: 2020/05/02 13:27:42 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/02 13:52:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ void		print(char **buff, t_type type, char  *av);
 char		**ft_ls_dir(char *av);
 void		print_error(char *av);
 t_ls		*init_struct(char *path, char *buff);
-t_ls		*sort_list(t_ls *ls);
+void		sort_name(char **buff, t_type type);
+void		sort_name_rev(char **buff, t_type type);
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);

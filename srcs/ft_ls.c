@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/02 13:31:57 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/02 13:53:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,9 @@
 //		while (entry = readdir())
 
 
-//	parser to file
-//	opendir(../dir)
-//		while (entry = readdir())
-
-void	sort_arr(char **buff, t_type type)
-{
-	type.dir = 0;
-	size_t  i;
-	size_t  j;
-	size_t  n;
-	char    *ptr;
-
-
-	n = 0;
-	while(buff[n])
-	    n++;
-	i = 0;
-	while (i < n)
-    {
-	    j = 0;
-	    while (j < n - i -1)
-        {
-	        if (ft_strcmp(buff[j], buff[j + 1]) > 0)
-	        {
-	            ptr = buff[j];
-	            buff[j] = buff[j + 1];
-	            buff[j + 1] = ptr;
-            }
-	        j++;
-        }
-	    i++;
-    }
-    i = 0;
-	while(buff[i])
-    {
-        printf("%s\n", buff[i++]);
-    }
-	//здесь будет сортировка по имени или в зависимости от ключа
-}
+// sort по времени создания
+// sort по времени изменения
+// sort в обратном порядке
 
 void	print(char **buff, t_type type, char  *av)
 {
@@ -143,6 +107,7 @@ int		main(int ac, char **av)
 	ac = 0;
 	type.flag = 'l';
 	buff = ft_ls_dir(av[1]);
-	sort_arr(buff, type);
+	// sort_name(buff, type);
+	sort_name_rev(buff, type);
 	// print(buff, type, av[1]);
 }
