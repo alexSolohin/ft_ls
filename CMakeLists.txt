@@ -74,4 +74,5 @@ add_executable(ft_ls
         libft/libft.h
         srcs/ft_ls.c
         srcs/struct.c
+        srcs/sort.c
         )

@@ -70,31 +70,17 @@ typedef struct      s_ls
 {
 	t_flag			flag;			//флаг
 	char			chmod[10];		//права доступа
-	char			*time;			//время DD MM
+	char			*time;          //время DD MM
+	long            time_sec;       //время в секундах
 	char			*user_name;		//имя пользовтеля
 	char			*group_name;	//имя групы
-	int				byte_size;		//размер в байтах
+	int				byte_size;      //размер в байтах
+	int64_t         st_block;       //размер в блоках
 	int				links;			//количество файлов внутри
     char            *name;			// имя файла или директории
 	char			*path;			// полный путь до файла
     struct s_ls     *next;
 }                   t_ls;
-
-typedef struct		s_type
-{
-	int				flag;
-	DIR				*dir;
-	struct dirent	*entry;
-	int				total;		//ls -l total
-}					t_type;
-
-typedef struct		s_dir
-{
-	char			*name;
-	int				flag;
-	t_ls			*ls;
-	struct s_dir	*next;
-}					t_dir;
 
 static t_lopt 	g_lopt[] = {
 		{"all", NO_ARG, NULL, 'a'},
@@ -107,12 +93,18 @@ static t_lopt 	g_lopt[] = {
 		{NULL,0,NULL,0}
 };
 
-void		print(char **buff, t_type type, char  *av);
 char		**ft_ls_dir(char *av);
 void		print_error(char *av);
-t_ls		*init_struct(char *path, char *buff);
-void		sort_name(char **buff, t_type type);
-void		sort_name_rev(char **buff, t_type type);
+t_ls        *init_struct(t_ls *ls, char *path, char *buff);
+/*
+ * ============== sort.c ============
+ */
+void		sort_name(char **buff);
+void		sort_name_rev(char **buff, t_ls *ls);
+void        sort_time_create(char **buff, t_ls *ls);
+/*
+ * ============== end sort.c ========
+ */
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);

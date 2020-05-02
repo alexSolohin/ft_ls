@@ -28,38 +28,26 @@
 // sort по времени изменения
 // sort в обратном порядке
 
-void	print(char **buff, t_type type, char  *av)
+t_ls	*create_list(char **buff, char  *av)
 {
-	int i;
-	t_ls *ls;
-
-	//stat
-	// struct stat 	file_stat;
-    char			*path;
+	int     i;
+	t_ls    *ls;
+    char	*path;
 
 	if (!(path = malloc(sizeof(char) * 255)))
 		exit(0);
 	i = 0;
-	if (type.flag == 'l')
-	{
-		while (buff[i])
-		{
-			path = ft_strcpy(path, av);
-			path[ft_strlen(av)] = '/';
-			path = ft_strcat(path, buff[i]);
-			ls = init_struct(path, buff[i]);
-			int j = 0;
-			while (j < 10)
-			{
-				printf("%c", ls->chmod[j++]);
-			}
-			printf(" %d ", ls->links);
-			printf(" %s %s %d %s ",   ls->user_name, ls->group_name, ls->byte_size,ls->name);
-			printf("%.16s\n", ls->time);
-			ft_bzero(path, 255);
-			i++;
-		}
-	}
+	ls = NULL;
+    while (buff[i])
+    {
+        path = ft_strcpy(path, av);
+        path[ft_strlen(av)] = '/';
+        path = ft_strcat(path, buff[i]);
+        ls = init_struct(ls, path, buff[i]);
+        ft_bzero(path, 255);
+        i++;
+    }
+    return (ls);
 }
 
 int		size_buff(char *av)
@@ -102,12 +90,21 @@ char	**ft_ls_dir(char *av)
 int		main(int ac, char **av)
 {
 	char **buff;
-	t_type	type;
+	t_ls    *ls;
 
 	ac = 0;
-	type.flag = 'l';
 	buff = ft_ls_dir(av[1]);
-	// sort_name(buff, type);
-	sort_name_rev(buff, type);
-	// print(buff, type, av[1]);
+//    sort_name_rev(buff, type);
+    sort_name(buff);
+    ls = create_list(buff, av[1]);
+//  sort_time_create(buff, type, ls);
+    int total = 0;
+    while (ls)
+    {
+        printf("%s    ", ls->name);
+        printf("%s\n", ls->time);
+        total += ls->st_block;
+        ls = ls->next;
+    }
+    printf("total %d", total);
 }

@@ -6,15 +6,21 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 13:49:48 by alex              #+#    #+#             */
-/*   Updated: 2020/05/02 13:54:31 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/02 17:40:12 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	sort_name(char **buff, t_type type)
+// void        sort_time_create(char **buff, t_ls *ls)
+// {
+
+
+// }
+
+void	sort_name_rev(char **buff, t_ls *ls)
 {
-	type.dir = 0;
+    ls->flag.a_flag = 0;
 	size_t  i;
 	size_t  j;
 	size_t  n;
@@ -39,17 +45,17 @@ void	sort_name(char **buff, t_type type)
         }
 	    i++;
     }
-    i = 0;
-	while(buff[i])
-    {
-        printf("%s\n", buff[i++]);
-    }
+//    i = 0;
+//	while(buff[i])
+//    {
+//        printf("%s\n", buff[i++]);
+//    }
 	//здесь будет сортировка по имени или в зависимости от ключа
 }
 
-void	sort_name_rev(char **buff, t_type type)
+void	sort_name(char **buff)
 {
-	type.dir = 0;
+
 	size_t  i;
 	size_t  j;
 	size_t  n;
@@ -74,11 +80,11 @@ void	sort_name_rev(char **buff, t_type type)
         }
 	    i++;
     }
-    i = 0;
-	while(buff[i])
-    {
-        printf("%s\n", buff[i++]);
-    }
+//    i = 0;
+//	while(buff[i])
+//    {
+//        printf("%s\n", buff[i++]);
+//    }
 	//здесь будет сортировка по имени или в зависимости от ключа
 }
 

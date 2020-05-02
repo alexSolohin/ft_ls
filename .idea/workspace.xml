@@ -12,9 +12,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26e5910b-de4d-4a67-9410-61440c4a9cc8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ft_ls" beforeDir="false" afterPath="$PROJECT_DIR$/ft_ls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objs/ft_ls.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/ft_ls.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_ls.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_ls.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/ft_ls.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/ft_ls.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/sort.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/struct.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,15 +29,30 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1bIpCJM8tDjLFNQ35STIX4ty440" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -87,8 +106,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/srcs/ft_ls.c</url>
-          <line>39</line>
-          <option name="timeStamp" value="1" />
+          <line>30</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/ft_ls.c</url>
+          <line>89</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
