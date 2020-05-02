@@ -18,9 +18,8 @@
 
 // }
 
-void	sort_name_rev(char **buff, t_ls *ls)
+void	sort_name_rev(char **buff)
 {
-    ls->flag.a_flag = 0;
 	size_t  i;
 	size_t  j;
 	size_t  n;

@@ -71,7 +71,7 @@ typedef struct      s_ls
 	t_flag			flag;			//флаг
 	char			chmod[10];		//права доступа
 	char			*time;          //время DD MM
-	long            time_sec;       //время в секундах
+	long            time_nsec;       //время в секундах
 	char			*user_name;		//имя пользовтеля
 	char			*group_name;	//имя групы
 	int				byte_size;      //размер в байтах
@@ -100,7 +100,7 @@ t_ls        *init_struct(t_ls *ls, char *path, char *buff);
  * ============== sort.c ============
  */
 void		sort_name(char **buff);
-void		sort_name_rev(char **buff, t_ls *ls);
+void		sort_name_rev(char **buff);
 void        sort_time_create(char **buff, t_ls *ls);
 /*
  * ============== end sort.c ========

@@ -94,15 +94,15 @@ int		main(int ac, char **av)
 
 	ac = 0;
 	buff = ft_ls_dir(av[1]);
-//    sort_name_rev(buff, type);
-    sort_name(buff);
+    sort_name_rev(buff);
+//  sort_name(buff);
     ls = create_list(buff, av[1]);
 //  sort_time_create(buff, type, ls);
     int total = 0;
     while (ls)
     {
         printf("%s    ", ls->name);
-        printf("%s\n", ls->time);
+        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
         total += ls->st_block;
         ls = ls->next;
     }

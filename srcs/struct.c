@@ -61,7 +61,7 @@ t_ls    *init_struct(t_ls *ls, char *path, char *buff)
 	ptr->links = file_stat.st_nlink;
 	ptr->byte_size = file_stat.st_size;
 	ptr->st_block = file_stat.st_blocks;
-//	ptr->time_sec = file_stat.st_atimensec;
+	ptr->time_nsec = file_stat.st_atimespec.tv_nsec;
 	ft_chmod(file_stat, ptr);
 	ptr->next = ls;
     ls = ptr;

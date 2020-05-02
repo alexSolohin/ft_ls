@@ -13,10 +13,14 @@
   <component name="ChangeListManager">
     <list default="true" id="26e5910b-de4d-4a67-9410-61440c4a9cc8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/C.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/sort.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/sort.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/struct.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/struct.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ft_ls" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ft_ls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_ls.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_ls.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/ft_ls.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/ft_ls.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/sort.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/struct.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/struct.c" afterDir="false" />
     </list>
@@ -107,12 +111,7 @@
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/srcs/ft_ls.c</url>
           <line>30</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/srcs/ft_ls.c</url>
-          <line>89</line>
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

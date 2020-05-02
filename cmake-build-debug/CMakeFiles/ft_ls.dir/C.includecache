@@ -50,3 +50,25 @@ pwd.h
 grp.h
 -
 
+/Users/alex/Desktop/ft_ls/srcs/sort.c
+ft_ls.h
+/Users/alex/Desktop/ft_ls/srcs/ft_ls.h
+
+/Users/alex/Desktop/ft_ls/srcs/struct.c
+ft_ls.h
+/Users/alex/Desktop/ft_ls/srcs/ft_ls.h
+sys/types.h
+-
+sys/stat.h
+-
+dirent.h
+-
+stdio.h
+-
+time.h
+-
+pwd.h
+-
+grp.h
+-
+
