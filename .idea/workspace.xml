@@ -13,12 +13,15 @@
   <component name="ChangeListManager">
     <list default="true" id="26e5910b-de4d-4a67-9410-61440c4a9cc8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/C.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/sort.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/sort.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/struct.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/struct.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/ft_ls" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ft_ls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_ls" beforeDir="false" afterPath="$PROJECT_DIR$/ft_ls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_ls.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_ls.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/ft_ls.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/sort.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/sort.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/struct.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/struct.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/ft_ls.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/ft_ls.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/sort.c" afterDir="false" />

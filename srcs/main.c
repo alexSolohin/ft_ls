@@ -6,7 +6,7 @@ int			main(int ac, char **av)
 {
 	t_ls	*ls;
 	char	**buff;
-	ls = (t_ls*1zeof(t_ls));
+	ls = (t_ls*)malloc(sizeof(t_ls));
 
 	reset_flags(&(ls->flag));
 	if (ac >= 2)

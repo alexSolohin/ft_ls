@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 15:04:18 by user              #+#    #+#             */
-/*   Updated: 2020/05/02 13:52:38 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/03 13:11:54 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_ls        *init_struct(t_ls *ls, char *path, char *buff);
  */
 void		sort_name(char **buff);
 void		sort_name_rev(char **buff);
-void        sort_time_create(char **buff, t_ls *ls);
+void        sort_time_create(t_ls *ls);
 /*
  * ============== end sort.c ========
  */

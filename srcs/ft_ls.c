@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/02 13:53:03 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/03 13:11:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**ft_ls_dir(char *av)
 	int				j;
 
 	if (!(dir = opendir(av)))
-		exit(0);
+        return (NULL);
 	i = size_buff(av);
 	buff = (char**)malloc(sizeof(char*) * i + 1);
 	j = 0;
@@ -91,18 +91,35 @@ int		main(int ac, char **av)
 {
 	char **buff;
 	t_ls    *ls;
+	char    **ptr;
 
 	ac = 0;
+
+
 	buff = ft_ls_dir(av[1]);
-    sort_name_rev(buff);
-//  sort_name(buff);
+    int i = 0;
+    while (buff[i])
+    {
+        ptr = ft_ls_dir(buff[i]);
+        if (ptr = NULL)
+            printf("No path");
+        else
+        {
+            int j = 0;
+            while (ptr[j])
+                printf("%s", ptr[j++]);
+        }
+        i++;
+    }
+//    sort_name_rev(buff);
+    sort_name(buff);
     ls = create_list(buff, av[1]);
-//  sort_time_create(buff, type, ls);
+//    sort_time_create(ls);
     int total = 0;
     while (ls)
     {
-        printf("%s    ", ls->name);
-        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
+        printf("%s    \n", ls->name);
+//        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
         total += ls->st_block;
         ls = ls->next;
     }
