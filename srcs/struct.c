@@ -49,12 +49,12 @@ t_ls    *init_struct(t_ls *ls, char *path, char *buff)
 		ptr->user_name = pws->pw_name;
 	if (ft_strequ(buff, ".") || ft_strequ(buff, ".."))
 	{
-		if (lstat(buff, &file_stat) < 0)
+		if (stat(buff, &file_stat) < 0)
 			exit(0);
 	}
 	else
 	{
-		if (lstat(path, &file_stat) < 0)
+		if (stat(path, &file_stat) < 0)
 			exit(0);
 	}
 	ptr->time = ctime(&file_stat.st_atime);

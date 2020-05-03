@@ -32,41 +32,9 @@ stdlib.h
 unistd.h
 -
 
-<<<<<<< HEAD
-/Users/user/Desktop/ft_ls/srcs/sort.c
+/Users/user/Desktop/ft_ls/srcs/ft_ls.c
 ft_ls.h
 /Users/user/Desktop/ft_ls/srcs/ft_ls.h
-
-/Users/user/Desktop/ft_ls/srcs/struct.c
-ft_ls.h
-/Users/user/Desktop/ft_ls/srcs/ft_ls.h
-=======
-/Users/alex/Desktop/ft_ls/srcs/ft_ls.c
-ft_ls.h
-/Users/alex/Desktop/ft_ls/srcs/ft_ls.h
-sys/types.h
--
-sys/stat.h
--
-dirent.h
--
-stdio.h
--
-time.h
--
-pwd.h
--
-grp.h
--
-
-/Users/alex/Desktop/ft_ls/srcs/sort.c
-ft_ls.h
-/Users/alex/Desktop/ft_ls/srcs/ft_ls.h
-
-/Users/alex/Desktop/ft_ls/srcs/struct.c
-ft_ls.h
-/Users/alex/Desktop/ft_ls/srcs/ft_ls.h
->>>>>>> 09cc8c9f77c1861f46e7c292d60ed29d419cc692
 sys/types.h
 -
 sys/stat.h

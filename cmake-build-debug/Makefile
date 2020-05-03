@@ -48,17 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /Users/user/Desktop/ft_ls
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/user/Desktop/ft_ls/cmake-build-debug
-=======
-CMAKE_SOURCE_DIR = /Users/alex/Desktop/ft_ls
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alex/Desktop/ft_ls/cmake-build-debug
->>>>>>> 09cc8c9f77c1861f46e7c292d60ed29d419cc692
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,15 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles /Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles 0
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alex/Desktop/ft_ls/cmake-build-debug/CMakeFiles /Users/alex/Desktop/ft_ls/cmake-build-debug/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alex/Desktop/ft_ls/cmake-build-debug/CMakeFiles 0
->>>>>>> 09cc8c9f77c1861f46e7c292d60ed29d419cc692
 .PHONY : all
 
 # The main clean target

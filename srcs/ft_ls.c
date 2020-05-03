@@ -87,6 +87,37 @@ char	**ft_ls_dir(char *av)
 	return(buff);
 }
 
+int    recursive(char *str)
+{
+    DIR             *dir;
+    struct dirent   *entry;
+    char            buff[255];
+    t_ls            *ls;
+
+    if (!(dir = opendir(str)))
+        return (1);
+    while((entry = readdir(dir)) != NULL)
+    {
+        if (ft_strequ(entry->d_name, ".") || ft_strequ(entry->d_name, ".."))
+            continue ;
+        ft_strcpy(buff, str);
+        ft_strcat(buff, "/");
+        ft_strcat(buff, entry->d_name);
+        ls = init_struct(ls, buff, entry->d_name);
+        if (ls->chmod[0] == 'd')
+        {
+            printf("Dir: %s  \n", buff);
+            recursive(buff);
+        }
+        else
+        {
+            printf("File: %s  ", entry->d_name);
+        }
+    }
+    printf("\n\n");
+    closedir(dir);
+}
+
 int		main(int ac, char **av)
 {
 	char **buff;
@@ -94,34 +125,19 @@ int		main(int ac, char **av)
 	char    **ptr;
 
 	ac = 0;
-
-
-	buff = ft_ls_dir(av[1]);
-    int i = 0;
-    while (buff[i])
-    {
-        ptr = ft_ls_dir(buff[i]);
-        if (ptr = NULL)
-            printf("No path");
-        else
-        {
-            int j = 0;
-            while (ptr[j])
-                printf("%s", ptr[j++]);
-        }
-        i++;
-    }
+    recursive(av[1]);
+//	buff = ft_ls_dir(av[1]);
 //    sort_name_rev(buff);
-    sort_name(buff);
-    ls = create_list(buff, av[1]);
+//    sort_name(buff);
+//    ls = create_list(buff, av[1]);
 //    sort_time_create(ls);
-    int total = 0;
-    while (ls)
-    {
-        printf("%s    \n", ls->name);
-//        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
-        total += ls->st_block;
-        ls = ls->next;
-    }
-    printf("total %d", total);
+//    int total = 0;
+//    while (ls)
+//    {
+//        printf("%s    \n", ls->name);
+////        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
+//        total += ls->st_block;
+//        ls = ls->next;
+//    }
+//    printf("total %d", total);
 }
