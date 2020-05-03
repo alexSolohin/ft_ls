@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 12:54:07 by user              #+#    #+#             */
-/*   Updated: 2020/05/02 13:24:18 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/03 13:26:14 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ void	ft_chmod(struct stat file_stat, t_ls *ls)
 	ls->chmod[9] = (file_stat.st_mode & S_IXOTH) ? 'x' : '-';
 }
 
-t_ls	*init_struct(char *path, char *buff)
+t_ls    *init_struct(t_ls *ls, char *path, char *buff)
 {
 	struct passwd 	*pws;
 	struct stat 	file_stat;
 	struct group	*group;
-	t_ls			*ls;
+	t_ls			*ptr;
 
-
-	ls = malloc(sizeof(t_ls));
-	ls->name = ft_strdup(buff);
+	if (!(ptr = malloc(sizeof(t_ls))))
+	    exit(0);
+	ptr->name = ft_strdup(buff);
 	if ((group = getgrgid(getgid())) != NULL)
-		ls->group_name = group->gr_name;
+		ptr->group_name = group->gr_name;
 	if ((pws = getpwuid(geteuid())) != NULL)
-		ls->user_name = pws->pw_name;
+		ptr->user_name = pws->pw_name;
 	if (ft_strequ(buff, ".") || ft_strequ(buff, ".."))
 	{
 		if (lstat(buff, &file_stat) < 0)
@@ -57,11 +57,13 @@ t_ls	*init_struct(char *path, char *buff)
 		if (lstat(path, &file_stat) < 0)
 			exit(0);
 	}
-	ls->time = ctime(&file_stat.st_atimespec.tv_sec);
-	ls->links = file_stat.st_nlink;
-	ls->byte_size = file_stat.st_size;
-	ft_chmod(file_stat, ls);
-	ls->next = NULL;
-	// printf("filestat - %o\n", file_stat.st_mode);
-	return (ls);
+	ptr->time = ctime(&file_stat.st_atime);
+	ptr->links = file_stat.st_nlink;
+	ptr->byte_size = file_stat.st_size;
+	ptr->st_block = file_stat.st_blocks;
+	ptr->time_nsec = file_stat.st_atimespec.tv_nsec;
+	ft_chmod(file_stat, ptr);
+	ptr->next = ls;
+    ls = ptr;
+    return (ptr);
 }

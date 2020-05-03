@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/02 13:53:03 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/03 13:11:38 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,26 @@
 // sort по времени изменения
 // sort в обратном порядке
 
-void	print(char **buff, t_type type, char  *av)
+t_ls	*create_list(char **buff, char  *av)
 {
-	int i;
-	t_ls *ls;
-
-	//stat
-	// struct stat 	file_stat;
-    char			*path;
+	int     i;
+	t_ls    *ls;
+    char	*path;
 
 	if (!(path = malloc(sizeof(char) * 255)))
 		exit(0);
 	i = 0;
-	if (type.flag == 'l')
-	{
-		while (buff[i])
-		{
-			path = ft_strcpy(path, av);
-			path[ft_strlen(av)] = '/';
-			path = ft_strcat(path, buff[i]);
-			ls = init_struct(path, buff[i]);
-			int j = 0;
-			while (j < 10)
-			{
-				printf("%c", ls->chmod[j++]);
-			}
-			printf(" %d ", ls->links);
-			printf(" %s %s %d %s ",   ls->user_name, ls->group_name, ls->byte_size,ls->name);
-			printf("%.16s\n", ls->time);
-			ft_bzero(path, 255);
-			i++;
-		}
-	}
+	ls = NULL;
+    while (buff[i])
+    {
+        path = ft_strcpy(path, av);
+        path[ft_strlen(av)] = '/';
+        path = ft_strcat(path, buff[i]);
+        ls = init_struct(ls, path, buff[i]);
+        ft_bzero(path, 255);
+        i++;
+    }
+    return (ls);
 }
 
 int		size_buff(char *av)
@@ -87,7 +75,7 @@ char	**ft_ls_dir(char *av)
 	int				j;
 
 	if (!(dir = opendir(av)))
-		exit(0);
+        return (NULL);
 	i = size_buff(av);
 	buff = (char**)malloc(sizeof(char*) * i + 1);
 	j = 0;
@@ -102,12 +90,38 @@ char	**ft_ls_dir(char *av)
 int		main(int ac, char **av)
 {
 	char **buff;
-	t_type	type;
+	t_ls    *ls;
+	char    **ptr;
 
 	ac = 0;
-	type.flag = 'l';
+
+
 	buff = ft_ls_dir(av[1]);
-	// sort_name(buff, type);
-	sort_name_rev(buff, type);
-	// print(buff, type, av[1]);
+    int i = 0;
+    while (buff[i])
+    {
+        ptr = ft_ls_dir(buff[i]);
+        if (ptr = NULL)
+            printf("No path");
+        else
+        {
+            int j = 0;
+            while (ptr[j])
+                printf("%s", ptr[j++]);
+        }
+        i++;
+    }
+//    sort_name_rev(buff);
+    sort_name(buff);
+    ls = create_list(buff, av[1]);
+//    sort_time_create(ls);
+    int total = 0;
+    while (ls)
+    {
+        printf("%s    \n", ls->name);
+//        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
+        total += ls->st_block;
+        ls = ls->next;
+    }
+    printf("total %d", total);
 }
