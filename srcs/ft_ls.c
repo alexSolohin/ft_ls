@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/03 13:11:38 by alex             ###   ########.fr       */
+/*   Updated: 2020/05/04 12:06:35 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	**ft_ls_dir(char *av)
 	{
 		buff[j++] = ft_strdup(entry->d_name);
 	}
+	buff[j] = '\0';
 	closedir(dir);
 	return(buff);
 }
@@ -93,6 +94,9 @@ int    recursive(char *str)
     struct dirent   *entry;
     char            buff[255];
     t_ls            *ls;
+    char            **direct;
+
+
 
     if (!(dir = opendir(str)))
         return (1);
@@ -106,29 +110,39 @@ int    recursive(char *str)
         ls = init_struct(ls, buff, entry->d_name);
         if (ls->chmod[0] == 'd')
         {
-            printf("Dir: %s  \n", buff);
+            printf("Dir: %s\n\n", buff);
+            direct = ft_ls_dir(buff);
+            int i = 0;
+            while (direct[i])
+            {
+                printf("%s  ", direct[i]);
+                i++;
+            }
+            printf("\n\n");
             recursive(buff);
         }
-        else
-        {
-            printf("File: %s  ", entry->d_name);
-        }
+//        else
+//        {
+//            printf("File: %s  ", entry->d_name);
+//        }
     }
-    printf("\n\n");
     closedir(dir);
+	return (0);
 }
 
 int		main(int ac, char **av)
 {
-	char **buff;
-	t_ls    *ls;
-	char    **ptr;
+	// char **buff;
+	// t_ls    *ls;
+	// char    **ptr;
 
 	ac = 0;
     recursive(av[1]);
 //	buff = ft_ls_dir(av[1]);
-//    sort_name_rev(buff);
 //    sort_name(buff);
+//
+//    sort_name_rev(buff);
+
 //    ls = create_list(buff, av[1]);
 //    sort_time_create(ls);
 //    int total = 0;
