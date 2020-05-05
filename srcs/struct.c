@@ -57,11 +57,11 @@ t_ls    *init_struct(t_ls *ls, char *path, char *buff)
 		if (stat(path, &file_stat) < 0)
 			exit(0);
 	}
-	ptr->time = ctime(&file_stat.st_atime);
+	ptr->time = ft_strdup(ctime(&file_stat.st_mtime));
 	ptr->links = file_stat.st_nlink;
 	ptr->byte_size = file_stat.st_size;
 	ptr->st_block = file_stat.st_blocks;
-	ptr->time_nsec = file_stat.st_atimespec.tv_nsec;
+	ptr->time_nsec = file_stat.st_mtime;
 	ft_chmod(file_stat, ptr);
 	ptr->next = ls;
     ls = ptr;

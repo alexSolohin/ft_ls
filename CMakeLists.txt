@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(ft_ls)
+project(ft_ls C)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
 include_directories(libft)
@@ -74,5 +74,4 @@ add_executable(ft_ls
         libft/libft.h
         srcs/ft_ls.c
         srcs/sort.c
-        srcs/struct.c
-        )
+        srcs/struct.c)

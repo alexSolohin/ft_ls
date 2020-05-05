@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/04 12:06:35 by user             ###   ########.fr       */
+/*   Updated: 2020/05/04 14:08:27 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**ft_ls_dir(char *av)
 	{
 		buff[j++] = ft_strdup(entry->d_name);
 	}
-	buff[j] = '\0';
+	buff[j] = NULL;
 	closedir(dir);
 	return(buff);
 }
@@ -132,26 +132,27 @@ int    recursive(char *str)
 
 int		main(int ac, char **av)
 {
-	// char **buff;
-	// t_ls    *ls;
-	// char    **ptr;
+	 char **buff;
+	 t_ls    *ls;
+//	 char    **ptr;
 
 	ac = 0;
-    recursive(av[1]);
-//	buff = ft_ls_dir(av[1]);
+//    recursive(av[1]);
+	buff = ft_ls_dir(av[1]);
 //    sort_name(buff);
 //
 //    sort_name_rev(buff);
 
-//    ls = create_list(buff, av[1]);
-//    sort_time_create(ls);
-//    int total = 0;
-//    while (ls)
-//    {
-//        printf("%s    \n", ls->name);
-////        printf("%0.16s   %d\n", ls->time, ls->time_nsec);
-//        total += ls->st_block;
-//        ls = ls->next;
-//    }
-//    printf("total %d", total);
+    ls = create_list(buff, av[1]);
+    sort_time_create(ls);
+//    sort_equaly(ls);
+    int total = 0;
+    while (ls)
+    {
+        printf("File: %s  ", ls->name);
+        printf("Nsec: %ld\n", ls->time_nsec);
+        total += ls->st_block;
+        ls = ls->next;
+    }
+    printf("total %d", total);
 }

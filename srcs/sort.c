@@ -63,6 +63,30 @@ void        rev_data(t_ls *ptr, t_ls *ls)
     ptr->name = tmp.name;
 }
 
+void        sort_equaly(t_ls *ls)
+{
+    t_ls *ptr;
+
+    ptr = NULL;
+    if (ls != NULL)
+    {
+        while (ls->next != NULL)
+        {
+            ptr = ls->next;
+            while (ptr != NULL)
+            {
+                if (ptr->time_nsec == ls->time_nsec)
+                {
+                    if (ft_strcmp(ls->name, ptr->name) > 0)
+                        rev_data(ptr, ls);
+                }
+                ptr = ptr->next;
+            }
+            ls = ls->next;
+        }
+    }
+}
+
 void        sort_time_create(t_ls *ls)
 {
     t_ls *ptr;
@@ -75,15 +99,25 @@ void        sort_time_create(t_ls *ls)
             ptr = ls->next;
             while (ptr != NULL)
             {
-                if (ptr->time_nsec < ls->time_nsec)
+                if (ptr->time_nsec > ls->time_nsec)
                 {
                     rev_data(ptr, ls);
+                }
+                if (ptr->time_nsec == ls->time_nsec)
+                {
+                     /*
+                      * лексикографический порядок
+                      * доработать функцию
+                     */
+                    if (ft_strcmp(ls->name, ptr->name) > 0)
+                        rev_data(ptr, ls);
                 }
                 ptr = ptr->next;
             }
             ls = ls->next;
         }
     }
+
 }
 
 void	sort_name_rev(char **buff)
@@ -100,7 +134,7 @@ void	sort_name_rev(char **buff)
 	while (i < n)
 	{
 	    j = 0;
-	    while (j < n - i -1)
+	    while (j < n - i - 1)
 		{
 	        if (ft_strcmp(buff[j], buff[j + 1]) > 0)
 	        {
@@ -117,7 +151,6 @@ void	sort_name_rev(char **buff)
 //    {
 //        printf("%s\n", buff[i++]);
 //    }
-	//здесь будет сортировка по имени или в зависимости от ключа
 }
 
 void	sort_name(char **buff)
@@ -152,7 +185,7 @@ void	sort_name(char **buff)
 //    {
 //        printf("%s\n", buff[i++]);
 //    }
-	//здесь будет сортировка по имени или в зависимости от ключа
+
 }
 
 

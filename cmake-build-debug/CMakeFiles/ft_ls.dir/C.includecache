@@ -32,21 +32,7 @@ stdlib.h
 unistd.h
 -
 
-/Users/user/Desktop/ft_ls/srcs/ft_ls.c
+/Users/user/Desktop/ft_ls/srcs/sort.c
 ft_ls.h
 /Users/user/Desktop/ft_ls/srcs/ft_ls.h
-sys/types.h
--
-sys/stat.h
--
-dirent.h
--
-stdio.h
--
-time.h
--
-pwd.h
--
-grp.h
--
 

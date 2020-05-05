@@ -102,6 +102,7 @@ t_ls        *init_struct(t_ls *ls, char *path, char *buff);
 void		sort_name(char **buff);
 void		sort_name_rev(char **buff);
 void        sort_time_create(t_ls *ls);
+void        sort_equaly(t_ls *ls);
 /*
  * ============== end sort.c ========
  */

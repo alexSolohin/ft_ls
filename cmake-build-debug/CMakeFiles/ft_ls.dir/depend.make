@@ -125,7 +125,6 @@ CMakeFiles/ft_ls.dir/libft/ft_strequ.c.o: ../libft/ft_strequ.c
 CMakeFiles/ft_ls.dir/libft/ft_strequ.c.o: ../libft/libft.h
 
 CMakeFiles/ft_ls.dir/libft/ft_striter.c.o: ../libft/ft_striter.c
-CMakeFiles/ft_ls.dir/libft/ft_striter.c.o: ../libft/libft.h
 
 CMakeFiles/ft_ls.dir/libft/ft_striteri.c.o: ../libft/ft_striteri.c
 CMakeFiles/ft_ls.dir/libft/ft_striteri.c.o: ../libft/libft.h
