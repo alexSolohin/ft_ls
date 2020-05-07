@@ -19,42 +19,79 @@
 #include <pwd.h>
 #include <grp.h>
 
-void	ft_chmod(struct stat file_stat, t_ls *ls)
+char 	set_zero_mode(mode_t mode)
 {
-	ls->chmod[0] = (S_ISDIR(file_stat.st_mode)) ? 'd' : '-';
-	ls->chmod[1] = (file_stat.st_mode & S_IRUSR) ? 'r' : '-';
-	ls->chmod[2] = (file_stat.st_mode & S_IWUSR) ? 'w' : '-';
-	ls->chmod[3] = (file_stat.st_mode & S_IXUSR) ? 'x' : '-';
-	ls->chmod[4] = (file_stat.st_mode & S_IRGRP) ? 'r' : '-';
-	ls->chmod[5] = (file_stat.st_mode & S_IWGRP) ? 'w' : '-';
-	ls->chmod[6] = (file_stat.st_mode & S_IXGRP) ? 'x' : '-';
-	ls->chmod[7] = (file_stat.st_mode & S_IROTH) ? 'r' : '-';
-	ls->chmod[8] = (file_stat.st_mode & S_IWOTH) ? 'w' : '-';
-	ls->chmod[9] = (file_stat.st_mode & S_IXOTH) ? 'x' : '-';
+	char file_mode;
+	if (S_ISREG(mode))
+		file_mode = '-';
+	else if (S_ISBLK(mode))
+		file_mode = 'b';
+	else if (S_ISCHR(mode))
+		file_mode = 'c';
+	else if (S_ISDIR(mode))
+		file_mode = 'd';
+	else if (S_ISFIFO(mode))
+		file_mode = 'p';
+	else if (S_ISLNK(mode))
+		file_mode = 'l';
+	else if (S_ISSOCK(mode))
+		file_mode = 's';
+	else
+		file_mode = '?';
+	return (file_mode);
 }
 
-void	init_struct(t_ls *ls, char *av)
+void			strmode(mode_t mode, char *buf)
 {
-	struct passwd 	*pws;
-	struct stat 	file_stat;
-	struct group	*group;
+	const char	chars[] = "rwxrwxrwx";
+	int			i;
 
-	if ((group = getgrgid(getgid())) != NULL)
-		ls->group_name = group->gr_name;
-	if ((pws = getpwuid(geteuid())) != NULL)
-		ls->user_name = pws->pw_name;
-	if (ft_strequ(av, ".") || ft_strequ(av, ".."))
+	i = 0;
+	while (i < 9)
 	{
-		if (stat(ls->name, &file_stat) < 0)
-			printf("€");
+		buf[i] = (mode & (1 << (8 - i))) ? chars[i] : '-';
+		i++;
 	}
-	else
+	buf[9] = '\0';
+}
+
+char	*ft_chmod(mode_t mode, t_ls *ls)
+{
+	char chmod[11];
+	chmod[0] = set_zero_mode(mode);
+	strmode(mode, &chmod[1]);
+	if (mode & S_ISUID)
+		chmod[3] = (chmod[3] == 'x') ? 's' : 'S';
+	if (mode & S_ISGID)
+		chmod[6] = (chmod[6] == 'x') ? 's' : 'S';
+	if (mode & S_ISVTX)
+		chmod[9] = (chmod[9] == 'x') ? 't' : 'T';
+	ls->chmod = chmod;
+	return (ls->chmod);
+}
+
+int				init_struct(t_ls *ls, t_flag flag, char *path)
+{
+	struct stat	file_stat;
+
+	ls->path = path;
+	ls->flag = flag;
+	if (lstat(ls->path, &file_stat) < 0)
 	{
-		if (stat(ls->path, &file_stat) < 0)
-			printf("€");
+		printf("%s; ", strerror(errno));
+		return 0;
 	}
-	ls->time = ctime(&file_stat.st_atim.tv_sec);
+	ls->gid = file_stat.st_gid;
+	ls->uid=  file_stat.st_uid;
+	ls->time = ls->flag.u ? file_stat.st_atim : file_stat.st_mtim;
 	ls->links = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
-	ft_chmod(file_stat, ls);
+	ls->chmod = ft_chmod(file_stat.st_mode, ls);
+	ls->d_mode = ls->chmod[0] == 'd' ? 1 : 0;
+	ls->rdev = file_stat.st_rdev;
+	return (1);
 }
+//printf("name = %s\n", ls->path);
+//int major = (int)(((file_stat.st_rdev) >> 16) & 0xffff);
+//("major = %4u ", major);
+//printf(", minor = %4u\n", (int)((file_stat.st_rdev) & 0xffff));
