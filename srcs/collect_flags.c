@@ -14,7 +14,10 @@ void 		set_flag(int rez, t_flag *flag)
 	else if (rez == 'd')
 		flag->d = 1;
 	else if (rez == 'f')
+	{
+		flag->a = 1;
 		flag->f = 1;
+	}
 	else if (rez == 'g')
 		flag->g = 1;
 	else if (rez == 'l')

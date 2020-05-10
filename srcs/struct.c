@@ -89,9 +89,6 @@ int				init_struct(t_ls *ls, t_flag flag, char *path)
 	ls->chmod = ft_chmod(file_stat.st_mode, ls);
 	ls->d_mode = ls->chmod[0] == 'd' ? 1 : 0;
 	ls->rdev = file_stat.st_rdev;
+	ls->next = NULL;
 	return (1);
 }
-//printf("name = %s\n", ls->path);
-//int major = (int)(((file_stat.st_rdev) >> 16) & 0xffff);
-//("major = %4u ", major);
-//printf(", minor = %4u\n", (int)((file_stat.st_rdev) & 0xffff));

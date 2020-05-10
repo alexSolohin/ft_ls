@@ -13,14 +13,15 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
-#include "libft.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <stdio.h>
-#include <pwd.h>
-#include <sys/xattr.h>
-#include <stdlib.h>
+# include "libft.h"
+# include <sys/types.h>
+# include <grp.h>
+# include <sys/stat.h>
+# include <dirent.h>
+# include <stdio.h>
+# include <pwd.h>
+# include <sys/xattr.h>
+# include <stdlib.h>
 
 # define FLAGS			"adfglRrtu"
 
@@ -32,19 +33,21 @@
 # define OPT_ARG		2
 
 typedef struct timespec	t_time;
+typedef struct passwd	t_user;
+typedef struct group	t_group;
 
-typedef struct	s_flag
+typedef struct			s_flag
 {
-	int			a;
-	int 		d;
-	int			f;
-	int 		g;
-	int 		l;
-	int 		r_cap;
-	int 		r;
-	int			t;
-	int 		u;
-}				t_flag;
+	int					a;
+	int 				d;
+	int					f;
+	int 				g;
+	int 				l;
+	int 				r_cap;
+	int 				r;
+	int					t;
+	int 				u;
+}						t_flag;
 
 typedef struct	s_opt
 {
@@ -110,6 +113,8 @@ static t_lopt 	g_lopt[] = {
 		{NULL,0,NULL,0}
 };
 
+int			entry_compare(t_ls *a, t_ls *b);
+void		merge_sort(t_ls **list_to_sort);
 void		print(t_ls *ls);
 void		ft_ls_dir(char *av);
 void		print_error(char *av);
