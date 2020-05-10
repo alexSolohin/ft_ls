@@ -1,5 +1,4 @@
 #include "ft_ls.h"
-#include <stdio.h>
 
 void		add_ls_node(t_ls *entry, t_ls **ls)
 {
@@ -23,7 +22,7 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	t_ls 		*fls;
 	t_ls 		*dls;
 	t_ls 		entry;
-	int i;
+	int			i;
 
 	fls = NULL;
 	dls = NULL;
@@ -37,28 +36,22 @@ int 			input_processing(t_flag flag, int ac, char **av)
 		else
 			add_ls_node(&entry, &fls);
 	}
-
-
+	merge_sort(&fls);
+	merge_sort(&dls);
+//	ft_ls(fls, dls->next || (dls && fls));
+//	free(fls);
+//	ft_ls(dls, dls->next || (dls && fls));
+//	free(dls);
 }
 
 int				main(int ac, char **av)
 {
-
 	t_flag		flag;
-	collect_flags(&flag, &ac, &av);
 
+	collect_flags(&flag, &ac, &av);
 	if (ac)
 		input_processing(flag, ac, av);
 	else
 		ft_ls_dir(CURR_DIR);
-
-			//init_struct(ls, av[i]);
-
-			//if (!dls->flag.d && dls->chmod[0] == 'd')
-
-			//else
-				//	ndir;
-				//	nifle;
-
-
+	return (0);
 }
