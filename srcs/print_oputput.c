@@ -1,53 +1,85 @@
 #include "ft_ls.h"
 
-char		*get_user_name(uid_t user_id)
+static void 	print_name()
+{
+
+}
+
+static char		*get_user_name(uid_t user_id)
 {
 	t_user *usr;
 
 	if (!(usr = getpwuid(user_id)))
 	{
-		ft_printf("Can't get struct for user: %d", user_id);
+		ft_printf("Can't get struct for user: %d", user_id); // Добавить обработку ошибок
 		exit(EXIT_FAILURE);
 	}
 	return (usr->pw_name);
 }
 
-char 		*get_group_name(gid_t group_id)
+static char 		*get_group_name(gid_t group_id)
 {
 	t_group	*grp;
 
 	if (!(grp = getgrgid(group_id)))
 	{
-		ft_printf("Can't get struct for group: %d", group_id);
+		ft_printf("Can't get struct for group: %d", group_id); // Добавить обработку ошибок
 		exit(EXIT_FAILURE);
 	}
 	return (grp->gr_name);
 }
 
-char		*get_time(t_time t)
+static char		*get_time(t_time t)
 {
 	char	*fmt;
-	if (time(NULL) > t.tv_sec + 15552000) /* 180 * 24 * 60 * 60 */
-		fmt = ctime(t.tv_sec);
+	char 	*tm;
 
+	//ft_bzero(fmt, 32);
+	tm = ctime(&t.tv_sec);
+	fmt = ((time(NULL) > t.tv_sec + 15552000) ?
+		ft_strdup(ft_strcat(ft_strsub(tm, 4, 7), ft_strsub(tm, 20, 4))) :
+		ft_strdup(ft_strsub(tm, 4, 12)));
+	return (fmt);
 }
+
+char 		*lpath(char *linkname)
+{
+	int		len;
+	char	link[MAX_PATH];
+
+	errno = 0;
+	if ((len = readlink(linkname, link, MAX_PATH)) < 0)
+	{
+		printf("%s", strerror(errno)); 		// Добавить обработку ошибок
+		return ("?");
+	}
+	link[len] = '\0';
+	return (ft_strdup(link));
+}
+
 void		print_output(t_ls *ls)
 {
+	char 	*mode;
 	char	*uname;
 	char	*gname;
 	char	*time;
 
-	if (!ls->flag.l || !ls->flag.g)
+	if (!ls->flag.l && !ls->flag.g)
 	{
-		printname();
+		printf("%s", ls->name);
 		return ;
 	}
+	mode = ft_chmod(ls);
 	gname = get_group_name(ls->gid);
 	uname = get_user_name(ls->uid);
 	time = get_time(ls->time);
+	printf("%s %u %-1.8s %-8.8s ", mode, ls->nlink, uname, gname);
+	if (S_ISBLK(ls->mode) || S_ISCHR(ls->mode))
+	{
+		printf("%4u, %4u %s %s", (int)(((ls->rdev) >> 16) & 0xffff),
+			   (int)((ls->rdev) & 0xffff), time, ls->name);
+	}
+	else
+		printf("%10lu %s %s", (unsigned long)ls->byte_size, time, ls->name);
+	S_ISLNK(ls->mode) ? printf(" -> %s\n", lpath(ls->name)) : printf("\n");
 }
-
-//printf("name = %s\n", ls->path);
-//int major = (int)(((file_stat.st_rdev) >> 16) & 0xffff);
-//("major = %4u ", major);
-//printf(", minor = %4u\n", (int)((file_stat.st_rdev) & 0xffff));

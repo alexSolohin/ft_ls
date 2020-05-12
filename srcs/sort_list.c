@@ -12,7 +12,7 @@ int			entry_compare(t_ls *a, t_ls *b)
 			cmp = b->time.tv_nsec - a->time.tv_nsec;
 	}
 	if (!cmp)
-		cmp = ft_strcmp(a->path, b->path);
+		cmp = ft_strcmp(a->name, b->name);
 	return a->flag.r ? 0 - cmp : cmp;
 }
 

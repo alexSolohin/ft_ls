@@ -75,16 +75,16 @@ typedef struct s_input
 typedef struct      s_ls
 {
 	t_flag			flag;			//флаг
-	char			*chmod;		//права доступа
 	t_time			time;			//время DD MM
 	uid_t 			uid;			//id пользовтеля
 	gid_t 			gid;			//id групы
 	dev_t			rdev;			//номер устройства
+	mode_t			mode;
+	char			*chmod;		//права доступа
 	int				d_mode;			//индикатор директории
 	int				byte_size;		//размер в байтах
-	int				links;			//количество файлов внутри
+	unsigned short	nlink;			//количество файлов внутри
     char            *name;			// имя файла или директории
-	char			*path;			// полный путь до файла
     struct s_ls     *next;
 }                   t_ls;
 
@@ -126,5 +126,6 @@ int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
 //int 		get_num_of_array_index(t_input input);
 void 		reset_flags(t_flag *flag);
 void 		collect_flags(t_flag *flag, int *ac, char ***av);
-
+void		print_output(t_ls *ls);
+char		*ft_chmod(t_ls *ls);
 #endif

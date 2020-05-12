@@ -21,7 +21,7 @@ int 			input_processing(t_flag flag, int ac, char **av)
 {
 	t_ls 		*fls;
 	t_ls 		*dls;
-	t_ls 		entry;
+	t_ls		entry;
 	int			i;
 
 	fls = NULL;
@@ -38,20 +38,26 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	}
 	merge_sort(&fls);
 	merge_sort(&dls);
+	print_output(fls);
 //	ft_ls(fls, dls->next || (dls && fls));
 //	free(fls);
 //	ft_ls(dls, dls->next || (dls && fls));
 //	free(dls);
+	return (0);
 }
 
 int				main(int ac, char **av)
 {
 	t_flag		flag;
+	t_ls		entry;
 
 	collect_flags(&flag, &ac, &av);
 	if (ac)
 		input_processing(flag, ac, av);
 	else
-		ft_ls_dir(CURR_DIR);
+	{
+		init_struct(&entry, flag, CURR_DIR);
+		//ft_ls_dir(CURR_DIR);
+	}
 	return (0);
 }

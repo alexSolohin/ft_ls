@@ -41,7 +41,7 @@ char 	set_zero_mode(mode_t mode)
 	return (file_mode);
 }
 
-void			strmode(mode_t mode, char *buf)
+void			ft_strmode(mode_t mode, char *buf)
 {
 	const char	chars[] = "rwxrwxrwx";
 	int			i;
@@ -55,39 +55,40 @@ void			strmode(mode_t mode, char *buf)
 	buf[9] = '\0';
 }
 
-char	*ft_chmod(mode_t mode, t_ls *ls)
+char	*ft_chmod(t_ls *ls)
 {
 	char chmod[11];
-	chmod[0] = set_zero_mode(mode);
-	strmode(mode, &chmod[1]);
-	if (mode & S_ISUID)
+
+	chmod[0] = set_zero_mode(ls->mode);
+	ft_strmode(ls->mode, &chmod[1]);
+	if (ls->mode & S_ISUID)
 		chmod[3] = (chmod[3] == 'x') ? 's' : 'S';
-	if (mode & S_ISGID)
+	if (ls->mode & S_ISGID)
 		chmod[6] = (chmod[6] == 'x') ? 's' : 'S';
-	if (mode & S_ISVTX)
+	if (ls->mode & S_ISVTX)
 		chmod[9] = (chmod[9] == 'x') ? 't' : 'T';
-	ls->chmod = chmod;
-	return (ls->chmod);
+	chmod[10] = '\0';
+	return (ft_strdup(chmod));
 }
 
 int				init_struct(t_ls *ls, t_flag flag, char *path)
 {
 	struct stat	file_stat;
 
-	ls->path = path;
+	ls->name = path;
 	ls->flag = flag;
-	if (lstat(ls->path, &file_stat) < 0)
+	if (lstat(ls->name, &file_stat) < 0)
 	{
 		printf("%s; ", strerror(errno));
 		return 0;
 	}
+	ls->mode = file_stat.st_mode;
 	ls->gid = file_stat.st_gid;
 	ls->uid=  file_stat.st_uid;
 	ls->time = ls->flag.u ? file_stat.st_atim : file_stat.st_mtim;
-	ls->links = file_stat.st_nlink;
+	ls->nlink = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
-	ls->chmod = ft_chmod(file_stat.st_mode, ls);
-	ls->d_mode = ls->chmod[0] == 'd' ? 1 : 0;
+	ls->d_mode = S_ISDIR(ls->mode) ? 1 : 0;
 	ls->rdev = file_stat.st_rdev;
 	ls->next = NULL;
 	return (1);
