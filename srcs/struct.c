@@ -57,18 +57,18 @@ void			ft_strmode(mode_t mode, char *buf)
 
 char	*ft_chmod(t_ls *ls)
 {
-	char chmod[11];
+//	char chmod[11];
 
-	chmod[0] = set_zero_mode(ls->mode);
-	ft_strmode(ls->mode, &chmod[1]);
+	ls->chmod[0] = set_zero_mode(ls->mode);
+	ft_strmode(ls->mode, &(ls->chmod[1]));
 	if (ls->mode & S_ISUID)
-		chmod[3] = (chmod[3] == 'x') ? 's' : 'S';
+		ls->chmod[3] = (ls->chmod[3] == 'x') ? 's' : 'S';
 	if (ls->mode & S_ISGID)
-		chmod[6] = (chmod[6] == 'x') ? 's' : 'S';
+		ls->chmod[6] = (ls->chmod[6] == 'x') ? 's' : 'S';
 	if (ls->mode & S_ISVTX)
-		chmod[9] = (chmod[9] == 'x') ? 't' : 'T';
-	chmod[10] = '\0';
-	return (ft_strdup(chmod));
+		ls->chmod[9] = (ls->chmod[9] == 'x') ? 't' : 'T';
+	ls->chmod[10] = '\0';
+	return (ls->chmod);
 }
 
 int				init_struct(t_ls *ls, t_flag flag, char *path)
@@ -79,16 +79,15 @@ int				init_struct(t_ls *ls, t_flag flag, char *path)
 	ls->flag = flag;
 	if (lstat(ls->name, &file_stat) < 0)
 	{
-		printf("%s; ", strerror(errno));
+		printf("Not valid file \n");
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;
 	ls->gid = file_stat.st_gid;
 	ls->uid=  file_stat.st_uid;
-	ls->time = ls->flag.u ? file_stat.st_atim : file_stat.st_mtim;
+	ls->time = ls->flag.u ? file_stat.st_atimespec : file_stat.st_mtimespec;
 	ls->nlink = file_stat.st_nlink;
 	ls->byte_size = file_stat.st_size;
-	ls->d_mode = S_ISDIR(ls->mode) ? 1 : 0;
 	ls->rdev = file_stat.st_rdev;
 	ls->next = NULL;
 	return (1);

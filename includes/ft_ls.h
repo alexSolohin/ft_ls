@@ -80,7 +80,7 @@ typedef struct      s_ls
 	gid_t 			gid;			//id групы
 	dev_t			rdev;			//номер устройства
 	mode_t			mode;
-	char			*chmod;		//права доступа
+	char			chmod[10];		//права доступа
 	int				d_mode;			//индикатор директории
 	int				byte_size;		//размер в байтах
 	unsigned short	nlink;			//количество файлов внутри

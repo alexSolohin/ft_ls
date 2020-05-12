@@ -1,4 +1,6 @@
 #include "ft_ls.h"
+#include <errno.h>
+#include <time.h>
 
 static void 	print_name()
 {
@@ -11,7 +13,7 @@ static char		*get_user_name(uid_t user_id)
 
 	if (!(usr = getpwuid(user_id)))
 	{
-		ft_printf("Can't get struct for user: %d", user_id); // Добавить обработку ошибок
+		printf("Can't get struct for user: %d", user_id); // Добавить обработку ошибок
 		exit(EXIT_FAILURE);
 	}
 	return (usr->pw_name);
@@ -23,7 +25,7 @@ static char 		*get_group_name(gid_t group_id)
 
 	if (!(grp = getgrgid(group_id)))
 	{
-		ft_printf("Can't get struct for group: %d", group_id); // Добавить обработку ошибок
+		printf("Can't get struct for group: %d", group_id); // Добавить обработку ошибок
 		exit(EXIT_FAILURE);
 	}
 	return (grp->gr_name);
@@ -36,10 +38,10 @@ static char		*get_time(t_time t)
 
 	//ft_bzero(fmt, 32);
 	tm = ctime(&t.tv_sec);
-	fmt = ((time(NULL) > t.tv_sec + 15552000) ?
-		ft_strdup(ft_strcat(ft_strsub(tm, 4, 7), ft_strsub(tm, 20, 4))) :
-		ft_strdup(ft_strsub(tm, 4, 12)));
-	return (fmt);
+    return  ((time(NULL) > t.tv_sec + 15552000) ?
+		ft_strcat(ft_strsub(tm, 4, 7), ft_strsub(tm, 20, 4)) :
+		ft_strsub(tm, 4, 12));
+//	return (fmt);
 }
 
 char 		*lpath(char *linkname)
@@ -59,27 +61,27 @@ char 		*lpath(char *linkname)
 
 void		print_output(t_ls *ls)
 {
-	char 	*mode;
+//	char 	*mode;
 	char	*uname;
 	char	*gname;
-	char	*time;
+//	char	*time;
 
 	if (!ls->flag.l && !ls->flag.g)
 	{
 		printf("%s", ls->name);
 		return ;
 	}
-	mode = ft_chmod(ls);
+//	mode = ft_chmod(ls);
 	gname = get_group_name(ls->gid);
 	uname = get_user_name(ls->uid);
-	time = get_time(ls->time);
-	printf("%s %u %-1.8s %-8.8s ", mode, ls->nlink, uname, gname);
+//	time = get_time(ls->time);
+	printf("%s %u %-1.8s %-8.8s ", ft_chmod(ls), ls->nlink, uname, gname);
 	if (S_ISBLK(ls->mode) || S_ISCHR(ls->mode))
 	{
 		printf("%4u, %4u %s %s", (int)(((ls->rdev) >> 16) & 0xffff),
-			   (int)((ls->rdev) & 0xffff), time, ls->name);
+			   (int)((ls->rdev) & 0xffff), get_time(ls->time), ls->name);
 	}
 	else
-		printf("%10lu %s %s", (unsigned long)ls->byte_size, time, ls->name);
+		printf("%10lu %s %s", (unsigned long)ls->byte_size, get_time(ls->time), ls->name);
 	S_ISLNK(ls->mode) ? printf(" -> %s\n", lpath(ls->name)) : printf("\n");
 }

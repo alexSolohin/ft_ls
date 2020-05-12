@@ -6,7 +6,7 @@ void		add_ls_node(t_ls *entry, t_ls **ls)
 
 	if (!(tmp = (t_ls *)malloc(sizeof(t_ls))))
 	{
-		strerror(errno);                //добавить обработку исключений
+//		strerror(errno);                //добавить обработку исключений
 		return;
 	}
 	if(entry && ls)
@@ -31,7 +31,7 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	{
 		if (!init_struct(&entry, flag, av[i++]))
 			continue;
-		if (!entry.flag.d && entry.d_mode)
+		if (!entry.flag.d && S_ISDIR(entry.mode))
 			add_ls_node(&entry, &dls);
 		else
 			add_ls_node(&entry, &fls);

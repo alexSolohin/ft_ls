@@ -2,7 +2,7 @@
 
 void		invalid_option(t_opt *opt)
 {
-	ft_printf("ft_ls: invalid option -- \'%s\'", opt->optopt);
+//	ft_printf("ft_ls: invalid option -- \'%s\'", opt->optopt);
 	free(opt);
 	exit(0);
 }

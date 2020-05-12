@@ -28,7 +28,7 @@
 // sort по времени изменения
 // sort в обратном порядке
 
-t_ls	*create_list(char **buff, char  *av)
+t_ls	*create_list(char **buff, char  *av, t_flag flag)
 {
 	int     i;
 	t_ls    *ls;
@@ -66,11 +66,12 @@ int		size_buff(char *av)
 	return(i);
 }
 
-char	**ft_ls_dir(char *av)
+t_ls    *ft_ls_dir(char *av)
 {
 	DIR				*dir;
 	struct dirent 	*entry;
 	char			**buff;
+	t_ls            *ls;
 	int 			i;
 	int				j;
 
@@ -84,75 +85,79 @@ char	**ft_ls_dir(char *av)
 		buff[j++] = ft_strdup(entry->d_name);
 	}
 	buff[j] = NULL;
+	ls = create_list(buff, av);
 	closedir(dir);
-	return(buff);
+	return(ls);
 }
 
 int    recursive(char *str)
 {
     DIR             *dir;
     struct dirent   *entry;
-    char            buff[255];
+    char            path[255];
     t_ls            *ls;
     char            **direct;
 
 
-
+    ls = malloc(sizeof(t_ls));
     if (!(dir = opendir(str)))
         return (1);
+//    while((entry = readdir(dir)) != NULL)
+//        printf(entry->d_name);
     while((entry = readdir(dir)) != NULL)
     {
         if (ft_strequ(entry->d_name, ".") || ft_strequ(entry->d_name, ".."))
             continue ;
-        ft_strcpy(buff, str);
-        ft_strcat(buff, "/");
-        ft_strcat(buff, entry->d_name);
-        ls = init_struct(ls, buff, entry->d_name);
-        if (ls->chmod[0] == 'd')
+        ft_strcpy(path, str);
+        ft_strcat(path, "/");
+        ft_strcat(path, entry->d_name);
+        init_struct(ls, buff, entry->d_name);
+        if (ls->mode == 'd')
         {
-            printf("Dir: %s\n\n", buff);
-            direct = ft_ls_dir(buff);
+            printf("Dir: %s\n\n", path);
+            direct = ft_ls_dir(path);
+            ls = create_list(direct, str);
             int i = 0;
             while (direct[i])
             {
-                printf("%s  ", direct[i]);
-                i++;
+                print_output(ls);
+                ls = ls->next;
             }
             printf("\n\n");
-            recursive(buff);
+            recursive(path);
         }
-//        else
-//        {
-//            printf("File: %s  ", entry->d_name);
-//        }
+        else
+        {
+            printf("File: %s  ", entry->d_name);
+        }
     }
     closedir(dir);
 	return (0);
 }
 
-int		main(int ac, char **av)
-{
-	 char **buff;
-	 t_ls    *ls;
-//	 char    **ptr;
-
-	ac = 0;
-//    recursive(av[1]);
-	buff = ft_ls_dir(av[1]);
-//    sort_name(buff);
+//int		main(int ac, char **av)
+//{
+//	 char **buff;
+//	 t_ls    *ls;
+////	 char    **ptr;
 //
-//    sort_name_rev(buff);
-
-    ls = create_list(buff, av[1]);
-    sort_time_create(ls);
-//    sort_equaly(ls);
-    int total = 0;
-    while (ls)
-    {
-        printf("File: %s  ", ls->name);
-        printf("Nsec: %ld\n", ls->time_nsec);
-        total += ls->st_block;
-        ls = ls->next;
-    }
-    printf("total %d", total);
-}
+//	ac = 0;
+////    recursive(av[1]);
+//	buff = ft_ls_dir(av[1]);
+////    sort_name(buff);
+////
+////    sort_name_rev(buff);
+//
+//    ls = create_list(buff, av[1]);
+//    sort_time_create(ls);
+////    sort_equaly(ls);
+//    int total = 0;
+//    while (ls)
+//    {
+//        printf("File: %s  ", ls->name);
+//        printf("Nsec: %ld\n", ls->time_nsec);
+//        total += ls->st_block;
+//        ls = ls->next;
+//    }
+//    printf("total %d", total);
+//}
