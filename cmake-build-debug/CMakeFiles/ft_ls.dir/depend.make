@@ -125,6 +125,7 @@ CMakeFiles/ft_ls.dir/libft/ft_strequ.c.o: ../libft/ft_strequ.c
 CMakeFiles/ft_ls.dir/libft/ft_strequ.c.o: ../libft/libft.h
 
 CMakeFiles/ft_ls.dir/libft/ft_striter.c.o: ../libft/ft_striter.c
+CMakeFiles/ft_ls.dir/libft/ft_striter.c.o: ../libft/libft.h
 
 CMakeFiles/ft_ls.dir/libft/ft_striteri.c.o: ../libft/ft_striteri.c
 CMakeFiles/ft_ls.dir/libft/ft_striteri.c.o: ../libft/libft.h
@@ -189,13 +190,33 @@ CMakeFiles/ft_ls.dir/libft/ft_tolower.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/libft/ft_toupper.c.o: ../libft/ft_toupper.c
 CMakeFiles/ft_ls.dir/libft/ft_toupper.c.o: ../libft/libft.h
 
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../srcs/collect_flags.c
+
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../srcs/ft_getopt.c
+
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../srcs/ft_getopt_long.c
+
 CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../includes/ft_ls.h
 CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../srcs/ft_ls.c
 
-CMakeFiles/ft_ls.dir/srcs/sort.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/sort.c.o: ../libft/libft.h
-CMakeFiles/ft_ls.dir/srcs/sort.c.o: ../srcs/sort.c
+CMakeFiles/ft_ls.dir/srcs/main.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/main.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/main.c.o: ../srcs/main.c
+
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../srcs/print_oputput.c
+
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../srcs/sort_list.c
 
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../includes/ft_ls.h
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../libft/libft.h

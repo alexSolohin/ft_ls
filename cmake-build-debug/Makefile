@@ -1824,6 +1824,87 @@ libft/ft_toupper.c.s:
 	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/libft/ft_toupper.c.s
 .PHONY : libft/ft_toupper.c.s
 
+srcs/collect_flags.o: srcs/collect_flags.c.o
+
+.PHONY : srcs/collect_flags.o
+
+# target to build an object file
+srcs/collect_flags.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o
+.PHONY : srcs/collect_flags.c.o
+
+srcs/collect_flags.i: srcs/collect_flags.c.i
+
+.PHONY : srcs/collect_flags.i
+
+# target to preprocess a source file
+srcs/collect_flags.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/collect_flags.c.i
+.PHONY : srcs/collect_flags.c.i
+
+srcs/collect_flags.s: srcs/collect_flags.c.s
+
+.PHONY : srcs/collect_flags.s
+
+# target to generate assembly for a file
+srcs/collect_flags.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/collect_flags.c.s
+.PHONY : srcs/collect_flags.c.s
+
+srcs/ft_getopt.o: srcs/ft_getopt.c.o
+
+.PHONY : srcs/ft_getopt.o
+
+# target to build an object file
+srcs/ft_getopt.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o
+.PHONY : srcs/ft_getopt.c.o
+
+srcs/ft_getopt.i: srcs/ft_getopt.c.i
+
+.PHONY : srcs/ft_getopt.i
+
+# target to preprocess a source file
+srcs/ft_getopt.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.i
+.PHONY : srcs/ft_getopt.c.i
+
+srcs/ft_getopt.s: srcs/ft_getopt.c.s
+
+.PHONY : srcs/ft_getopt.s
+
+# target to generate assembly for a file
+srcs/ft_getopt.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.s
+.PHONY : srcs/ft_getopt.c.s
+
+srcs/ft_getopt_long.o: srcs/ft_getopt_long.c.o
+
+.PHONY : srcs/ft_getopt_long.o
+
+# target to build an object file
+srcs/ft_getopt_long.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o
+.PHONY : srcs/ft_getopt_long.c.o
+
+srcs/ft_getopt_long.i: srcs/ft_getopt_long.c.i
+
+.PHONY : srcs/ft_getopt_long.i
+
+# target to preprocess a source file
+srcs/ft_getopt_long.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.i
+.PHONY : srcs/ft_getopt_long.c.i
+
+srcs/ft_getopt_long.s: srcs/ft_getopt_long.c.s
+
+.PHONY : srcs/ft_getopt_long.s
+
+# target to generate assembly for a file
+srcs/ft_getopt_long.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.s
+.PHONY : srcs/ft_getopt_long.c.s
+
 srcs/ft_ls.o: srcs/ft_ls.c.o
 
 .PHONY : srcs/ft_ls.o
@@ -1851,32 +1932,86 @@ srcs/ft_ls.c.s:
 	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/ft_ls.c.s
 .PHONY : srcs/ft_ls.c.s
 
-srcs/sort.o: srcs/sort.c.o
+srcs/main.o: srcs/main.c.o
 
-.PHONY : srcs/sort.o
+.PHONY : srcs/main.o
 
 # target to build an object file
-srcs/sort.c.o:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/sort.c.o
-.PHONY : srcs/sort.c.o
+srcs/main.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/main.c.o
+.PHONY : srcs/main.c.o
 
-srcs/sort.i: srcs/sort.c.i
+srcs/main.i: srcs/main.c.i
 
-.PHONY : srcs/sort.i
+.PHONY : srcs/main.i
 
 # target to preprocess a source file
-srcs/sort.c.i:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/sort.c.i
-.PHONY : srcs/sort.c.i
+srcs/main.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/main.c.i
+.PHONY : srcs/main.c.i
 
-srcs/sort.s: srcs/sort.c.s
+srcs/main.s: srcs/main.c.s
 
-.PHONY : srcs/sort.s
+.PHONY : srcs/main.s
 
 # target to generate assembly for a file
-srcs/sort.c.s:
-	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/sort.c.s
-.PHONY : srcs/sort.c.s
+srcs/main.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/main.c.s
+.PHONY : srcs/main.c.s
+
+srcs/print_oputput.o: srcs/print_oputput.c.o
+
+.PHONY : srcs/print_oputput.o
+
+# target to build an object file
+srcs/print_oputput.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o
+.PHONY : srcs/print_oputput.c.o
+
+srcs/print_oputput.i: srcs/print_oputput.c.i
+
+.PHONY : srcs/print_oputput.i
+
+# target to preprocess a source file
+srcs/print_oputput.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/print_oputput.c.i
+.PHONY : srcs/print_oputput.c.i
+
+srcs/print_oputput.s: srcs/print_oputput.c.s
+
+.PHONY : srcs/print_oputput.s
+
+# target to generate assembly for a file
+srcs/print_oputput.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/print_oputput.c.s
+.PHONY : srcs/print_oputput.c.s
+
+srcs/sort_list.o: srcs/sort_list.c.o
+
+.PHONY : srcs/sort_list.o
+
+# target to build an object file
+srcs/sort_list.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/sort_list.c.o
+.PHONY : srcs/sort_list.c.o
+
+srcs/sort_list.i: srcs/sort_list.c.i
+
+.PHONY : srcs/sort_list.i
+
+# target to preprocess a source file
+srcs/sort_list.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/sort_list.c.i
+.PHONY : srcs/sort_list.c.i
+
+srcs/sort_list.s: srcs/sort_list.c.s
+
+.PHONY : srcs/sort_list.s
+
+# target to generate assembly for a file
+srcs/sort_list.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/sort_list.c.s
+.PHONY : srcs/sort_list.c.s
 
 srcs/struct.o: srcs/struct.c.o
 
@@ -2103,12 +2238,27 @@ help:
 	@echo "... libft/ft_toupper.o"
 	@echo "... libft/ft_toupper.i"
 	@echo "... libft/ft_toupper.s"
+	@echo "... srcs/collect_flags.o"
+	@echo "... srcs/collect_flags.i"
+	@echo "... srcs/collect_flags.s"
+	@echo "... srcs/ft_getopt.o"
+	@echo "... srcs/ft_getopt.i"
+	@echo "... srcs/ft_getopt.s"
+	@echo "... srcs/ft_getopt_long.o"
+	@echo "... srcs/ft_getopt_long.i"
+	@echo "... srcs/ft_getopt_long.s"
 	@echo "... srcs/ft_ls.o"
 	@echo "... srcs/ft_ls.i"
 	@echo "... srcs/ft_ls.s"
-	@echo "... srcs/sort.o"
-	@echo "... srcs/sort.i"
-	@echo "... srcs/sort.s"
+	@echo "... srcs/main.o"
+	@echo "... srcs/main.i"
+	@echo "... srcs/main.s"
+	@echo "... srcs/print_oputput.o"
+	@echo "... srcs/print_oputput.i"
+	@echo "... srcs/print_oputput.s"
+	@echo "... srcs/sort_list.o"
+	@echo "... srcs/sort_list.i"
+	@echo "... srcs/sort_list.s"
 	@echo "... srcs/struct.o"
 	@echo "... srcs/struct.i"
 	@echo "... srcs/struct.s"

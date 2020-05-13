@@ -279,10 +279,25 @@
 		<Unit filename="/Users/user/Desktop/ft_ls/libft/libft.h">
 			<Option target="ft_ls"/>
 		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/collect_flags.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/ft_getopt.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/ft_getopt_long.c">
+			<Option target="ft_ls"/>
+		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/ft_ls.c">
 			<Option target="ft_ls"/>
 		</Unit>
-		<Unit filename="/Users/user/Desktop/ft_ls/srcs/sort.c">
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/main.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/print_oputput.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/sort_list.c">
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/struct.c">

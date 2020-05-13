@@ -126,6 +126,7 @@ CMakeFiles/ft_ls.dir/libft/ft_strequ.c.o
  /Users/user/Desktop/ft_ls/libft/libft.h
 CMakeFiles/ft_ls.dir/libft/ft_striter.c.o
  /Users/user/Desktop/ft_ls/libft/ft_striter.c
+ /Users/user/Desktop/ft_ls/libft/libft.h
 CMakeFiles/ft_ls.dir/libft/ft_striteri.c.o
  /Users/user/Desktop/ft_ls/libft/ft_striteri.c
  /Users/user/Desktop/ft_ls/libft/libft.h
@@ -189,14 +190,34 @@ CMakeFiles/ft_ls.dir/libft/ft_tolower.c.o
 CMakeFiles/ft_ls.dir/libft/ft_toupper.c.o
  /Users/user/Desktop/ft_ls/libft/ft_toupper.c
  /Users/user/Desktop/ft_ls/libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o
+ ../includes/ft_ls.h
+ ../libft/libft.h
+ /Users/user/Desktop/ft_ls/srcs/collect_flags.c
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o
+ ../includes/ft_ls.h
+ ../libft/libft.h
+ /Users/user/Desktop/ft_ls/srcs/ft_getopt.c
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o
+ ../includes/ft_ls.h
+ ../libft/libft.h
+ /Users/user/Desktop/ft_ls/srcs/ft_getopt_long.c
 CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o
  ../includes/ft_ls.h
  ../libft/libft.h
  /Users/user/Desktop/ft_ls/srcs/ft_ls.c
-CMakeFiles/ft_ls.dir/srcs/sort.c.o
+CMakeFiles/ft_ls.dir/srcs/main.c.o
  ../includes/ft_ls.h
  ../libft/libft.h
- /Users/user/Desktop/ft_ls/srcs/sort.c
+ /Users/user/Desktop/ft_ls/srcs/main.c
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o
+ ../includes/ft_ls.h
+ ../libft/libft.h
+ /Users/user/Desktop/ft_ls/srcs/print_oputput.c
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o
+ ../includes/ft_ls.h
+ ../libft/libft.h
+ /Users/user/Desktop/ft_ls/srcs/sort_list.c
 CMakeFiles/ft_ls.dir/srcs/struct.c.o
  ../includes/ft_ls.h
  ../libft/libft.h
