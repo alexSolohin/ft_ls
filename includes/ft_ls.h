@@ -80,11 +80,12 @@ typedef struct      s_ls
 	gid_t 			gid;			//id групы
 	dev_t			rdev;			//номер устройства
 	mode_t			mode;
-	char			chmod[10];		//права доступа
+	char			chmod[11];		//права доступа
 	int				d_mode;			//индикатор директории
 	int				byte_size;		//размер в байтах
 	unsigned short	nlink;			//количество файлов внутри
-    char            *name;			// имя файла или директории
+    char            *name;          // имя файла или директории
+    char            *path;
     struct s_ls     *next;
 }                   t_ls;
 
@@ -115,8 +116,10 @@ static t_lopt 	g_lopt[] = {
 
 int			entry_compare(t_ls *a, t_ls *b);
 void		merge_sort(t_ls **list_to_sort);
+void		add_ls_node(t_ls *entry, t_ls **ls);
 void		print(t_ls *ls);
-void		ft_ls_dir(char *av);
+t_ls        *ft_ls_dir(char *av, t_flag flag, t_ls *dls);
+int         recursive(char *str, t_ls *rls, t_flag flag);
 void		print_error(char *av);
 int			init_struct(t_ls *ls, t_flag flag, char *path);
 t_ls		*sort_list(t_ls *ls);

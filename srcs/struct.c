@@ -75,7 +75,7 @@ int				init_struct(t_ls *ls, t_flag flag, char *path)
 {
 	struct stat	file_stat;
 
-	ls->name = path;
+	ls->name = ft_strdup(path);
 	ls->flag = flag;
 	if (lstat(ls->name, &file_stat) < 0)
 	{

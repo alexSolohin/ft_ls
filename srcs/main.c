@@ -22,10 +22,14 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	t_ls 		*fls;
 	t_ls 		*dls;
 	t_ls		entry;
+	t_ls        *ls;
+	t_ls        *rls;
 	int			i;
 
 	fls = NULL;
 	dls = NULL;
+	ls = NULL;
+	rls = NULL;
 	i = 0;
 	while (i < ac)
 	{
@@ -38,7 +42,15 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	}
 	merge_sort(&fls);
 	merge_sort(&dls);
-	print_output(fls);
+	recursive(dls->name, rls, flag);
+//	ls = ft_ls_dir(dls->name, flag, ls);
+//	while (ls)
+//    {
+//	    printf("%s\n", ls->name);
+//	    ls = ls->next;
+//    }
+
+//	print_output(fls);
 //	ft_ls(fls, dls->next || (dls && fls));
 //	free(fls);
 //	ft_ls(dls, dls->next || (dls && fls));

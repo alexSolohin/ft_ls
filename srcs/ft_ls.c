@@ -28,82 +28,65 @@
 // sort по времени изменения
 // sort в обратном порядке
 
-t_ls	*create_list(char **buff, char  *av, t_flag flag)
-{
-	int     i;
-	t_ls    *ls;
-    char	*path;
+//t_ls	*create_list(char **buff, char  *av, t_flag flag)
+//{
+//	int     i;
+//	t_ls    *ls;
+//    char	*path;
+//
+//	if (!(path = malloc(sizeof(char) * 255)))
+//		exit(0);
+//	i = 0;
+//	ls = NULL;
+//    while (buff[i])
+//    {
+//        path = ft_strcpy(path, av);
+//        path[ft_strlen(av)] = '/';
+//        path = ft_strcat(path, buff[i]);
+//        init_struct(ls, flag, path);
+//        ft_bzero(path, 255);
+//        i++;
+//    }
+//    return (ls);
+//}
 
-	if (!(path = malloc(sizeof(char) * 255)))
-		exit(0);
-	i = 0;
-	ls = NULL;
-    while (buff[i])
-    {
-        path = ft_strcpy(path, av);
-        path[ft_strlen(av)] = '/';
-        path = ft_strcat(path, buff[i]);
-        ls = init_struct(ls, path, buff[i]);
-        ft_bzero(path, 255);
-        i++;
-    }
-    return (ls);
-}
-
-int		size_buff(char *av)
-{
-	DIR				*dir;
-	struct dirent	*entry;
-	int				i;
-
-	i = 0;
-	dir = opendir(av);
-	while ((entry = readdir(dir)) != NULL)
-	{
-		i++;
-	}
-	closedir(dir);
-	return(i);
-}
-
-t_ls    *ft_ls_dir(char *av)
+t_ls    *ft_ls_dir(char *av, t_flag flag, t_ls *dls)
 {
 	DIR				*dir;
 	struct dirent 	*entry;
-	char			**buff;
-	t_ls            *ls;
-	int 			i;
-	int				j;
+	t_ls            ls;
+    char	        *path;
 
+    if (!(path = malloc(sizeof(char) * 255)))
+        exit(0);
 	if (!(dir = opendir(av)))
-        return (NULL);
-	i = size_buff(av);
-	buff = (char**)malloc(sizeof(char*) * i + 1);
-	j = 0;
+        return NULL;
 	while ((entry = readdir(dir)) != NULL)
 	{
-		buff[j++] = ft_strdup(entry->d_name);
+        path = ft_strcpy(path, av);
+        path[ft_strlen(av)] = '/';
+        path = ft_strcat(path, entry->d_name);
+        init_struct(&ls, flag, path);
+		add_ls_node(&ls, &dls);
+        ft_bzero(path, 255);
 	}
-	buff[j] = NULL;
-	ls = create_list(buff, av);
 	closedir(dir);
-	return(ls);
+    return (dls);
 }
 
-int    recursive(char *str)
+int    recursive(char *str, t_ls *rls, t_flag flag)
 {
     DIR             *dir;
     struct dirent   *entry;
     char            path[255];
     t_ls            *ls;
+    t_ls            ptr;
     char            **direct;
 
 
-    ls = malloc(sizeof(t_ls));
+//    ls = malloc(sizeof(t_ls));
     if (!(dir = opendir(str)))
         return (1);
-//    while((entry = readdir(dir)) != NULL)
-//        printf(entry->d_name);
     while((entry = readdir(dir)) != NULL)
     {
         if (ft_strequ(entry->d_name, ".") || ft_strequ(entry->d_name, ".."))
@@ -111,25 +94,27 @@ int    recursive(char *str)
         ft_strcpy(path, str);
         ft_strcat(path, "/");
         ft_strcat(path, entry->d_name);
-        init_struct(ls, buff, entry->d_name);
-        if (ls->mode == 'd')
+        init_struct(&ptr, flag, path);
+        if (S_ISDIR(ptr.mode))
         {
-            printf("Dir: %s\n\n", path);
-            direct = ft_ls_dir(path);
-            ls = create_list(direct, str);
-            int i = 0;
-            while (direct[i])
+            ls = ft_ls_dir(str, flag, rls);
+            merge_sort(&ls);
+            while (ls)
             {
-                print_output(ls);
+                if (ft_strequ(ls->name, ".") || ft_strequ(ls->name, "..") && !ls->flag.a)
+                    continue ;
+                printf("%s  ", ls->name);
                 ls = ls->next;
             }
             printf("\n\n");
-            recursive(path);
+            printf("Dir: %s\n\n", path);
+            recursive(path, rls, flag);
         }
-        else
-        {
-            printf("File: %s  ", entry->d_name);
-        }
+//        else
+//        {
+//            printf("File: %s  ", entry->d_name);
+//        }
+
     }
     closedir(dir);
 	return (0);
