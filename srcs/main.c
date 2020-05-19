@@ -56,7 +56,7 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	merge_sort(&dls);
 	ft_ls(fls, 0, 0);
 	free_list(fls);
-	ft_ls(dls, 1, dls && (fls || dls->next) || flag.r_cap);
+	ft_ls(dls, 1, (dls && (fls || dls->next)) || flag.r_cap);
 	free_list(dls);
 	return (0);
 }
