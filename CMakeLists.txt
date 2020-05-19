@@ -72,6 +72,11 @@ add_executable(ft_ls
         libft/ft_tolower.c
         libft/ft_toupper.c
         libft/libft.h
+        srcs/collect_flags.c
+        srcs/ft_getopt.c
+        srcs/ft_getopt_long.c
         srcs/ft_ls.c
-        srcs/sort.c
+        srcs/main.c
+        srcs/print_oputput.c
+        srcs/sort_list.c
         srcs/struct.c)
