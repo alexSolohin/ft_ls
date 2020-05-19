@@ -19,6 +19,98 @@
 #include <pwd.h>
 #include <grp.h>
 
+
+char		*get_path(char *path, char *name)
+{
+	char		*full_path;
+	char 		file_in_dir[MAX_PATH];
+
+	ft_bzero(file_in_dir, MAX_PATH);
+	if (*path == '\0' || ft_strncmp(path, name, ft_strlen(path)) == 0)
+		full_path = ft_strdup(name);
+	else
+	{
+		ft_strcat(ft_strcat(file_in_dir, ft_strcmp(path, "/") ? "/" : ""), name);
+		full_path = ft_strjoin(path, file_in_dir);
+	}
+	return (full_path);
+}
+
+void 		recurcive(t_ls *list)
+{
+	t_ls	*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->name, ".") == 0 || ft_strcmp(tmp->name, "..") == 0)
+		{
+			tmp = tmp->next;
+			continue ;
+		}
+		if (S_ISDIR(tmp->mode))
+			ft_ls_internal(tmp, 1);
+		tmp = tmp->next;
+	}
+}
+
+void 		ft_ls_dir(char *dir_path, t_flag f)
+{
+	t_dir	d;
+	t_ls	*list;
+	t_ls	e;
+	char	*f_path;
+
+	list = NULL;
+	if (!(d.dp = opendir(dir_path)))
+	{
+		printf("%s", strerror(errno));
+		return ;
+	}
+
+	while ((d.dirent = readdir(d.dp)))
+	{
+		if (d.dirent->d_name[0] == '.' && !f.a)
+			continue ;
+		f_path = get_path(dir_path, d.dirent->d_name);
+		if (!init_struct(&e, f, f_path, f.l || f.t || f.r_cap || f.g || f.u))
+			continue ;
+		add_ls_node(&e, &list);
+		list->name = ft_strdup(d.dirent->d_name);
+	}
+	closedir(d.dp);
+	merge_sort(&list);
+	print_output(list);
+	if (f.r_cap)
+		recurcive(list);
+	free_list(list);
+}
+
+void		ft_ls_internal(t_ls *ls, int show_dir)
+{
+	if (show_dir)
+		printf("%s:\n", ls->path);
+	ft_ls_dir(ls->path, ls->flag);
+}
+
+void		ft_ls(t_ls *ls, int list_dir, int show_dir)
+{
+	if (ls)
+	{
+		if (!list_dir)
+			print_output(ls);
+		else if (S_ISDIR(ls->mode))
+		{
+			while (ls)
+			{
+				ft_ls_internal(ls, show_dir);
+				ls = ls->next;
+			}
+		}
+	}
+}
+
+/*
 //	parser to file
 //	opendir(../dir)
 //		while (entry = readdir())
@@ -160,4 +252,4 @@ int    recursive(char *str)
 //        ls = ls->next;
 //    }
 //    printf("total %d", total);
-//}
+//}*/

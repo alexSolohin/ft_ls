@@ -36,6 +36,7 @@ typedef struct timespec	t_time;
 typedef struct passwd	t_user;
 typedef struct group	t_group;
 
+
 typedef struct			s_flag
 {
 	int					a;
@@ -80,28 +81,19 @@ typedef struct      s_ls
 	gid_t 			gid;			//id групы
 	dev_t			rdev;			//номер устройства
 	mode_t			mode;
-	char			chmod[10];		//права доступа
-	int				d_mode;			//индикатор директории
-	int				byte_size;		//размер в байтах
+	int64_t  		block;			//кол-во выделенных блоков
+	char			chmod[11];		//права доступа
+	long			size;			//размер в байтах
 	unsigned short	nlink;			//количество файлов внутри
     char            *name;			// имя файла или директории
+    char			*path;
     struct s_ls     *next;
 }                   t_ls;
 
-typedef struct		s_type
-{
-	int				flag;
-	DIR				*dir;
-	struct dirent	*entry;
-	int				total;		//ls -l total
-}					t_type;
-
 typedef struct		s_dir
 {
-	char			*name;
-	int				flag;
-	t_ls			*ls;
-	struct s_dir	*next;
+	struct dirent	*dirent;
+	DIR				*dp;
 }					t_dir;
 
 static t_lopt 	g_lopt[] = {
@@ -116,16 +108,24 @@ static t_lopt 	g_lopt[] = {
 int			entry_compare(t_ls *a, t_ls *b);
 void		merge_sort(t_ls **list_to_sort);
 void		print(t_ls *ls);
-void		ft_ls_dir(char *av);
+void 		ft_ls_dir(char *dir_path, t_flag f);
 void		print_error(char *av);
-int			init_struct(t_ls *ls, t_flag flag, char *path);
+int			init_struct(t_ls *ls, t_flag flag, char *path, int dostat);
 t_ls		*sort_list(t_ls *ls);
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
-//int 		get_num_of_array_index(t_input input);
 void 		reset_flags(t_flag *flag);
 void 		collect_flags(t_flag *flag, int *ac, char ***av);
 void		print_output(t_ls *ls);
 char		*ft_chmod(t_ls *ls);
+void 		ft_ls(t_ls *ls, int list_dir, int show_dir);
+void		add_ls_node(t_ls *entry, t_ls **ls);
+void 		free_list(t_ls *ls);
+void		ft_ls_internal(t_ls *ls, int show_dir);
+char		*get_user_name(uid_t user_id);
+char 		*get_group_name(gid_t group_id);
+char		*get_time(t_time t);
+int64_t		total_blk(t_ls *ls);
+
 #endif

@@ -57,8 +57,6 @@ void			ft_strmode(mode_t mode, char *buf)
 
 char	*ft_chmod(t_ls *ls)
 {
-//	char chmod[11];
-
 	ls->chmod[0] = set_zero_mode(ls->mode);
 	ft_strmode(ls->mode, &(ls->chmod[1]));
 	if (ls->mode & S_ISUID)
@@ -71,23 +69,27 @@ char	*ft_chmod(t_ls *ls)
 	return (ls->chmod);
 }
 
-int				init_struct(t_ls *ls, t_flag flag, char *path)
+int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 {
 	struct stat	file_stat;
 
-	ls->name = path;
+	ls->path = path;
+	ls->name = NULL;
 	ls->flag = flag;
-	if (lstat(ls->name, &file_stat) < 0)
+	if (!dostat)
+		return (1);
+	if (lstat(ls->path, &file_stat) < 0)
 	{
-		printf("Not valid file \n");
+		printf("ls: cannot access \'%s\': %s\n", ls->name ? ls->name : ls->path, strerror(errno));
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;
 	ls->gid = file_stat.st_gid;
 	ls->uid=  file_stat.st_uid;
-	ls->time = ls->flag.u ? file_stat.st_atimespec : file_stat.st_mtimespec;
+	ls->time = ls->flag.u ? file_stat.st_atim : file_stat.st_mtim;
 	ls->nlink = file_stat.st_nlink;
-	ls->byte_size = file_stat.st_size;
+	ls->size = file_stat.st_size;
+	ls->block = file_stat.st_blocks;
 	ls->rdev = file_stat.st_rdev;
 	ls->next = NULL;
 	return (1);
