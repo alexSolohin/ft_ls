@@ -64,7 +64,7 @@ void 		ft_ls_dir(char *dir_path, t_flag f)
 	list = NULL;
 	if (!(d.dp = opendir(dir_path)))
 	{
-		printf("%s", strerror(errno));
+//		printf("%s", strerror(errno));
 		return ;
 	}
 

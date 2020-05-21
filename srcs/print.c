@@ -14,178 +14,107 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 
-void	print_error(char *av)
+double		max_size_name(t_ls *ls)
 {
-	ft_putstr("ls: ");
-	ft_putstr(av);
-	ft_putstr(": No such file or directory\n");
-	exit(0);
-}
+    double size;
 
-
-void	sort_arr(char str[][1024], int size_arr, int max_len)
-{
-	int i;
-	int j;
-	int k;
-	int t;
-	char ptr[255][1024];
-
-	i = 0;
-	k = 0;
-	max_len = 0;
-	while (i < size_arr / 2  + 1)
-	{
-		t = 0;
-		j = 0;
-		while (str[i][j])
-		{
-			ptr[k][j] = str[i][j];
-			if (size_arr / 2 + i != size_arr / 2)
-				ptr[k + 1][j] = str[size_arr / 2 + i][j];
-			else
-			{
-				ptr[k + 1][j] = str[size_arr / 2 + 1][j];
-				//закончил здесь
-				t = 1;
-				// необходимо закинуть в массив строки 0 - size_arr / 2
-			}
-			j++;
-		}
-		ptr[k][j] = '\0';
-		// if (i <= size_arr / 2)
-		// 	printf("%s", str[i]);
-		// printf("%s\n", str[size_arr/2 + i]);
-		printf("%s %s\n", ptr[i], ptr[i + 1]);
-		// else
-		// {
-		// 		if (i < size_arr / 2 + 1)
-		// 			printf("%s", str[i]);
-		// 		if ((size_arr / 2 + i) != (size_arr / 2 + 1))
-		// 			printf("%s\n", str[size_arr / 2 + i]);
-		// }
-		i++;
-		if (!t)
-			k++;
-	}
-}
-
-void	print_columns(char str[][1024], struct winsize window, int max_len, int size_arr)
-{
-	int i;
-
-	i = 0;
-	if (window.ws_col < (max_len + 3) * 2)
-		while (i < size_arr)
-			printf("%s\n", str[i++]);
-	else if (window.ws_col >= (max_len + 3) * 2)
-	{
-			sort_arr(str, size_arr, max_len);
-	}
-
-}
-
-int		max_size_name(t_ls *ls)
-{
-	t_ls	*ptr;
-	int		size;
-	char	*tmp;
-
-	ptr = ls;
 	size = 0;
-	while (ls->next != NULL && ls->next->name != NULL)
-	{
-		if (ft_strlen(ls->name) > ft_strlen(ls->next->name))
-		{
-			tmp = malloc(sizeof(char) * 255);
-			tmp = ls->name;
-			ls->name = ls->next->name;
-			ls->next->name = tmp;
-			ls = ptr;
-		}
-		else
-			ls = ls->next;
-	}
-	return (ft_strlen(ls->name));
-}
-
-void	print(t_ls *ls)
-{
-	struct winsize  window;
-
-	int 	len_name;
-	int 	max_size;
-	int		list_len;
-	int		max_len;
-	t_ls 	*ptr;
-	char	str[255][1024];
-
-
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &window);
-	max_size = 16;
-	list_len = 0;
-	ptr = ls;
-	max_len = max_size_name(ls);
-	ls = sort_list(ls);
-	while (ptr->next != NULL)
-	{
-		list_len++;
-		ptr = ptr->next;
-	}
-
-	int i;
-	int j;
-
-	i = 0;
 	while (ls->next != NULL)
 	{
-		j = 0;
-		len_name = ft_strlen(ls->name);
-		while (j <= max_len + 3)   //закончил здесь, нужно сделать вывод в консоль как в ls идея закинуть в массив а потом уже выводить
-		{
-			if (len_name-- > 0)
-				str[i][j] = ls->name[j];
-			else
-				str[i][j] = ' ';
-			j++;
-		}
-		// printf("%send\n", str[i]);
+		if ((ft_strlen(ls->name) > ft_strlen(ls->next->name)) && size < ft_strlen((ls->name)))
+			size = ft_strlen(ls->name);
 		ls = ls->next;
-		i++;
 	}
-	// str[i][0] = '\0';
-	print_columns(str, window, max_len, i);
-	// printf("kibes %d\n", window.ws_row);
-	printf("max len %d", max_len);
-	printf("columns %d\n", window.ws_col);
+	return (size);
 }
-// 	while (ls->next->next->next != NULL && ls->next->next->next->name != NULL)
-// 	{
-// 		len_name = ft_strlen(ls->name);
-// 		if (len_name <= max_len)
-// 		{
-// 			ft_putstr(ls->name);
-// 			while ((max_len + 4) - len_name)
-// 			{
-// 				ft_putstr(" ");
-// 				len_name++;
-// 			}
-// 			len_name = ft_strlen(ls->next->next->name);
-// 			ft_putstr(ls->next->next->name);
-// 			while ((max_len + 4) - len_name)
-// 			{
-// 				ft_putstr(" ");
-// 				len_name++;
-// 			}
-// 			ft_putstr("\n");
-// 			ft_putstr(ls->next->name);
-// 			len_name = ft_strlen(ls->next->name);
-// 			while ((max_len + 4) - len_name)
-// 			{
-// 				ft_putstr(" ");
-// 				len_name++;
-// 			}
-// 			ls = ls->next->next->next;
-// 		}
-	// }
-// }
+
+int     max_size_list(t_ls *ls)
+{
+    int size;
+
+    size = 0;
+    while (ls)
+    {
+        size++;
+        ls = ls->next;
+    }
+    return (size);
+}
+
+void    write_space(char *ptr, int max_len)
+{
+    int len;
+
+    len = ft_strlen(ptr);
+    while (len < max_len)
+    {
+        printf(" ");
+        len++;
+    }
+}
+
+void    name_ls(char **ptr, int word_in_column, int columns, int max_len)
+{
+    int i;
+    int k;
+
+    i = 0;
+    while(i < word_in_column)
+    {
+        printf("%s", ptr[i]);
+        write_space(ptr[i], max_len);
+        k = 1;
+        while (k < columns)
+        {
+            if (ptr[i + word_in_column * k] != '\0')
+            {
+                printf("%s", ptr[i + word_in_column * k]);
+                write_space(ptr[i + word_in_column * k], max_len);
+            }
+            k++;
+        }
+        i++;
+        printf("\n");
+
+    }
+}
+
+char        **create_arr(t_ls *ls)
+{
+    char **ptr;
+
+    ptr = malloc(sizeof(char*));
+    int i = 0;
+    while (ls)
+    {
+        ptr[i] = ls->name;
+        ls = ls->next;
+        i++;
+    }
+    ptr[i] = NULL;
+    return (ptr);
+}
+
+void        print(t_ls *ls)
+{
+    struct      winsize  window;
+    int         max_len_list;
+    int      max_len;
+    int      columns;
+    int         word_in_column;
+    char        **ptr;
+
+    ptr = NULL;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &window);
+    max_len = max_size_name(ls) + 7;
+    max_len_list = max_size_list(ls);
+    columns = window.ws_col / max_len;
+    if (max_len_list % columns != 0)
+        word_in_column = max_len_list / columns + 1;
+    else
+        word_in_column = max_len_list / columns;
+    ptr = create_arr(ls);
+    name_ls(ptr, word_in_column, columns, max_len);
+}
+
+

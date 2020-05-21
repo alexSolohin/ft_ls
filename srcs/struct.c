@@ -80,13 +80,13 @@ int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 		return (1);
 	if (lstat(ls->path, &file_stat) < 0)
 	{
-		printf("ls: cannot access \'%s\': %s\n", ls->name ? ls->name : ls->path, strerror(errno));
+//		printf("ls: cannot access \'%s\': %s\n", ls->name ? ls->name : ls->path, strerror(errno));
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;
 	ls->gid = file_stat.st_gid;
 	ls->uid=  file_stat.st_uid;
-	ls->time = ls->flag.u ? file_stat.st_atim : file_stat.st_mtim;
+	ls->time = ls->flag.u ? file_stat.st_atimespec : file_stat.st_mtimespec;
 	ls->nlink = file_stat.st_nlink;
 	ls->size = file_stat.st_size;
 	ls->block = file_stat.st_blocks;

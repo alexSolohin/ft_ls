@@ -9,7 +9,15 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 _SRCS = ft_ls.c \
 		struct.c \
-		sort.c
+		sort.c \
+		main.c \
+		collect_flags.c \
+		ft_getopt.c \
+		ft_getopt_long.c \
+		print.c \
+		print_oputput.c \
+		sort_list.c \
+		utils.c
 
 SRCS = $(addprefix $(SRCS_DIR)/. $(_SRCS))
 _OBJS = $(_SRCS:%.c=%.o)

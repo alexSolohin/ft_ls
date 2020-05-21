@@ -40,10 +40,10 @@ void		print_output(t_ls *ls)
 
 	if (ls && !ls->flag.l && !ls->flag.g)
 	{
-		print_column(ls);
+		print(ls);
 		return ;
 	}
-	printf("total %ld\n", total_blk(ls));
+	printf("total %lld\n", total_blk(ls));
 	while (ls)
 	{
 		uname = get_user_name(ls->uid);

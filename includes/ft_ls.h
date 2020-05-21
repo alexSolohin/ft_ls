@@ -20,6 +20,7 @@
 # include <dirent.h>
 # include <stdio.h>
 # include <pwd.h>
+# include <time.h>
 # include <sys/xattr.h>
 # include <stdlib.h>
 
