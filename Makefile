@@ -9,7 +9,6 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 _SRCS = ft_ls.c \
 		struct.c \
-		sort.c \
 		main.c \
 		collect_flags.c \
 		ft_getopt.c \
