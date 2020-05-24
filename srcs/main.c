@@ -24,13 +24,14 @@ void 			free_list(t_ls *ls)
 
 	cur = ls;
 	while (cur)
-	{
+    {
 		next = cur->next;
 		free(cur->name);
 		free(cur->path);
 		free(cur);
 		cur = next;
 	}
+
 }
 
 int 			input_processing(t_flag flag, int ac, char **av)

@@ -18,6 +18,7 @@
 #include <time.h>
 #include <pwd.h>
 #include <grp.h>
+#include <errno.h>
 
 char 	set_zero_mode(mode_t mode)
 {
@@ -80,7 +81,7 @@ int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 		return (1);
 	if (lstat(ls->path, &file_stat) < 0)
 	{
-//		printf("ls: cannot access \'%s\': %s\n", ls->name ? ls->name : ls->path, strerror(errno));
+		printf("ls: cannot access \'%s\': %s\n", ls->name ? ls->name : ls->path, strerror(errno));
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;
