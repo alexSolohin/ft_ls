@@ -20,6 +20,7 @@
 #include <grp.h>
 
 
+
 char		*get_path(char *path, char *name)
 {
 	char		*full_path;
@@ -49,25 +50,24 @@ void 		recurcive(t_ls *list)
 			continue ;
 		}
 		if (S_ISDIR(tmp->mode))
-			ft_ls_internal(tmp, 1);
-		tmp = tmp->next;
+			ft_ls_dir(tmp->path, tmp->flag, 1);
+					  tmp = tmp->next;
 	}
 }
 
-void 		ft_ls_dir(char *dir_path, t_flag f)
+static int	dir_list(t_ls **list, char *dir_path, t_flag f)
 {
 	t_dir	d;
-	t_ls	*list;
 	t_ls	e;
 	char	*f_path;
 
-	list = NULL;
+	*list = NULL;
 	if (!(d.dp = opendir(dir_path)))
 	{
-		printf("%s", strerror(errno));
-		return ;
+		printf("ft_ls: cannot open directory \'%s\': %s\n",
+				dir_path, strerror(errno));
+		return (0);
 	}
-
 	while ((d.dirent = readdir(d.dp)))
 	{
 		if (d.dirent->d_name[0] == '.' && !f.a)
@@ -75,22 +75,30 @@ void 		ft_ls_dir(char *dir_path, t_flag f)
 		f_path = get_path(dir_path, d.dirent->d_name);
 		if (!init_struct(&e, f, f_path, f.l || f.t || f.r_cap || f.g || f.u))
 			continue ;
-		add_ls_node(&e, &list);
-		list->name = ft_strdup(d.dirent->d_name);
+		add_ls_node(&e, list);
+		(*list)->name = ft_strdup(d.dirent->d_name);
 	}
 	closedir(d.dp);
-	merge_sort(&list);
-	print_output(list);
-	if (f.r_cap)
-		recurcive(list);
-	free_list(list);
+	return (1);
 }
 
-void		ft_ls_internal(t_ls *ls, int show_dir)
+void 		ft_ls_dir(char *dir_path, t_flag f, int show_dir)
 {
-	if (show_dir)
-		printf("%s:\n", ls->path);
-	ft_ls_dir(ls->path, ls->flag);
+	t_ls	*list;
+
+	if (dir_list(&list, dir_path, f))
+	{
+		if (list)
+		{
+			if (show_dir)
+				printf("%s:\n", dir_path);
+			merge_sort(&list);
+			print_output(list);
+			if (f.r_cap)
+				recurcive(list);
+			free_list(list);
+		}
+	}
 }
 
 void		ft_ls(t_ls *ls, int list_dir, int show_dir)
@@ -103,8 +111,8 @@ void		ft_ls(t_ls *ls, int list_dir, int show_dir)
 		{
 			while (ls)
 			{
-				ft_ls_internal(ls, show_dir);
-				ls = ls->next;
+				ft_ls_dir(ls->path, ls->flag, show_dir);
+						  ls = ls->next;
 			}
 		}
 	}

@@ -28,6 +28,9 @@ void 			free_list(t_ls *ls)
 		next = cur->next;
 		free(cur->name);
 		free(cur->path);
+		free(cur->tm);
+		free(cur->uname);
+		free(cur->gname);
 		free(cur);
 		cur = next;
 	}
@@ -65,10 +68,11 @@ int				main(int ac, char **av)
 {
 	t_flag		flag;
 
+
 	collect_flags(&flag, &ac, &av);
 	if (ac)
 		input_processing(flag, ac, av);
 	else
-		ft_ls_dir(CURR_DIR, flag);
+		ft_ls_dir(CURR_DIR, flag, flag.r_cap);
 	return (0);
 }

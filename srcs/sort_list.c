@@ -38,20 +38,20 @@ t_ls		*merge(t_ls *a, t_ls *b)
 	return(result);
 }
 
-void		devide(t_ls *source, t_ls **frontRef, t_ls **backRef)
+void		devide(t_ls *head, t_ls **a, t_ls **b)
 {
 	t_ls 	*fast;
 	t_ls	*slow;
 
-	slow = source;
-	fast = source->next;
+	slow = head;
+	fast = head->next;
 	while (fast->next != NULL)
 	{
 		slow = slow->next;
 		fast = fast->next;
 	}
-	*frontRef = source;
-	*backRef = slow->next;
+	*a = head;
+	*b = slow->next;
 	slow->next = NULL;
 }
 
@@ -64,7 +64,7 @@ void		merge_sort(t_ls **list_to_sort)
 	head = *list_to_sort;
 	if ((head == NULL) || (head->next == NULL))
 		return;
-	devide(head, &a, &b);
+ 	devide(head, &a, &b);
 	merge_sort(&a);
 	merge_sort(&b);
 	*list_to_sort = merge(a, b);

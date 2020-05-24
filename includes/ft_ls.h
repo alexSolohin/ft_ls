@@ -22,11 +22,12 @@
 # include <pwd.h>
 # include <sys/xattr.h>
 # include <stdlib.h>
+# include <errno.h>
+# include <time.h>
 
 # define FLAGS			"adfglRrtu"
 
 # define CURR_DIR		"."
-# define PARENT_DIR		".."
 #define MAX_PATH		255
 # define NO_ARG			0
 # define REQ_ARG		1
@@ -77,18 +78,27 @@ typedef struct      s_ls
 {
 	t_flag			flag;			//флаг
 	t_time			time;			//время DD MM
-	uid_t 			uid;			//id пользовтеля
-	gid_t 			gid;			//id групы
 	dev_t			rdev;			//номер устройства
 	mode_t			mode;
 	int64_t  		block;			//кол-во выделенных блоков
-	char			chmod[11];		//права доступа
-	long			size;			//размер в байтах
 	unsigned short	nlink;			//количество файлов внутри
+	long			size;			//размер в байтах
+	char			chmod[11];		//права доступа
+	char 			*uname;			//имя пользователя
+	char			*gname;			//имя группы
+	char 			*tm;			//форматируемая дата
     char            *name;			// имя файла или директории
     char			*path;
     struct s_ls     *next;
 }                   t_ls;
+
+typedef struct 		s_print
+{
+	int 			max_mode;
+	int 			max_name;
+	int 			max_nlink;
+	int 			max_size;
+}					t_print;
 
 typedef struct		s_dir
 {
@@ -108,7 +118,7 @@ static t_lopt 	g_lopt[] = {
 int			entry_compare(t_ls *a, t_ls *b);
 void		merge_sort(t_ls **list_to_sort);
 void		print(t_ls *ls);
-void 		ft_ls_dir(char *dir_path, t_flag f);
+void 		ft_ls_dir(char *dir_path, t_flag f, int show_dir);
 void		print_error(char *av);
 int			init_struct(t_ls *ls, t_flag flag, char *path, int dostat);
 t_ls		*sort_list(t_ls *ls);
@@ -118,14 +128,16 @@ int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
 void 		reset_flags(t_flag *flag);
 void 		collect_flags(t_flag *flag, int *ac, char ***av);
 void		print_output(t_ls *ls);
+t_print		print_utils(t_ls *ls);
 char		*ft_chmod(t_ls *ls);
 void 		ft_ls(t_ls *ls, int list_dir, int show_dir);
 void		add_ls_node(t_ls *entry, t_ls **ls);
 void 		free_list(t_ls *ls);
-void		ft_ls_internal(t_ls *ls, int show_dir);
 char		*get_user_name(uid_t user_id);
 char 		*get_group_name(gid_t group_id);
-char		*get_time(t_time t);
+char		*get_tm(t_time t);
 int64_t		total_blk(t_ls *ls);
+unsigned 	mjr(t_ls *ls);
+unsigned	mnr(t_ls *ls);
 
 #endif

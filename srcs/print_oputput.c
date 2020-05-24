@@ -35,28 +35,27 @@ void 		print_column(t_ls *ls)
 
 void		print_output(t_ls *ls)
 {
-	char	*uname;
-	char	*gname;
+	t_print	t;
 
-	if (ls && !ls->flag.l && !ls->flag.g)
+	if (!ls->flag.l && !ls->flag.g)
 	{
 		print_column(ls);
-		return ;
+		return;
 	}
+	t = print_utils(ls);
 	printf("total %ld\n", total_blk(ls));
 	while (ls)
 	{
-		uname = get_user_name(ls->uid);
-		gname = get_group_name(ls->gid);
-		printf("%s %u %-1.8s %-1.8s ", ft_chmod(ls), ls->nlink, uname, gname);
+		printf("%*s %*u %-*s %-*s ", t.max_mode, ft_chmod(ls), t.max_nlink,
+				ls->nlink, t.max_name, ls->uname, t.max_name, ls->gname);
 		if (S_ISBLK(ls->mode) || S_ISCHR(ls->mode))
 		{
-			printf("%4u, %4u %s %s", (int)(((ls->rdev) >> 16) & 0xffff),
-				   (int)((ls->rdev) & 0xffff), get_time(ls->time), ls->name);
+			printf("%4d, %4d %s %s", mjr(ls), mnr(ls), ls->tm, ls->name);
 		}
 		else
-			printf("%7lu %s %s", ls->size, get_time(ls->time), ls->name);
-		S_ISLNK(ls->mode) ? printf(" -> %s\n", lpath(ls->path)) : printf("\n");
+			printf("%*lu %s %s", t.max_size, ls->size, ls->tm, ls->name);
+		S_ISLNK(ls->mode) ? printf(" -> %s\n", lpath(ls->path)) : printf(
+				"\n");
 		ls = ls->next;
 	}
 	ft_putchar('\n');

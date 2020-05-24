@@ -69,13 +69,22 @@ char	*ft_chmod(t_ls *ls)
 	return (ls->chmod);
 }
 
+t_ls 			*pre_stat(t_ls *ls, char *path, t_flag flag)
+{
+	ls->path = path;
+	ls->name = NULL;
+	ls->gname = NULL;
+	ls->uname = NULL;
+	ls->tm = NULL;
+	ls->flag = flag;
+	return (ls);
+}
+
 int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 {
 	struct stat	file_stat;
 
-	ls->path = path;
-	ls->name = NULL;
-	ls->flag = flag;
+	ls = pre_stat(ls, path, flag);
 	if (!dostat)
 		return (1);
 	if (lstat(ls->path, &file_stat) < 0)
@@ -84,9 +93,10 @@ int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;
-	ls->gid = file_stat.st_gid;
-	ls->uid=  file_stat.st_uid;
+	ls->gname = get_group_name(file_stat.st_gid);
+	ls->uname =  get_user_name(file_stat.st_uid);
 	ls->time = ls->flag.u ? file_stat.st_atim : file_stat.st_mtim;
+	ls->tm = get_tm(ls->time);
 	ls->nlink = file_stat.st_nlink;
 	ls->size = file_stat.st_size;
 	ls->block = file_stat.st_blocks;
