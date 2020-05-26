@@ -49,3 +49,20 @@ int64_t		total_blk(t_ls *ls)
 	}
 	return (total);
 }
+
+char        **create_arr(t_ls *ls, int  max_len_list)
+{
+    char **ptr;
+
+    if (!(ptr = (char **)malloc(sizeof(char*) * max_len_list + 1)))
+        return NULL;
+    int i = 0;
+    while (ls)
+    {
+        ptr[i] = ls->name;
+        ls = ls->next;
+        i++;
+    }
+    ptr[i] = NULL;
+    return (ptr);
+}

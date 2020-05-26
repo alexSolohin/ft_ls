@@ -77,6 +77,8 @@ add_executable(ft_ls
         srcs/ft_getopt_long.c
         srcs/ft_ls.c
         srcs/main.c
+        srcs/print.c
         srcs/print_oputput.c
         srcs/sort_list.c
-        srcs/struct.c)
+        srcs/struct.c
+        srcs/utils.c)

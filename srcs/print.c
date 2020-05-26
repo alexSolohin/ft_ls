@@ -55,23 +55,23 @@ void    write_space(char *ptr, int max_len)
     }
 }
 
-void    name_ls(char **ptr, int word_in_column, int columns, int max_len, int max_len_list)
+void    name_ls(char **ptr, t_columns columns)
 {
     int i;
     int k;
 
     i = 0;
-    while(i < word_in_column)
+    while(i < columns.word_in_column)
     {
         printf("%s", ptr[i]);
-        write_space(ptr[i], max_len);
+        write_space(ptr[i], columns.max_len);
         k = 1;
-        while (k < columns)
+        while (k < columns.columns)
         {
-            if ((i + word_in_column * k) < max_len_list)
+            if ((i + columns.word_in_column * k) < columns.max_len_list)
             {
-                printf("%s", ptr[i + word_in_column * k]);
-                write_space(ptr[i + word_in_column * k], max_len);
+                printf("%s", ptr[i + columns.word_in_column * k]);
+                write_space(ptr[i + columns.word_in_column * k], columns.max_len);
             }
             k++;
         }
@@ -80,46 +80,27 @@ void    name_ls(char **ptr, int word_in_column, int columns, int max_len, int ma
     }
 }
 
-char        **create_arr(t_ls *ls, int  max_len_list)
-{
-    char **ptr;
-
-    if (!(ptr = (char **)malloc(sizeof(char*) * max_len_list + 1)))
-        return NULL;
-    int i = 0;
-    while (ls)
-    {
-        ptr[i] = ls->name;
-        ls = ls->next;
-        i++;
-    }
-    ptr[i] = NULL;
-    return (ptr);
-}
-
 void        print(t_ls *ls)
 {
     struct      winsize  window;
-    int         max_len_list;
-    int         max_len;
-    int         columns;
-    int         word_in_column;
+    t_columns   columns;
     char        **ptr;
 
     ptr = NULL;
     ioctl(0, TIOCGWINSZ, &window);
-    max_len = max_size_name(ls) + 7;
-    max_len_list = max_size_list(ls);
-    columns = window.ws_col / max_len;
+    columns.max_len = max_size_name(ls) + BTW_COL;
+    columns.max_len_list = max_size_list(ls);
+    columns.columns = window.ws_col / columns.max_len;
 //    columns = 100 / max_len;
-    if (columns == 0)
-        word_in_column = max_len_list;
-    else if (max_len_list % columns != 0)
-        word_in_column = max_len_list / columns + 1;
+    if (columns.columns == 0)
+        columns.word_in_column = columns.max_len_list;
+    else if (columns.max_len_list % columns.columns != 0)
+        columns.word_in_column = columns.max_len_list / columns.columns + 1;
     else
-        word_in_column = max_len_list / columns;
-    ptr = create_arr(ls, max_len_list);
-    name_ls(ptr, word_in_column, columns, max_len, max_len_list);
+        columns.word_in_column = columns.max_len_list / columns.columns;
+    ptr = create_arr(ls, columns.max_len_list);
+    name_ls(ptr, columns);
+    free(ptr);
     printf("\n");
 }
 

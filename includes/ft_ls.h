@@ -32,6 +32,7 @@
 # define NO_ARG			0
 # define REQ_ARG		1
 # define OPT_ARG		2
+# define BTW_COL        7
 
 typedef struct timespec	t_time;
 typedef struct passwd	t_user;
@@ -97,6 +98,14 @@ typedef struct		s_dir
 	DIR				*dp;
 }					t_dir;
 
+typedef struct      s_columns
+{
+    int             max_len_list;
+    int             max_len;
+    int             columns;
+    int             word_in_column;
+}                   t_columns;
+
 static t_lopt 	g_lopt[] = {
 		{"all", NO_ARG, NULL, 'a'},
 		{"color", NO_ARG, NULL, 'c'},
@@ -113,6 +122,7 @@ void 		ft_ls_dir(char *dir_path, t_flag f);
 void		print_error(char *av);
 int			init_struct(t_ls *ls, t_flag flag, char *path, int dostat);
 t_ls		*sort_list(t_ls *ls);
+char        **create_arr(t_ls *ls, int  max_len_list);
 t_opt 		*set_start_opt_val(t_opt *opt);
 int			ft_getopt(t_input inpt, t_opt *opt);
 int 		ft_getopt_long(t_input data, t_opt **opt, t_lopt *lopt, int *lind);
