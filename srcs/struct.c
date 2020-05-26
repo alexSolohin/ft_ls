@@ -13,6 +13,8 @@
 #include "ft_ls.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/acl.h>
+#include <sys/xattr.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <time.h>
@@ -56,6 +58,31 @@ void			ft_strmode(mode_t mode, char *buf)
 	buf[9] = '\0';
 }
 
+char    ft_acl(t_ls *ls)
+{
+    acl_t  acl = NULL;
+    acl_entry_t dummy;
+    ssize_t     xattr = 0;
+    char chr;
+
+    acl = acl_get_link_np(ls->path, ACL_TYPE_EXTENDED);
+    if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1)
+    {
+        acl_free(acl);
+        acl = NULL;
+    }
+    xattr = listxattr(ls->path, NULL, 0, XATTR_NOFOLLOW);
+    if (xattr < 0)
+        xattr = 0;
+    if (xattr > 0)
+        chr = '@';
+    else if (acl != NULL)
+        chr = '+';
+    else
+        chr = ' ';
+    return (chr);
+}
+
 char	*ft_chmod(t_ls *ls)
 {
 	ls->chmod[0] = set_zero_mode(ls->mode);
@@ -66,7 +93,8 @@ char	*ft_chmod(t_ls *ls)
 		ls->chmod[6] = (ls->chmod[6] == 'x') ? 's' : 'S';
 	if (ls->mode & S_ISVTX)
 		ls->chmod[9] = (ls->chmod[9] == 'x') ? 't' : 'T';
-	ls->chmod[10] = '\0';
+	ls->chmod[10] = ft_acl(ls);
+	ls->chmod[11] = '\0';
 	return (ls->chmod);
 }
 

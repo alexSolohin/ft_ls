@@ -84,7 +84,7 @@ typedef struct      s_ls
 	dev_t			rdev;			//номер устройства
 	mode_t			mode;
 	int64_t  		block;			//кол-во выделенных блоков
-	char			chmod[11];		//права доступа
+	char			chmod[12];		//права доступа
 	long			size;			//размер в байтах
 	unsigned short	nlink;			//количество файлов внутри
     char            *name;			// имя файла или директории
