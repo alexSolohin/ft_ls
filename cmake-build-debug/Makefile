@@ -1959,6 +1959,33 @@ srcs/main.c.s:
 	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/main.c.s
 .PHONY : srcs/main.c.s
 
+srcs/print.o: srcs/print.c.o
+
+.PHONY : srcs/print.o
+
+# target to build an object file
+srcs/print.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/print.c.o
+.PHONY : srcs/print.c.o
+
+srcs/print.i: srcs/print.c.i
+
+.PHONY : srcs/print.i
+
+# target to preprocess a source file
+srcs/print.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/print.c.i
+.PHONY : srcs/print.c.i
+
+srcs/print.s: srcs/print.c.s
+
+.PHONY : srcs/print.s
+
+# target to generate assembly for a file
+srcs/print.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/print.c.s
+.PHONY : srcs/print.c.s
+
 srcs/print_oputput.o: srcs/print_oputput.c.o
 
 .PHONY : srcs/print_oputput.o
@@ -2039,6 +2066,33 @@ srcs/struct.s: srcs/struct.c.s
 srcs/struct.c.s:
 	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/struct.c.s
 .PHONY : srcs/struct.c.s
+
+srcs/utils.o: srcs/utils.c.o
+
+.PHONY : srcs/utils.o
+
+# target to build an object file
+srcs/utils.c.o:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/utils.c.o
+.PHONY : srcs/utils.c.o
+
+srcs/utils.i: srcs/utils.c.i
+
+.PHONY : srcs/utils.i
+
+# target to preprocess a source file
+srcs/utils.c.i:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/utils.c.i
+.PHONY : srcs/utils.c.i
+
+srcs/utils.s: srcs/utils.c.s
+
+.PHONY : srcs/utils.s
+
+# target to generate assembly for a file
+srcs/utils.c.s:
+	$(MAKE) -f CMakeFiles/ft_ls.dir/build.make CMakeFiles/ft_ls.dir/srcs/utils.c.s
+.PHONY : srcs/utils.c.s
 
 # Help Target
 help:
@@ -2253,6 +2307,9 @@ help:
 	@echo "... srcs/main.o"
 	@echo "... srcs/main.i"
 	@echo "... srcs/main.s"
+	@echo "... srcs/print.o"
+	@echo "... srcs/print.i"
+	@echo "... srcs/print.s"
 	@echo "... srcs/print_oputput.o"
 	@echo "... srcs/print_oputput.i"
 	@echo "... srcs/print_oputput.s"
@@ -2262,6 +2319,9 @@ help:
 	@echo "... srcs/struct.o"
 	@echo "... srcs/struct.i"
 	@echo "... srcs/struct.s"
+	@echo "... srcs/utils.o"
+	@echo "... srcs/utils.i"
+	@echo "... srcs/utils.s"
 .PHONY : help
 
 

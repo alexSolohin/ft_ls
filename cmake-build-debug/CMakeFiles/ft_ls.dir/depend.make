@@ -210,6 +210,10 @@ CMakeFiles/ft_ls.dir/srcs/main.c.o: ../includes/ft_ls.h
 CMakeFiles/ft_ls.dir/srcs/main.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/srcs/main.c.o: ../srcs/main.c
 
+CMakeFiles/ft_ls.dir/srcs/print.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/print.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/print.c.o: ../srcs/print.c
+
 CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../includes/ft_ls.h
 CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../srcs/print_oputput.c
@@ -221,4 +225,8 @@ CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../srcs/sort_list.c
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../includes/ft_ls.h
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../srcs/struct.c
+
+CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../srcs/utils.c
 

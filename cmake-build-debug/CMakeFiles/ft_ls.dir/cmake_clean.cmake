@@ -67,9 +67,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o"
   "CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o"
   "CMakeFiles/ft_ls.dir/srcs/main.c.o"
+  "CMakeFiles/ft_ls.dir/srcs/print.c.o"
   "CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o"
   "CMakeFiles/ft_ls.dir/srcs/sort_list.c.o"
   "CMakeFiles/ft_ls.dir/srcs/struct.c.o"
+  "CMakeFiles/ft_ls.dir/srcs/utils.c.o"
   "ft_ls"
   "ft_ls.pdb"
 )

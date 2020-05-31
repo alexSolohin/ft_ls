@@ -294,6 +294,9 @@
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/main.c">
 			<Option target="ft_ls"/>
 		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/print.c">
+			<Option target="ft_ls"/>
+		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/print_oputput.c">
 			<Option target="ft_ls"/>
 		</Unit>
@@ -301,6 +304,9 @@
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/struct.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/utils.c">
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/CMakeLists.txt">

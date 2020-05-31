@@ -92,7 +92,7 @@ void        print(t_ls *ls)
     columns.max_len_list = max_size_list(ls);
     columns.columns = window.ws_col / columns.max_len;
 //    columns = 100 / max_len;
-    if (columns.columns == 0)
+    if (columns.columns == 0 || ls->flag.one)
         columns.word_in_column = columns.max_len_list;
     else if (columns.max_len_list % columns.columns != 0)
         columns.word_in_column = columns.max_len_list / columns.columns + 1;

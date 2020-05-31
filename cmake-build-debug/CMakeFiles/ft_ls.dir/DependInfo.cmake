@@ -72,9 +72,11 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/user/Desktop/ft_ls/srcs/ft_getopt_long.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o"
   "/Users/user/Desktop/ft_ls/srcs/ft_ls.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o"
   "/Users/user/Desktop/ft_ls/srcs/main.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/main.c.o"
+  "/Users/user/Desktop/ft_ls/srcs/print.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/print.c.o"
   "/Users/user/Desktop/ft_ls/srcs/print_oputput.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o"
   "/Users/user/Desktop/ft_ls/srcs/sort_list.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/sort_list.c.o"
   "/Users/user/Desktop/ft_ls/srcs/struct.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/struct.c.o"
+  "/Users/user/Desktop/ft_ls/srcs/utils.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

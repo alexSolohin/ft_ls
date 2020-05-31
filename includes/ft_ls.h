@@ -50,6 +50,7 @@ typedef struct			s_flag
 	int 				r;
 	int					t;
 	int 				u;
+	int                 one;
 }						t_flag;
 
 typedef struct	s_opt
