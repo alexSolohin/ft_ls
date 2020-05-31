@@ -2,25 +2,8 @@
 #include <errno.h>
 #include <time.h>
 
-char 		*lpath(char *linkname)
-{
-	int		len;
-	char	link[MAX_PATH];
-	char 	ret[MAX_PATH];
-
-	errno = 0;
-	if ((len = readlink(linkname, link, MAX_PATH)) < 0)
-	{
-		printf("%s", strerror(errno)); 		// Добавить обработку ошибок
-		return ("?");
-	}
-	link[len] = '\0';
-	return (ft_strcpy(ret, link));
-}
-
 void 		print_column(t_ls *ls)
 {
-
 	if (ls)
 	{
 		while(ls)
@@ -35,29 +18,28 @@ void 		print_column(t_ls *ls)
 
 void		print_output(t_ls *ls)
 {
-	char	*uname;
-	char	*gname;
+		t_print	t;
 
-	if (ls && !ls->flag.l && !ls->flag.g)
+	if (!ls->flag.l && !ls->flag.g)
 	{
 		print(ls);
-		return ;
+		return;
 	}
-	printf("total %lld\n", total_blk(ls));
+	t = print_utils(ls);
 	while (ls)
 	{
-		uname = get_user_name(ls->uid);
-		gname = get_group_name(ls->gid);
-		printf("%s %u %-1.8s %-1.8s ", ft_chmod(ls), ls->nlink, uname, gname);
+		ft_printf("%*s %*u %-*s %-*s ", t.max_mode, ls->chmod, t.max_nlink,
+				ls->nlink, t.max_name, ls->uname, t.max_name, ls->gname);
 		if (S_ISBLK(ls->mode) || S_ISCHR(ls->mode))
-		{
-			printf("%4u, %4u %s %s", (int)(((ls->rdev) >> 16) & 0xffff),
-				   (int)((ls->rdev) & 0xffff), get_time(ls->time), ls->name);
-		}
+			ft_printf("%4d, %4d %s ", mjr(ls), mnr(ls), ls->tm);
 		else
-			printf("%7lu %s %s", ls->size, get_time(ls->time), ls->name);
-		S_ISLNK(ls->mode) ? printf(" -> %s\n", lpath(ls->path)) : printf("\n");
+			ft_printf("%*lu %s ", t.max_size, ls->size, ls->tm);
+		set_color(ls->mode, ls->flag.G);
+		ft_printf("%s", ls->name ? ls->name : ls->path);
+		ft_putstr(RESET);
+		if (ls->link)
+			ft_printf("%s", ls->link);
+		ft_printf("\n");
 		ls = ls->next;
 	}
-	ft_putchar('\n');
 }

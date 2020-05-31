@@ -6,7 +6,7 @@ void		add_ls_node(t_ls *entry, t_ls **ls)
 
 	if (!(tmp = (t_ls *)malloc(sizeof(t_ls))))
 	{
-		//printf("%s", strerror(errno));	         //добавить обработку исключений
+		printf("%s", strerror(errno));	         //добавить обработку исключений
 		return;
 	}
 
@@ -28,6 +28,11 @@ void 			free_list(t_ls *ls)
 		next = cur->next;
 		free(cur->name);
 		free(cur->path);
+		free(cur->tm);
+		free(cur->uname);
+		free(cur->gname);
+		free(cur->link);
+		free(cur->chmod);
 		free(cur);
 		cur = next;
 	}
@@ -57,7 +62,8 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	merge_sort(&dls);
 	ft_ls(fls, 0, 0);
 	free_list(fls);
-	ft_ls(dls, 1, (dls && (fls || dls->next)) || flag.r_cap);
+	(fls && dls) ? ft_putchar('\n') : 0;
+	ft_ls(dls, !flag.d, (dls && (fls || dls->next)) || flag.r_cap);
 	free_list(dls);
 	return (0);
 }
@@ -70,6 +76,17 @@ int				main(int ac, char **av)
 	if (ac)
 		input_processing(flag, ac, av);
 	else
-		ft_ls_dir(CURR_DIR, flag);
+	{
+		if (flag.d)
+		{
+			flag.G ? printf("%s%s%s", BLUE, CURR_DIR, RESET)
+					: printf("%s", CURR_DIR);
+			return (0);
+		}
+		else
+		    ft_ls_dir(CURR_DIR, flag, 0);
+//		ft_ls(&(t_ls){NULL, CURR_DIR, NULL, 0, NULL, NULL, 0,
+//				NULL, NULL, NULL, flag, NULL, 0, 40000, 0, 0}, !flag.d, flag.r_cap);
+	}
 	return (0);
 }

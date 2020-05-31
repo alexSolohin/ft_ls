@@ -17,12 +17,16 @@
 double		max_size_name(t_ls *ls)
 {
     double size;
+    char    *str;
+    char    *next_str;
 
 	size = 0;
 	while (ls->next != NULL)
 	{
-		if ((ft_strlen(ls->name) > ft_strlen(ls->next->name)) && size < ft_strlen((ls->name)))
-			size = ft_strlen(ls->name);
+        str = ls->name ? ls->name : ls->path;
+        next_str = ls->next->name ? ls->next->name : ls->next->path;
+		if ((ft_strlen(str) > ft_strlen(next_str)) && size < ft_strlen((str)))
+			size = ft_strlen(str);
 		ls = ls->next;
 	}
 	return (size);
@@ -101,7 +105,6 @@ void        print(t_ls *ls)
     ptr = create_arr(ls, columns.max_len_list);
     name_ls(ptr, columns);
     free(ptr);
-    printf("\n");
 }
 
 

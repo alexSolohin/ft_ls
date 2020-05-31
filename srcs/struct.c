@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 12:54:07 by user              #+#    #+#             */
-/*   Updated: 2020/04/23 16:23:22 by user             ###   ########.fr       */
+/*   Updated: 2020/05/31 22:16:31 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,26 +85,39 @@ char    ft_acl(t_ls *ls)
 
 char	*ft_chmod(t_ls *ls)
 {
-	ls->chmod[0] = set_zero_mode(ls->mode);
-	ft_strmode(ls->mode, &(ls->chmod[1]));
+    char chmod[12];
+	chmod[0] = set_zero_mode(ls->mode);
+	ft_strmode(ls->mode, &(chmod[1]));
 	if (ls->mode & S_ISUID)
-		ls->chmod[3] = (ls->chmod[3] == 'x') ? 's' : 'S';
+		chmod[3] = (chmod[3] == 'x') ? 's' : 'S';
 	if (ls->mode & S_ISGID)
-		ls->chmod[6] = (ls->chmod[6] == 'x') ? 's' : 'S';
+		chmod[6] = (chmod[6] == 'x') ? 's' : 'S';
 	if (ls->mode & S_ISVTX)
-		ls->chmod[9] = (ls->chmod[9] == 'x') ? 't' : 'T';
-	ls->chmod[10] = ft_acl(ls);
-	ls->chmod[11] = '\0';
-	return (ls->chmod);
+		chmod[9] = (chmod[9] == 'x') ? 't' : 'T';
+	chmod[10] = ft_acl(ls);
+	chmod[11] = '\0';
+	return (ft_strdup(chmod));
+}
+
+t_ls 			*pre_stat(t_ls *ls, char *path, t_flag flag)
+{
+	ls->path = path;
+	ls->name = NULL;
+	ls->gname = NULL;
+	ls->uname = NULL;
+	ls->chmod = NULL;
+	ls->link = NULL;
+	ls->tm = NULL;
+	ls->color = NULL;
+	ls->flag = flag;
+	return (ls);
 }
 
 int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 {
 	struct stat	file_stat;
 
-	ls->path = path;
-	ls->name = NULL;
-	ls->flag = flag;
+	ls = pre_stat(ls, path, flag);
 	if (!dostat)
 		return (1);
 	if (lstat(ls->path, &file_stat) < 0)
@@ -113,10 +126,13 @@ int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;
-	ls->gid = file_stat.st_gid;
-	ls->uid=  file_stat.st_uid;
+	ls->chmod = ft_chmod(ls);
+	ls->gname = get_group_name(file_stat.st_gid);
+	ls->uname = get_user_name(file_stat.st_uid);
 	ls->time = ls->flag.u ? file_stat.st_atimespec : file_stat.st_mtimespec;
+	ls->tm = get_tm(ls->time);
 	ls->nlink = file_stat.st_nlink;
+	ls->link = lpath(ls->path, ls->mode);
 	ls->size = file_stat.st_size;
 	ls->block = file_stat.st_blocks;
 	ls->rdev = file_stat.st_rdev;
