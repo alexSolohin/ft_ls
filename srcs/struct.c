@@ -11,13 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <stdio.h>
-#include <time.h>
-#include <pwd.h>
-#include <grp.h>
 
 char 	set_zero_mode(mode_t mode)
 {

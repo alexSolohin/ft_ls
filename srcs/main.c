@@ -62,7 +62,7 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	ft_ls(fls, 0, 0);
 	free_list(fls);
 	(fls && dls) ? ft_putchar('\n') : 0;
-	ft_ls(dls, 1, (dls && (fls || dls->next)) || flag.r_cap || !flag.d);
+	ft_ls(dls, !flag.d, (dls && (fls || dls->next)) || flag.r_cap);
 	free_list(dls);
 	return (0);
 }
@@ -82,7 +82,8 @@ int				main(int ac, char **av)
 					: printf("%s", CURR_DIR);
 			return (0);
 		}
-		ft_ls_dir(CURR_DIR, flag, flag.r_cap);
+		ft_ls(&(t_ls){NULL, CURR_DIR, NULL, 0, NULL, NULL, 0,
+				NULL, NULL, NULL, 0, 0, 0, 40000, 0, 0}, !flag.d, flag.r_cap);
 	}
 	return (0);
 }

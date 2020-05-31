@@ -1,10 +1,10 @@
 #include "ft_ls.h"
 
-char 	*color_file(mode_t mode, int do_color)
+void	set_color(mode_t mode, int do_color)
 {
 	if (!do_color)
-		return (NULL);
-
-	return (mode ? "color" : NULL);
+		return ;
+	if (S_ISDIR(mode))
+		ft_printf("{BLUE}");
 }
 

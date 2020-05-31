@@ -1,5 +1,30 @@
 #include "ft_ls.h"
 
+char 		*lpath(char *linkname, mode_t mode)
+{
+	int		len;
+	char	buf[MAX_PATH];
+	char 	*res;
+	char	*link;
+
+	if (S_ISLNK(mode))
+	{
+		errno = 0;
+		if ((len = readlink(linkname, buf, MAX_PATH)) < 0)
+		{
+			printf("ft_ls: cannot read symbolic link \'%s\': %s\n", linkname,
+				   strerror(errno));
+			return (NULL);
+		}
+		buf[len] = '\0';
+		res = ft_strdup(buf);
+		link = ft_strjoin(" -> ", res);
+		free(res);
+		return (link);
+	}
+	return (NULL);
+}
+
 static int	digit_length(long num)
 {
 	if (num < 10)

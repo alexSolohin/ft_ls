@@ -14,7 +14,7 @@
 # define FT_LS_H
 
 # include "libft.h"
-# include "ft_getopt.h"
+#include "ft_getopt.h"
 # include <sys/types.h>
 # include <grp.h>
 # include <sys/stat.h>
@@ -89,6 +89,6 @@ int64_t		total_blk(t_ls *ls);
 unsigned 	mjr(t_ls *ls);
 unsigned	mnr(t_ls *ls);
 char 		*lpath(char *linkname, mode_t mode);
-//char 		*color_file(mode_t mode, int do_color);
+void 		set_color(mode_t mode, int do_color);
 
 #endif

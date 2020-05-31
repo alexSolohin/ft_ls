@@ -11,15 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <stdio.h>
-#include <time.h>
-#include <pwd.h>
-#include <grp.h>
-
-
 
 char		*get_path(char *path, char *name)
 {
@@ -97,6 +88,8 @@ void 		ft_ls_dir(char *dir_path, t_flag f, int show_dir)
 			if (show_dir)
 				printf("%s:\n", dir_path);
 			merge_sort(&list);
+			if (f.l || f.g)
+				printf("total %ld\n", total_blk(list));
 			print_output(list);
 			if (f.r_cap)
 				recurcive(list);

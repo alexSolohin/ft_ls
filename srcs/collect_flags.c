@@ -1,4 +1,4 @@
-#include "ft_getopt.h"
+#include "ft_ls.h"
 
 void		invalid_option(t_opt *opt)
 {
@@ -66,30 +66,16 @@ void		reset_flags(t_flag *flag)
 	flag->t = 0;
 	flag->u = 0;
 }
-/*t_lopt		*set_lopt(void)
-{
-	t_lopt	lopt[] = {
-			{"all", NO_ARG, NULL, 'a'},
-			{"color", OPT_ARG, NULL, 'G'},
-			{"directory", NO_ARG, NULL, 'd'},
-			{"recursive", NO_ARG, NULL, 'R'},
-			{"reverse", NO_ARG, NULL, 'r'},
-			{NULL,0,NULL,0};
-
-	return (lopt);
-}*/
 
 void 		collect_flags(t_flag *flag, int *ac, char ***av)
 {
 	t_opt	*opt;
-//	t_lopt	*lopt;
 	int 	rez;
 	t_input	tmp;
 
 	reset_flags(flag);
 	tmp.av = *av;
 	tmp.ac = *ac;
-//	lopt = set_lopt();
 	opt = NULL;
 	while ((rez = ft_getopt_long(tmp, &opt, g_lopt, NULL)) != -1)
 	{
