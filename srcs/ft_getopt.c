@@ -94,29 +94,6 @@ int				ft_getopt(t_input input, t_opt *opt)
 	int ret;
 
 	opt = set_start_opt_val(opt);
-	return (ret = ft_get_opt(&input, opt));
+	ret = ft_get_opt(&input, opt);
+	return (ret);
 }
-
-/*
-void 			collect_opt(int ac, char **av)
-{
-//	int 		*opt_collector;
-	t_opt		*opt;
-	int 		input_opt;
-
-	opt = set_start_opt_val();
-	while ((input_opt = ft_getopt(ac, av, opt)) != -1)
-	{
-		if (input_opt == 'd')
-			ft_printf("ru ro raggy! %c\n", opt->optchar);
-		if (input_opt == 'l')
-			ft_printf("hell yeah, motherfucker! %c\n", opt->optchar);
-		if (input_opt == '?')
-			print_error("Move bitch! Get out da way!")
-	}
-}
-
-int main(int ac, char **av)
-{
-	collect_opt(ac, av);
-}*/

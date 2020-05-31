@@ -31,6 +31,8 @@ void 			free_list(t_ls *ls)
 		free(cur->tm);
 		free(cur->uname);
 		free(cur->gname);
+		free(cur->link);
+		free(cur->chmod);
 		free(cur);
 		cur = next;
 	}
@@ -59,7 +61,8 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	merge_sort(&dls);
 	ft_ls(fls, 0, 0);
 	free_list(fls);
-	ft_ls(dls, 1, (dls && (fls || dls->next)) || flag.r_cap);
+	(fls && dls) ? ft_putchar('\n') : 0;
+	ft_ls(dls, 1, (dls && (fls || dls->next)) || flag.r_cap || !flag.d);
 	free_list(dls);
 	return (0);
 }
@@ -68,11 +71,18 @@ int				main(int ac, char **av)
 {
 	t_flag		flag;
 
-
 	collect_flags(&flag, &ac, &av);
 	if (ac)
 		input_processing(flag, ac, av);
 	else
+	{
+		if (flag.d)
+		{
+			flag.G ? printf("%s%s%s", BLUE, CURR_DIR, RESET)
+					: printf("%s", CURR_DIR);
+			return (0);
+		}
 		ft_ls_dir(CURR_DIR, flag, flag.r_cap);
+	}
 	return (0);
 }

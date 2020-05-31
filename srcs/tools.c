@@ -36,7 +36,7 @@ t_print		print_utils(t_ls *ls)
 			p.max_mode = tmp.max_mode;
 		if ((tmp.max_nlink = digit_length(ls->nlink)) > p.max_nlink)
 			p.max_nlink = tmp.max_nlink;
-		if ((tmp.max_name = biggest_str(ls->uname, ls->gname)) > p.max_mode)
+		if ((tmp.max_name = biggest_str(ls->uname, ls->gname)) > p.max_name)
 			p.max_name = tmp.max_name;
 		if ((tmp.max_size = digit_length(ls->size)) > p.max_size)
 			p.max_size = tmp.max_size;
