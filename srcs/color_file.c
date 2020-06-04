@@ -7,4 +7,3 @@ void	set_color(mode_t mode, int do_color)
 	if (S_ISDIR(mode))
 		ft_putstr(BLUE);
 }
-
