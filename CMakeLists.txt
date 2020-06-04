@@ -5,9 +5,31 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
 include_directories(libft)
+include_directories(libft/include)
 
 add_executable(ft_ls
+        includes/ft_getopt.h
         includes/ft_ls.h
+        libft/ft_printf/src/float/mult.c
+        libft/ft_printf/src/float/negs.c
+        libft/ft_printf/src/float/prec.c
+        libft/ft_printf/src/float/prec2.c
+        libft/ft_printf/src/float/print_float.c
+        libft/ft_printf/src/float/subtr.c
+        libft/ft_printf/src/float/sum.c
+        libft/ft_printf/src/assist.c
+        libft/ft_printf/src/color.c
+        libft/ft_printf/src/format_parse.c
+        libft/ft_printf/src/free.c
+        libft/ft_printf/src/ft_printf.c
+        libft/ft_printf/src/numeric_helpers.c
+        libft/ft_printf/src/print_base.c
+        libft/ft_printf/src/print_int.c
+        libft/ft_printf/src/print_symbolic.c
+        libft/ft_printf/src/print_unsigned.c
+        libft/ft_printf/src/utils.c
+        libft/include/ft_printf.h
+        libft/include/libft.h
         libft/ft_atoi.c
         libft/ft_bzero.c
         libft/ft_isalnum.c
@@ -71,8 +93,8 @@ add_executable(ft_ls
         libft/ft_swap.c
         libft/ft_tolower.c
         libft/ft_toupper.c
-        libft/libft.h
         srcs/collect_flags.c
+        srcs/color_file.c
         srcs/ft_getopt.c
         srcs/ft_getopt_long.c
         srcs/ft_ls.c
@@ -81,4 +103,5 @@ add_executable(ft_ls
         srcs/print_oputput.c
         srcs/sort_list.c
         srcs/struct.c
+        srcs/tools.c
         srcs/utils.c)

@@ -70,6 +70,78 @@ CMakeFiles/ft_ls.dir/libft/ft_memset.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/libft/ft_printbits.c.o: ../libft/ft_printbits.c
 CMakeFiles/ft_ls.dir/libft/ft_printbits.c.o: ../libft/libft.h
 
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/assist.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/assist.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/assist.c.o: ../libft/ft_printf/src/assist.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/color.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/color.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/color.c.o: ../libft/ft_printf/src/color.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/mult.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/mult.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/mult.c.o: ../libft/ft_printf/src/float/mult.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/negs.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/negs.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/negs.c.o: ../libft/ft_printf/src/float/negs.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec.c.o: ../libft/ft_printf/src/float/prec.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec2.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec2.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec2.c.o: ../libft/ft_printf/src/float/prec2.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/print_float.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/print_float.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/print_float.c.o: ../libft/ft_printf/src/float/print_float.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/subtr.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/subtr.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/subtr.c.o: ../libft/ft_printf/src/float/subtr.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/sum.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/sum.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/sum.c.o: ../libft/ft_printf/src/float/sum.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/format_parse.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/format_parse.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/format_parse.c.o: ../libft/ft_printf/src/format_parse.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/free.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/free.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/free.c.o: ../libft/ft_printf/src/free.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/ft_printf.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/ft_printf.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/ft_printf.c.o: ../libft/ft_printf/src/ft_printf.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/numeric_helpers.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/numeric_helpers.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/numeric_helpers.c.o: ../libft/ft_printf/src/numeric_helpers.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_base.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_base.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_base.c.o: ../libft/ft_printf/src/print_base.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_int.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_int.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_int.c.o: ../libft/ft_printf/src/print_int.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_symbolic.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_symbolic.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_symbolic.c.o: ../libft/ft_printf/src/print_symbolic.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_unsigned.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_unsigned.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_unsigned.c.o: ../libft/ft_printf/src/print_unsigned.c
+
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/utils.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/utils.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/libft/ft_printf/src/utils.c.o: ../libft/ft_printf/src/utils.c
+
 CMakeFiles/ft_ls.dir/libft/ft_putchar.c.o: ../libft/ft_putchar.c
 CMakeFiles/ft_ls.dir/libft/ft_putchar.c.o: ../libft/libft.h
 
@@ -190,43 +262,75 @@ CMakeFiles/ft_ls.dir/libft/ft_tolower.c.o: ../libft/libft.h
 CMakeFiles/ft_ls.dir/libft/ft_toupper.c.o: ../libft/ft_toupper.c
 CMakeFiles/ft_ls.dir/libft/ft_toupper.c.o: ../libft/libft.h
 
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o: ../srcs/collect_flags.c
 
+CMakeFiles/ft_ls.dir/srcs/color_file.c.o: ../includes/ft_getopt.h
+CMakeFiles/ft_ls.dir/srcs/color_file.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/color_file.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/color_file.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/srcs/color_file.c.o: ../srcs/color_file.c
+
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o: ../srcs/ft_getopt.c
 
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o: ../srcs/ft_getopt_long.c
 
+CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o: ../srcs/ft_ls.c
 
+CMakeFiles/ft_ls.dir/srcs/main.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/main.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/main.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/main.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/main.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/main.c.o: ../srcs/main.c
 
+CMakeFiles/ft_ls.dir/srcs/print.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/print.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/print.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/print.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/print.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/print.c.o: ../srcs/print.c
 
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o: ../srcs/print_oputput.c
 
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/sort_list.c.o: ../srcs/sort_list.c
 
+CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/struct.c.o: ../srcs/struct.c
 
+CMakeFiles/ft_ls.dir/srcs/tools.c.o: ../includes/ft_getopt.h
+CMakeFiles/ft_ls.dir/srcs/tools.c.o: ../includes/ft_ls.h
+CMakeFiles/ft_ls.dir/srcs/tools.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/tools.c.o: ../includes/libft.h
+CMakeFiles/ft_ls.dir/srcs/tools.c.o: ../srcs/tools.c
+
+CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../includes/ft_getopt.h
 CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../includes/ft_ls.h
-CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../libft/libft.h
+CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../includes/ft_printf.h
+CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../includes/libft.h
 CMakeFiles/ft_ls.dir/srcs/utils.c.o: ../srcs/utils.c
 

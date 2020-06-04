@@ -6,5 +6,5 @@ C_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacO
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/user/Desktop/ft_ls/includes -I/Users/user/Desktop/ft_ls/libft 
+C_INCLUDES = -I/Users/user/Desktop/ft_ls/includes -I/Users/user/Desktop/ft_ls/libft -I/Users/user/Desktop/ft_ls/libft/include 
 

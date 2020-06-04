@@ -27,6 +27,24 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/user/Desktop/ft_ls/libft/ft_memmove.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_memmove.c.o"
   "/Users/user/Desktop/ft_ls/libft/ft_memset.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_memset.c.o"
   "/Users/user/Desktop/ft_ls/libft/ft_printbits.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printbits.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/assist.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/assist.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/color.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/color.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/mult.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/mult.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/negs.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/negs.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/prec.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/prec2.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/prec2.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/print_float.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/print_float.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/subtr.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/subtr.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/sum.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/float/sum.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/format_parse.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/format_parse.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/free.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/free.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/ft_printf.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/ft_printf.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/numeric_helpers.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/numeric_helpers.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_base.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_base.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_int.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_int.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_symbolic.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_symbolic.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_unsigned.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/print_unsigned.c.o"
+  "/Users/user/Desktop/ft_ls/libft/ft_printf/src/utils.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_printf/src/utils.c.o"
   "/Users/user/Desktop/ft_ls/libft/ft_putchar.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_putchar.c.o"
   "/Users/user/Desktop/ft_ls/libft/ft_putchar_fd.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_putchar_fd.c.o"
   "/Users/user/Desktop/ft_ls/libft/ft_putendl.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_putendl.c.o"
@@ -68,6 +86,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/user/Desktop/ft_ls/libft/ft_tolower.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_tolower.c.o"
   "/Users/user/Desktop/ft_ls/libft/ft_toupper.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/libft/ft_toupper.c.o"
   "/Users/user/Desktop/ft_ls/srcs/collect_flags.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/collect_flags.c.o"
+  "/Users/user/Desktop/ft_ls/srcs/color_file.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/color_file.c.o"
   "/Users/user/Desktop/ft_ls/srcs/ft_getopt.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_getopt.c.o"
   "/Users/user/Desktop/ft_ls/srcs/ft_getopt_long.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_getopt_long.c.o"
   "/Users/user/Desktop/ft_ls/srcs/ft_ls.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/ft_ls.c.o"
@@ -76,6 +95,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/user/Desktop/ft_ls/srcs/print_oputput.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/print_oputput.c.o"
   "/Users/user/Desktop/ft_ls/srcs/sort_list.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/sort_list.c.o"
   "/Users/user/Desktop/ft_ls/srcs/struct.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/struct.c.o"
+  "/Users/user/Desktop/ft_ls/srcs/tools.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/tools.c.o"
   "/Users/user/Desktop/ft_ls/srcs/utils.c" "/Users/user/Desktop/ft_ls/cmake-build-debug/CMakeFiles/ft_ls.dir/srcs/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
@@ -84,6 +104,7 @@ set(CMAKE_C_COMPILER_ID "AppleClang")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../includes"
   "../libft"
+  "../libft/include"
   )
 
 # Targets to which this target links.

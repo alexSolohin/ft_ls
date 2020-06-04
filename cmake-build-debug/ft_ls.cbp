@@ -46,6 +46,7 @@
 				<Compiler>
 					<Add directory="/Users/user/Desktop/ft_ls/includes"/>
 					<Add directory="/Users/user/Desktop/ft_ls/libft"/>
+					<Add directory="/Users/user/Desktop/ft_ls/libft/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include"/>
@@ -69,6 +70,7 @@
 				<Compiler>
 					<Add directory="/Users/user/Desktop/ft_ls/includes"/>
 					<Add directory="/Users/user/Desktop/ft_ls/libft"/>
+					<Add directory="/Users/user/Desktop/ft_ls/libft/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include"/>
@@ -84,6 +86,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/user/Desktop/ft_ls/includes/ft_getopt.h">
+			<Option target="ft_ls"/>
+		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/includes/ft_ls.h">
 			<Option target="ft_ls"/>
 		</Unit>
@@ -154,6 +159,60 @@
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printbits.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/assist.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/color.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/mult.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/negs.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/prec.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/prec2.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/print_float.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/subtr.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/float/sum.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/format_parse.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/free.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/ft_printf.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/numeric_helpers.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_base.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_int.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_symbolic.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/print_unsigned.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_printf/src/utils.c">
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_putchar.c">
@@ -276,10 +335,16 @@
 		<Unit filename="/Users/user/Desktop/ft_ls/libft/ft_toupper.c">
 			<Option target="ft_ls"/>
 		</Unit>
-		<Unit filename="/Users/user/Desktop/ft_ls/libft/libft.h">
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/include/ft_printf.h">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/libft/include/libft.h">
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/collect_flags.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/color_file.c">
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/ft_getopt.c">
@@ -304,6 +369,9 @@
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/struct.c">
+			<Option target="ft_ls"/>
+		</Unit>
+		<Unit filename="/Users/user/Desktop/ft_ls/srcs/tools.c">
 			<Option target="ft_ls"/>
 		</Unit>
 		<Unit filename="/Users/user/Desktop/ft_ls/srcs/utils.c">
