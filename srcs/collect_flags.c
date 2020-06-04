@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 22:04:36 by user              #+#    #+#             */
-/*   Updated: 2020/05/31 22:04:38 by user             ###   ########.fr       */
+/*   Updated: 2020/06/04 19:52:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void		invalid_option(t_opt *opt)
 {
-	ft_printf("ft_ls: invalid option -- \'%s\'", opt->optopt);
+	ft_printf("ft_ls: illegal option -- %s\n", opt->optopt);
+	ft_printf("usage: ls [-GRadfglrtu1] [file ...]\n");
 	free(opt);
 	exit(0);
 }

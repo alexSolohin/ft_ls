@@ -6,7 +6,7 @@ void		add_ls_node(t_ls *entry, t_ls **ls)
 
 	if (!(tmp = (t_ls *)malloc(sizeof(t_ls))))
 	{
-		printf("%s", strerror(errno));	         //добавить обработку исключений
+		ft_printf("%s", strerror(errno));	         //добавить обработку исключений
 		return;
 	}
 
@@ -71,22 +71,13 @@ int 			input_processing(t_flag flag, int ac, char **av)
 int				main(int ac, char **av)
 {
 	t_flag		flag;
+	char		*cd;
 
+	cd = CURR_DIR;
 	collect_flags(&flag, &ac, &av);
 	if (ac)
 		input_processing(flag, ac, av);
 	else
-	{
-		if (flag.d)
-		{
-			flag.G ? printf("%s%s%s", BLUE, CURR_DIR, RESET)
-					: printf("%s", CURR_DIR);
-			return (0);
-		}
-		else
-		    ft_ls_dir(CURR_DIR, flag, 0);
-//		ft_ls(&(t_ls){NULL, CURR_DIR, NULL, 0, NULL, NULL, 0,
-//				NULL, NULL, NULL, flag, NULL, 0, 40000, 0, 0}, !flag.d, flag.r_cap);
-	}
+		input_processing(flag, 1, &cd);
 	return (0);
 }

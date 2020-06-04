@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/05/31 22:28:44 by user             ###   ########.fr       */
+/*   Updated: 2020/06/04 18:01:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 
 char		*get_path(char *path, char *name)
 {
+	char 		*dir_path;
 	char		*full_path;
 	char 		file_in_dir[MAX_PATH];
+	int 		len;
 
-	ft_bzero(file_in_dir, MAX_PATH);
-	if (*path == '\0' || ft_strncmp(path, name, ft_strlen(path)) == 0)
-		full_path = ft_strdup(name);
-	else
+	full_path = NULL;
+	if (path)
 	{
-		ft_strcat(ft_strcat(file_in_dir, ft_strcmp(path, "/") ? "/" : ""), name);
-		full_path = ft_strjoin(path, file_in_dir);
+		len = ft_strlen(path);
+		if (path[len - 1] == '/')
+		{
+			while (len && path[len - 1] == '/')
+				len--;
+			dir_path = ft_strsub(path, 0, len + 1);
+			full_path = ft_strjoin(dir_path, name);
+			free(dir_path);
+		}
+		else
+		{
+			ft_bzero(file_in_dir, MAX_PATH);
+			ft_strcat(ft_strcat(file_in_dir, "/"), name);
+			full_path = ft_strjoin(path, file_in_dir);
+		}
 	}
 	return (full_path);
 }
@@ -58,7 +71,7 @@ static int	dir_list(t_ls **list, char *dir_path, t_flag f)
 	*list = NULL;
 	if (!(d.dp = opendir(dir_path)))
 	{
-		printf("ft_ls: cannot open directory \'%s\': %s\n",
+		ft_printf("ft_ls: cannot open directory \'%s\': %s\n",
 				dir_path, strerror(errno));
 		return (0);
 	}
@@ -83,13 +96,13 @@ void 		ft_ls_dir(char *dir_path, t_flag f, int show_dir)
 
 	if (dir_list(&list, dir_path, f))
 	{
+		if (show_dir)
+			ft_printf("%s:\n", dir_path);
+		if (f.l || f.g)
+			ft_printf("total %ld\n", total_blk(list));
 		if (list)
 		{
-			if (show_dir)
-				ft_printf("%s:\n", dir_path);
 			merge_sort(&list);
-			if (f.l || f.g)
-				ft_printf("total %lld\n", total_blk(list));
 			print_output(list);
 			if (f.r_cap)
 				recurcive(list);
@@ -109,8 +122,8 @@ void		ft_ls(t_ls *ls, int list_dir, int show_dir)
 			while (ls)
 			{
 				ft_ls_dir(ls->path, ls->flag, show_dir);
+				ls->next ? ft_putchar('\n') : 0;
 				ls = ls->next;
-				ls ? ft_printf("\n") : 0;
 			}
 		}
 	}

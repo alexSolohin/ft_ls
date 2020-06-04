@@ -7,7 +7,7 @@ char		*get_user_name(uid_t user_id)
 
     if (!(usr = getpwuid(user_id)))
     {
-        printf("Can't get struct for user: %d", user_id); // Добавить обработку ошибок
+        ft_printf("Can't get struct for user: %d", user_id); // Добавить обработку ошибок
         exit(EXIT_FAILURE);
     }
     if (!(uname = ft_strdup(usr->pw_name)))
@@ -22,7 +22,7 @@ char 		*get_group_name(gid_t group_id)
 
     if (!(grp = getgrgid(group_id)))
     {
-        printf("Can't get struct for group: %d", group_id); // Добавить обработку ошибок
+        ft_printf("Can't get struct for group: %d", group_id); // Добавить обработку ошибок
         exit(EXIT_FAILURE);
     }
     if (!(gname = ft_strdup(grp->gr_name)))
@@ -48,7 +48,7 @@ char		*get_tm(t_time t)
 	}
 	else
 		fmt = ft_strsub(tm, 4, 12);
-	return  (fmt);
+	return (fmt);
 }
 
 int64_t		total_blk(t_ls *ls)

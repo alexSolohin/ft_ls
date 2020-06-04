@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 12:54:07 by user              #+#    #+#             */
-/*   Updated: 2020/05/31 22:16:31 by user             ###   ########.fr       */
+/*   Updated: 2020/06/04 19:33:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,20 @@ void			ft_strmode(mode_t mode, char *buf)
 	buf[9] = '\0';
 }
 
-char    ft_acl(t_ls *ls)
+char	ft_acl(t_ls *ls)
 {
-    acl_t  acl = NULL;
-    acl_entry_t dummy;
-    ssize_t     xattr = 0;
-    char chr;
+	acl_t		acl;
+	acl_entry_t dummy;
+	ssize_t		xattr;
+	char		chr;
 
-    acl = acl_get_link_np(ls->path, ACL_TYPE_EXTENDED);
-    if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1)
-    {
-        acl_free(acl);
-        acl = NULL;
-    }
+	xattr = 0;
+	acl = acl_get_link_np(ls->path, ACL_TYPE_EXTENDED);
+	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1)
+	{
+	    acl_free(acl);
+	    acl = NULL;
+	}
     xattr = listxattr(ls->path, NULL, 0, XATTR_NOFOLLOW);
     if (xattr < 0)
         xattr = 0;
@@ -79,7 +80,8 @@ char    ft_acl(t_ls *ls)
     else if (acl != NULL)
         chr = '+';
     else
-        chr = ' ';
+        chr = '\0';
+	acl_free(acl);
     return (chr);
 }
 
@@ -108,12 +110,11 @@ t_ls 			*pre_stat(t_ls *ls, char *path, t_flag flag)
 	ls->chmod = NULL;
 	ls->link = NULL;
 	ls->tm = NULL;
-	ls->color = NULL;
 	ls->flag = flag;
 	return (ls);
 }
 
-int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
+int			init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 {
 	struct stat	file_stat;
 
@@ -122,7 +123,9 @@ int				init_struct(t_ls *ls, t_flag flag, char *path, int dostat)
 		return (1);
 	if (lstat(ls->path, &file_stat) < 0)
 	{
-		printf("ls: cannot access \'%s\': %s\n", ls->name ? ls->name : ls->path, strerror(errno));
+		ft_printf("ls: cannot access \'%s\': %s\n",
+					ls->name ? ls->name : ls->path, strerror(errno));
+		free(path);
 		return 0;
 	}
 	ls->mode = file_stat.st_mode;

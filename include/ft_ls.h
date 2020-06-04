@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 15:04:18 by user              #+#    #+#             */
-/*   Updated: 2020/05/31 22:21:14 by user             ###   ########.fr       */
+/*   Updated: 2020/06/04 17:56:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct      s_ls
 	long			size;			//размер в байтах
 	char 			*tm;			//форматируемая дата
 	char 			*link;			// файл на который указывает символьная сылка
-	char 			*color;			//цвет файла
 	t_flag			flag;			//флаг
 	t_time			time;			//время DD MM
 	dev_t			rdev;			//номер устройства
@@ -57,9 +56,13 @@ typedef struct      s_ls
 typedef struct 		s_print
 {
 	int 			max_mode;
-	int 			max_name;
+	int				max_name;
+	int 			max_uname;
+	int 			max_gname;
 	int 			max_nlink;
 	int 			max_size;
+	int 			max_mjr;
+	int 			max_mnr;
 }					t_print;
 
 typedef struct		s_columns
