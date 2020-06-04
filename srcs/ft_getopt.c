@@ -1,18 +1,5 @@
 #include "ft_ls.h"
 
-/**
- * -a --all
- * --color=auto --color=no
- * -d --directory
- * -f
- * -g
- * -r --reverse
- * -R --recursive
- * -l
- * -t
- * -u
- */
-
 int				no_more_options(char **optcursor)
 {
 	*optcursor = NULL;

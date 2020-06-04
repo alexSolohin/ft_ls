@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpasty <jpasty@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/04 16:43:38 by jpasty            #+#    #+#             */
+/*   Updated: 2020/06/04 16:43:38 by jpasty           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 char		*get_user_name(uid_t user_id)
@@ -51,9 +63,9 @@ char		*get_tm(t_time t)
 	return  (fmt);
 }
 
-int64_t		total_blk(t_ls *ls)
+long 		total_blk(t_ls *ls)
 {
-	int64_t total;
+	long total;
 
 	total = 0;
 	if (ls)
@@ -69,10 +81,10 @@ int64_t		total_blk(t_ls *ls)
 
 unsigned	mjr(t_ls *ls)
 {
-	return ((unsigned)(((ls->rdev) >> 16) & 0xffff));
+	return ((unsigned)(((ls->rdev) >> 8) & 0x7f));
 }
 
 unsigned	mnr(t_ls *ls)
 {
-	return ((unsigned)((ls->rdev) & 0xffff));
+	return ((unsigned)((ls->rdev) & 0xff));
 }

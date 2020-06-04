@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 15:04:18 by user              #+#    #+#             */
-/*   Updated: 2020/04/24 15:04:22 by user             ###   ########.fr       */
+/*   Updated: 2020/06/02 23:01:41 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,33 @@ typedef struct group	t_group;
 
 typedef struct      s_ls
 {
-	char            *name;			// имя файла или директории
+	char            *name;
 	char			*path;
-	char			*chmod;			//права доступа
-	unsigned short	nlink;			//количество файлов внутри
-	char 			*uname;			//имя пользователя
-	char			*gname;			//имя группы
-	long			size;			//размер в байтах
-	char 			*tm;			//форматируемая дата
-	char 			*link;			// файл на который указывает символьная сылка
-	char 			*color;			//цвет файла
-	t_flag			flag;			//флаг
-	t_time			time;			//время DD MM
-	dev_t			rdev;			//номер устройства
+	char			*chmod;
+	unsigned short	nlink;
+	char 			*uname;
+	char			*gname;
+	long			size;
+	char 			*tm;
+	char 			*link;
+	long   			block;
+	t_flag			flag;
+	t_time			time;
 	mode_t			mode;
-	int64_t  		block;			//кол-во выделенных блоков
+	dev_t			rdev;
     struct s_ls     *next;
 }                   t_ls;
 
 typedef struct 		s_print
 {
 	int 			max_mode;
-	int 			max_name;
+	int				max_name;
+	int 			max_uname;
+	int 			max_gname;
 	int 			max_nlink;
 	int 			max_size;
+	int 			max_mjr;
+	int 			max_mnr;
 }					t_print;
 
 typedef struct		s_dir

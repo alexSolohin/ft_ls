@@ -1,22 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jpasty <jpasty@student.21-school.ru>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/06/03 22:41:31 by jpasty            #+#    #+#              #
+#    Updated: 2020/06/03 23:33:01 by jpasty           ###   ########.ru        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		:=	ft_ls
 DIR_SRC		:=	srcs/
 DIR_BIN		:=	bin/
 DIR_INCLUDE :=	include/
+DIR_LIBFT	:=	libft/
 CC			:=	gcc
 CFLAGS		:=	-g -Wextra -Werror -Wall
 HEADERS		:=	libft.h ft_printf.h ft_getopt.h ft_ls.h
 LIBFT		:=	libft.a
+REMOVE		:=	rm -rf
+
 SRC			:=	main.c collect_flags.c ft_getopt.c ft_getopt_long.c ft_ls.c \
-				sort_list.c tools.c utils.c color_file.c print_output.c \
+				sort_list.c tools.c utils.c color_file.c print_output.c struct.c
 
 OBJS 		:= $(SRC:.c=.o)
-LIBFT		:= $(addprefix $(DIR_SRC), $(LIBFT))
+LIBFT		:= $(addprefix $(DIR_LIBFT), $(LIBFT))
+
+MAKE_LIBFT	:= make -C $(DIR_LIBFT)
 
 vpath %.c $(DIR_SRC)
 vpath %.o $(DIR_BIN)
 vpath %.h $(DIR_INCLUDE)
 
-all: $(NAME)
+all: make_lft $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(addprefix $(DIR_BIN), $(OBJS)) $(LIBFT) -o $@
@@ -27,14 +44,19 @@ $(OBJS):%.o:%.c $(HEADERS) | $(DIR_BIN)
 $(DIR_BIN):
 	mkdir -p $@
 
+make_lft:
+	$(MAKE_LIBFT)
+
 clean:
-	rm -rf $(addprefix $(DIR_BIN), $(OBJS))
-	rm -rf $(DIR_BIN)
+	$(REMOVE) $(addprefix $(DIR_BIN), $(OBJS))
+	$(REMOVE) $(DIR_BIN)
+	$(MAKE_LIBFT) clean
 
 fclean: clean
-	rm -rf $(NAME)
+	$(REMOVE) $(NAME)
+	$(MAKE_LIBFT) fclean
 
 re: fclean all
 
 .PHONY: clean fclean all re
-.SILENT: all $(NAME) $(OBJS) $(DIR_BIN) clean fclean re
+.SILENT: all $(NAME) $(OBJS) $(DIR_BIN) clean fclean re make_lft

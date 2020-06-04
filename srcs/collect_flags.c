@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   collect_flags.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/01 19:00:51 by null              #+#    #+#             */
+/*   Updated: 2020/06/01 19:00:51 by null             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void		invalid_option(t_opt *opt)
 {
-	ft_printf("ft_ls: invalid option -- \'%s\'", opt->optopt);
+	ft_printf("ft_ls: invalid option -- \'%s\'\n", opt->optopt);
 	free(opt);
 	exit(0);
 }
