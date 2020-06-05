@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 17:27:13 by user              #+#    #+#             */
-/*   Updated: 2020/06/04 18:01:10 by user             ###   ########.fr       */
+/*   Updated: 2020/06/05 14:34:41 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char		*get_path(char *path, char *name)
 {
-	char 		*dir_path;
-	char		*full_path;
-	char 		file_in_dir[MAX_PATH];
-	int 		len;
+	char	*dir_path;
+	char	*full_path;
+	char	file_in_dir[MAX_PATH];
+	int		len;
 
 	full_path = NULL;
 	if (path)
@@ -41,7 +41,7 @@ char		*get_path(char *path, char *name)
 	return (full_path);
 }
 
-void 		recurcive(t_ls *list)
+void		recurcive(t_ls *list)
 {
 	t_ls	*tmp;
 
@@ -81,7 +81,7 @@ static int	dir_list(t_ls **list, char *dir_path, t_flag f)
 			continue ;
 		f_path = get_path(dir_path, d.dirent->d_name);
 		if (!init_struct(&e, f, f_path,
-				f.l || f.G || f.t || f.r_cap || f.g || f.u))
+				f.l || f.g_cap || f.t || f.r_cap || f.g || f.u))
 			continue ;
 		add_ls_node(&e, list);
 		(*list)->name = ft_strdup(d.dirent->d_name);
@@ -90,7 +90,7 @@ static int	dir_list(t_ls **list, char *dir_path, t_flag f)
 	return (1);
 }
 
-void 		ft_ls_dir(char *dir_path, t_flag f, int show_dir)
+void		ft_ls_dir(char *dir_path, t_flag f, int show_dir)
 {
 	t_ls	*list;
 

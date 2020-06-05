@@ -6,7 +6,7 @@
 #    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/03 22:41:31 by jpasty            #+#    #+#              #
-#    Updated: 2020/06/04 17:57:00 by user             ###   ########.fr        #
+#    Updated: 2020/06/05 14:57:52 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ REMOVE		:=	rm -rf
 
 SRC			:=	main.c collect_flags.c ft_getopt.c ft_getopt_long.c ft_ls.c \
 				sort_list.c tools.c utils.c color_file.c print_output.c struct.c \
-				print.c
+				print.c columns.c utils2.c
 
 OBJS 		:= $(SRC:.c=.o)
 LIBFT		:= $(addprefix $(DIR_LIBFT), $(LIBFT))

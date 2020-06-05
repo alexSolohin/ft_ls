@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_getopt.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/05 14:33:18 by user              #+#    #+#             */
+/*   Updated: 2020/06/05 14:34:04 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int				no_more_options(char **optcursor)
@@ -6,7 +18,7 @@ int				no_more_options(char **optcursor)
 	return (-1);
 }
 
-void 			opt_has_arg(t_input *input, t_opt **opt, char **optcursor)
+void			opt_has_arg(t_input *input, t_opt **opt, char **optcursor)
 {
 	if ((*opt)->optdecl)
 	{
@@ -35,12 +47,12 @@ void 			opt_has_arg(t_input *input, t_opt **opt, char **optcursor)
 		(*opt)->optchar = '?';
 }
 
-int 			ft_get_opt(t_input *input, t_opt *opt)
+int				ft_get_opt(t_input *input, t_opt *opt)
 {
 	static char	*optcursor = NULL;
 
 	opt->optarg = NULL;
-	if (opt->optind >= input->ac|| input->av[opt->optind] == NULL ||
+	if (opt->optind >= input->ac || input->av[opt->optind] == NULL ||
 		*(input->av)[opt->optind] != '-'
 		|| strcmp(input->av[opt->optind], "-") == 0)
 		return (no_more_options(&optcursor));
@@ -60,11 +72,11 @@ int 			ft_get_opt(t_input *input, t_opt *opt)
 	return (opt->optchar);
 }
 
-t_opt 			*set_start_opt_val(t_opt *opt)
+t_opt			*set_start_opt_val(t_opt *opt)
 {
 	if (!opt)
 	{
-		if(!(opt = (t_opt *)malloc(sizeof(t_opt))))
+		if (!(opt = (t_opt *)malloc(sizeof(t_opt))))
 			exit(-1);
 		opt->optarg = NULL;
 		opt->optdecl = NULL;
@@ -78,7 +90,7 @@ t_opt 			*set_start_opt_val(t_opt *opt)
 
 int				ft_getopt(t_input input, t_opt *opt)
 {
-	int ret;
+	int			ret;
 
 	opt = set_start_opt_val(opt);
 	ret = ft_get_opt(&input, opt);

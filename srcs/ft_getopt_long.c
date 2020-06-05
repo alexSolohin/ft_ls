@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_getopt_long.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/05 14:29:26 by user              #+#    #+#             */
+/*   Updated: 2020/06/05 14:33:02 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-int 			find_val(t_input *input, t_lopt *o, t_opt **opt)
+int				find_val(t_input *input, t_lopt *o, t_opt **opt)
 {
 	int			retval;
 
@@ -27,7 +39,7 @@ int 			find_val(t_input *input, t_lopt *o, t_opt **opt)
 
 int				find_matches(t_lopt *o, t_lopt **match, t_input input, int arg)
 {
-	int 		num_matches;
+	int			num_matches;
 	const char	*curr_arg;
 	size_t		arg_name_length;
 
@@ -49,9 +61,9 @@ int				find_matches(t_lopt *o, t_lopt **match, t_input input, int arg)
 
 int				get_lopt(t_input input, t_opt *opt, t_lopt *lopt, int *longind)
 {
-	t_lopt 		*o;
-	t_lopt 		*match;
-	int 		retval;
+	t_lopt		*o;
+	t_lopt		*match;
+	int			retval;
 
 	o = lopt;
 	match = NULL;
@@ -75,10 +87,10 @@ int				get_lopt(t_input input, t_opt *opt, t_lopt *lopt, int *longind)
 	return (retval);
 }
 
-int 		ft_getopt_long(t_input data, t_opt **opt,
+int				ft_getopt_long(t_input data, t_opt **opt,
 							const t_lopt *lopt, int *lind)
 {
-	int ret;
+	int			ret;
 
 	*opt = set_start_opt_val(*opt);
 	ret = get_lopt(data, *opt, lopt, lind);

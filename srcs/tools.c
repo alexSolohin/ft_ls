@@ -1,21 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/05 15:00:58 by user              #+#    #+#             */
+/*   Updated: 2020/06/05 15:02:16 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-unsigned	mjr(t_ls *ls)
+char			*lpath(char *linkname, mode_t mode)
 {
-	return ((unsigned)(((ls->rdev) >> 16) & 0xffff));
-}
-
-unsigned	mnr(t_ls *ls)
-{
-	return ((unsigned)((ls->rdev) & 0xffff));
-}
-
-char 		*lpath(char *linkname, mode_t mode)
-{
-	int		len;
-	char	buf[MAX_PATH];
-	char 	*res;
-	char	*link;
+	int			len;
+	char		buf[MAX_PATH];
+	char		*res;
+	char		*link;
 
 	if (S_ISLNK(mode))
 	{
@@ -23,7 +25,7 @@ char 		*lpath(char *linkname, mode_t mode)
 		if ((len = readlink(linkname, buf, MAX_PATH)) < 0)
 		{
 			ft_printf("ft_ls: cannot read symbolic link \'%s\': %s\n", linkname,
-				   strerror(errno));
+				strerror(errno));
 			return (NULL);
 		}
 		buf[len] = '\0';
@@ -35,7 +37,7 @@ char 		*lpath(char *linkname, mode_t mode)
 	return (NULL);
 }
 
-static int	digit_length(long num)
+static int		digit_length(long num)
 {
 	if (num < 10)
 		return (1);
@@ -51,7 +53,7 @@ static t_print	init_print(t_ls **ls, int only_group_name)
 	p.max_mode = ft_strlen(dt->chmod);
 	p.max_nlink = digit_length(dt->nlink);
 	p.max_uname = only_group_name ? 0 : ft_strlen(dt->uname);
-	p.max_gname =(int)ft_strlen(dt->gname);
+	p.max_gname = (int)ft_strlen(dt->gname);
 	p.max_size = digit_length(dt->size);
 	p.max_mjr = (S_ISBLK(dt->mode) || S_ISCHR(dt->mode)) ?
 			digit_length(mjr(dt)) : 0;
@@ -60,28 +62,28 @@ static t_print	init_print(t_ls **ls, int only_group_name)
 	if (p.max_mjr && p.max_mnr)
 	{
 		if (p.max_size < (p.max_mjr + p.max_mnr + 2))
-			p.max_size  = p.max_mjr + p.max_mnr + 2;
+			p.max_size = p.max_mjr + p.max_mnr + 2;
 		else
 			p.max_mjr = p.max_size - p.max_mnr - 2;
 	}
 	*ls = (*ls)->next;
-	return  (p);
+	return (p);
 }
 
-static void	in_dev_dir(t_print *t, t_print *p)
+static void		in_dev_dir(t_print *t, t_print *p)
 {
 	(*p).max_mjr = (*t).max_mjr > (*p).max_mjr ? (*t).max_mjr : (*p).max_mjr;
 	(*p).max_mnr = (*t).max_mnr > p->max_mnr ? (*t).max_mnr : p->max_mnr;
 	if ((*p).max_size < ((*p).max_mjr + (*p).max_mnr + 2))
-		(*p).max_size  = (*p).max_mjr + (*p).max_mnr + 2;
+		(*p).max_size = (*p).max_mjr + (*p).max_mnr + 2;
 	else
 		(*p).max_mjr = (*p).max_size - (*p).max_mnr - 2;
 }
 
-t_print		print_utils(t_ls *ls)
+t_print			print_utils(t_ls *ls)
 {
-	t_print	p;
-	t_print	tmp;
+	t_print		p;
+	t_print		tmp;
 
 	p = init_print(&ls, !ls->flag.g);
 	while (ls)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/05 14:35:02 by user              #+#    #+#             */
+/*   Updated: 2020/06/05 14:37:12 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void		add_ls_node(t_ls *entry, t_ls **ls)
@@ -6,25 +18,25 @@ void		add_ls_node(t_ls *entry, t_ls **ls)
 
 	if (!(tmp = (t_ls *)malloc(sizeof(t_ls))))
 	{
-		ft_printf("%s", strerror(errno));	         //добавить обработку исключений
-		return;
+		ft_printf("%s", strerror(errno));
+		return ;
 	}
-
-	if(entry && ls)
+	if (entry && ls)
 	{
 		*tmp = *entry;
 		tmp->next = *ls;
 		*ls = tmp;
 	}
 }
-void 			free_list(t_ls *ls)
+
+void		free_list(t_ls *ls)
 {
-	t_ls		*cur;
-	t_ls		*next;
+	t_ls	*cur;
+	t_ls	*next;
 
 	cur = ls;
 	while (cur)
-    {
+	{
 		next = cur->next;
 		free(cur->name);
 		free(cur->path);
@@ -36,15 +48,14 @@ void 			free_list(t_ls *ls)
 		free(cur);
 		cur = next;
 	}
-
 }
 
-int 			input_processing(t_flag flag, int ac, char **av)
+int			input_processing(t_flag flag, int ac, char **av)
 {
-	t_ls 		*fls;
-	t_ls 		*dls;
-	t_ls		entry;
-	int			i;
+	t_ls	*fls;
+	t_ls	*dls;
+	t_ls	entry;
+	int		i;
 
 	fls = NULL;
 	dls = NULL;
@@ -68,10 +79,10 @@ int 			input_processing(t_flag flag, int ac, char **av)
 	return (0);
 }
 
-int				main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_flag		flag;
-	char		*cd;
+	t_flag	flag;
+	char	*cd;
 
 	cd = CURR_DIR;
 	collect_flags(&flag, &ac, &av);

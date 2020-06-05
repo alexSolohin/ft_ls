@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_getopt.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/05 13:55:47 by user              #+#    #+#             */
+/*   Updated: 2020/06/05 14:02:21 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef LS_FT_GETOPT_H
-#define LS_FT_GETOPT_H
+# define LS_FT_GETOPT_H
 
-#include "libft.h"
+# include "libft.h"
 
 # define FLAGS		"1adfG::glRrtu"
 
@@ -16,18 +27,18 @@
 typedef struct			s_opt
 {
 	char				*optarg;
-	int 				optind;
+	int					optind;
 	int					optchar;
-	char 				*optdecl;
-	char 				*optopt;
+	char				*optdecl;
+	char				*optopt;
 }						t_opt;
 
 typedef const struct	s_lopt
 {
 	const char			*name;
-	int 				hasarg;
+	int					hasarg;
 	int					*flag;
-	int 				val;
+	int					val;
 }						t_lopt;
 
 typedef struct			s_input
@@ -38,31 +49,31 @@ typedef struct			s_input
 
 typedef struct			s_flag
 {
-	int 				one;
+	int					one;
 	int					a;
-	int 				d;
+	int					d;
 	int					f;
-	int 				G;
-	int 				g;
-	int 				l;
-	int 				r_cap;
-	int 				r;
+	int					g_cap;
+	int					g;
+	int					l;
+	int					r_cap;
+	int					r;
 	int					t;
-	int 				u;
+	int					u;
 }						t_flag;
 
 static const t_lopt		g_lopt[] = {
-		{"all", NO_ARG, NULL, 'a'},
-		{"color", OPT_ARG, NULL, 'G'},
-		{"directory", NO_ARG, NULL, 'd'},
-		{"recursive", NO_ARG, NULL, 'R'},
-		{"reverse", NO_ARG, NULL, 'r'},
-		{NULL,0,NULL,0}
+	{"all", NO_ARG, NULL, 'a'},
+	{"color", OPT_ARG, NULL, 'G'},
+	{"directory", NO_ARG, NULL, 'd'},
+	{"recursive", NO_ARG, NULL, 'R'},
+	{"reverse", NO_ARG, NULL, 'r'},
+	{NULL, 0, NULL, 0}
 };
 
-t_opt 		*set_start_opt_val(t_opt *opt);
-int			ft_getopt(t_input inpt, t_opt *opt);
-int 		ft_getopt_long(t_input data, t_opt **opt,
+t_opt					*set_start_opt_val(t_opt *opt);
+int						ft_getopt(t_input inpt, t_opt *opt);
+int						ft_getopt_long(t_input data, t_opt **opt,
 							const t_lopt *lopt, int *lind);
 
 #endif

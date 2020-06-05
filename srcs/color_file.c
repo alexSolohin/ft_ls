@@ -6,13 +6,13 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 01:18:13 by jpasty            #+#    #+#             */
-/*   Updated: 2020/06/04 17:58:07 by user             ###   ########.fr       */
+/*   Updated: 2020/06/05 14:27:34 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void 	color_reg(mode_t mode)
+void	color_reg(mode_t mode)
 {
 	if (((mode & S_IXUSR) || (mode & S_IXGRP) || (mode & S_IXOTH)) &&
 	!((S_ISUID & mode) || (S_ISGID & mode)))
@@ -31,10 +31,10 @@ void 	color_reg(mode_t mode)
 	}
 }
 
-void 	color_dir(mode_t mode)
+void	color_dir(mode_t mode)
 {
 	if ((S_IWOTH & mode))
-			ft_putstr("\x1b[34;42m");
+		ft_putstr("\x1b[34;42m");
 	else
 	{
 		if (mode & S_ISVTX)
@@ -61,4 +61,3 @@ void	set_color(mode_t mode, int do_color)
 	if (S_ISCHR(mode) || S_ISBLK(mode))
 		ft_putstr(YELLOW);
 }
-

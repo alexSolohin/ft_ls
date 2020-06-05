@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_list.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/05 14:52:42 by user              #+#    #+#             */
+/*   Updated: 2020/06/05 14:53:49 by user             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int			entry_compare(t_ls *a, t_ls *b)
 {
 	int		cmp;
+
 	cmp = 0;
 	if (a->flag.f)
 		return (1);
@@ -13,7 +26,7 @@ int			entry_compare(t_ls *a, t_ls *b)
 	}
 	if (!cmp)
 		cmp = ft_strcmp(a->path, b->path);
-	return a->flag.r ? 0 - cmp : cmp;
+	return (a->flag.r ? 0 - cmp : cmp);
 }
 
 t_ls		*merge(t_ls *a, t_ls *b)
@@ -22,9 +35,9 @@ t_ls		*merge(t_ls *a, t_ls *b)
 
 	result = NULL;
 	if (a == NULL)
-		return(b);
-	else if (b==NULL)
-		return(a);
+		return (b);
+	else if (b == NULL)
+		return (a);
 	if (entry_compare(a, b) <= 0)
 	{
 		result = a;
@@ -35,12 +48,12 @@ t_ls		*merge(t_ls *a, t_ls *b)
 		result = b;
 		result->next = merge(a, b->next);
 	}
-	return(result);
+	return (result);
 }
 
 void		devide(t_ls *head, t_ls **a, t_ls **b)
 {
-	t_ls 	*fast;
+	t_ls	*fast;
 	t_ls	*slow;
 
 	slow = head;
@@ -63,10 +76,9 @@ void		merge_sort(t_ls **list_to_sort)
 
 	head = *list_to_sort;
 	if ((head == NULL) || (head->next == NULL))
-		return;
- 	devide(head, &a, &b);
+		return ;
+	devide(head, &a, &b);
 	merge_sort(&a);
 	merge_sort(&b);
 	*list_to_sort = merge(a, b);
 }
-
