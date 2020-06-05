@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 15:03:07 by user              #+#    #+#             */
-/*   Updated: 2020/06/05 15:04:32 by user             ###   ########.fr       */
+/*   Updated: 2020/06/05 17:25:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ char		*get_user_name(uid_t user_id)
 
 	if (!(usr = getpwuid(user_id)))
 	{
-		ft_printf("Can't get struct for user: %d", user_id);
-		exit(EXIT_FAILURE);
+		ft_printf("Can't get struct for user: %d\n", user_id);
+		return (ft_strdup(""));
 	}
 	if (!(uname = ft_strdup(usr->pw_name)))
+	{
+		ft_printf("ft_ls: %s\n", strerror(errno));
 		exit(EXIT_FAILURE);
+	}
 	return (uname);
 }
 
@@ -34,11 +37,14 @@ char		*get_group_name(gid_t group_id)
 
 	if (!(grp = getgrgid(group_id)))
 	{
-		ft_printf("Can't get struct for group: %d", group_id);
-		exit(EXIT_FAILURE);
+		ft_printf("Can't get struct for group: %d\n", group_id);
+		return (ft_strdup(""));
 	}
 	if (!(gname = ft_strdup(grp->gr_name)))
+	{
+		ft_printf("ft_ls: %s\n", strerror(errno));
 		exit(EXIT_FAILURE);
+	}
 	return (gname);
 }
 

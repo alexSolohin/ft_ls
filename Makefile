@@ -6,7 +6,7 @@
 #    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/03 22:41:31 by jpasty            #+#    #+#              #
-#    Updated: 2020/06/05 14:57:52 by user             ###   ########.fr        #
+#    Updated: 2020/06/05 15:41:02 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIR_BIN		:=	bin/
 DIR_INCLUDE :=	include/
 DIR_LIBFT	:=	libft/
 CC			:=	gcc
-CFLAGS		:=	-g -Wextra -Werror -Wall
+CFLAGS		:=	-Wextra -Werror -Wall
 HEADERS		:=	libft.h ft_printf.h ft_getopt.h ft_ls.h
 LIBFT		:=	libft.a
 REMOVE		:=	rm -rf

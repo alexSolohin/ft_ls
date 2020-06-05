@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 14:57:32 by user              #+#    #+#             */
-/*   Updated: 2020/06/05 15:05:10 by user             ###   ########.fr       */
+/*   Updated: 2020/06/05 16:37:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned		mjr(t_ls *ls)
 {
-	return ((unsigned)(((ls->rdev) >> 16) & 0xffff));
+	return ((unsigned)(((ls->rdev) >> 24) & 0xff));
 }
 
 unsigned		mnr(t_ls *ls)
@@ -67,7 +67,7 @@ char			ft_acl(t_ls *ls)
 	else if (acl != NULL)
 		chr = '+';
 	else
-		chr = ' ';
+		chr = '\0';
 	acl_free(acl);
 	return (chr);
 }

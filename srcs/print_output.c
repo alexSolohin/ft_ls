@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 14:37:33 by user              #+#    #+#             */
-/*   Updated: 2020/06/05 14:38:36 by user             ###   ########.fr       */
+/*   Updated: 2020/06/05 15:52:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		print_column(t_ls *ls)
 void		print_long_info(t_ls *ls, t_print t)
 {
 	if (!ls->flag.g)
-		ft_printf("%*s %*u %-*s %-*s ", t.max_mode, ls->chmod, t.max_nlink,
+		ft_printf("%-*s %*u %-*s %-*s ", t.max_mode, ls->chmod, t.max_nlink,
 		ls->nlink, t.max_uname, ls->uname, t.max_gname, ls->gname);
 	else
 		ft_printf("%*s %*u %-*s ", t.max_mode, ls->chmod, t.max_nlink,
