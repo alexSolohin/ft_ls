@@ -2,6 +2,7 @@
 
 ## Project Overview
 
+- The project ft_ls opens the path to the Unix branch of the sphere system.
 
 ## How to compile:
 - git clone https://github.com/alexSolohin/ft_ls.git
