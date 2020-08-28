@@ -24,5 +24,3 @@
 - Sort by last access date: -a
 - Sort by last status change date: -c
 - Colorized output: -G
-
-![Alt-текст](https://hostingkartinok.com/show-image.php?id=650e86f45ac5e29fe9eaa0e0231ef5dd "Name")
